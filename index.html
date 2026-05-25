@@ -1,213 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sri Lanka MoH — HIS Map</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sri Lanka MoH — HIS Coverage Map</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #222; overflow: hidden; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;overflow:hidden}
 
     /* ── Header ── */
-    #header {
-      background: #154360;
-      color: white;
-      padding: 10px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      height: 56px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-      z-index: 1100;
-      position: relative;
+    #hdr{
+      background:linear-gradient(135deg,#0d3b66,#1a5276);
+      color:#fff;height:54px;padding:0 18px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:1100;position:relative;
     }
-    #header-left h1 { font-size: 1.05rem; font-weight: 700; line-height: 1.2; }
-    #header-left p  { font-size: 0.72rem; opacity: 0.8; margin-top: 1px; }
+    #hdr h1{font-size:1rem;font-weight:700;line-height:1.25}
+    #hdr p{font-size:.7rem;opacity:.78;margin-top:1px}
 
-    /* ── View-mode tabs ── */
-    #view-tabs {
-      display: flex;
-      gap: 4px;
+    /* ── Type tabs ── */
+    #type-tabs{display:flex;gap:4px;flex-wrap:wrap}
+    .ttab{
+      padding:5px 11px;border:1.5px solid rgba(255,255,255,.3);border-radius:16px;
+      color:rgba(255,255,255,.75);background:transparent;
+      cursor:pointer;font-size:.75rem;font-weight:600;white-space:nowrap;
+      transition:all .15s
     }
-    .vtab {
-      padding: 6px 14px;
-      border: 2px solid rgba(255,255,255,0.35);
-      border-radius: 20px;
-      color: rgba(255,255,255,0.75);
-      background: transparent;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      white-space: nowrap;
-      transition: all 0.18s;
-    }
-    .vtab:hover { background: rgba(255,255,255,0.15); color: white; }
-    .vtab.active { background: white; color: #154360; border-color: white; }
+    .ttab:hover{background:rgba(255,255,255,.18);color:#fff}
+    .ttab.active{background:#fff;color:#0d3b66;border-color:#fff}
 
     /* ── Layout ── */
-    #app { display: flex; height: calc(100vh - 56px); }
+    #app{display:flex;height:calc(100vh - 54px)}
 
     /* ── Sidebar ── */
-    #sidebar {
-      width: 270px;
-      min-width: 240px;
-      background: white;
-      overflow-y: auto;
-      border-right: 1px solid #dde3ec;
-      display: flex;
-      flex-direction: column;
+    #sidebar{
+      width:290px;min-width:260px;background:#fff;
+      border-right:1px solid #dde3ec;
+      display:flex;flex-direction:column;overflow:hidden;
     }
-    #sidebar-top { padding: 12px 12px 0; }
 
-    #search-wrap { margin-bottom: 10px; position: relative; }
-    #search-input {
-      width: 100%;
-      padding: 7px 10px 7px 32px;
-      border: 1px solid #ccd3de;
-      border-radius: 6px;
-      font-size: 0.84rem;
-      background: #f8f9fc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 9px center no-repeat;
+    /* search */
+    #search-wrap{padding:10px 12px 0;position:relative}
+    #search-input{
+      width:100%;padding:7px 10px 7px 30px;border:1px solid #c5cdd8;
+      border-radius:6px;font-size:.83rem;background:#f8f9fc;
     }
-    #search-input:focus { outline: none; border-color: #154360; background-color: white; }
-    #search-results {
-      position: absolute; top: 100%; left: 0; right: 0; z-index: 2000;
-      background: white; border: 1px solid #ccd3de; border-top: none;
-      border-radius: 0 0 6px 6px; max-height: 200px; overflow-y: auto; display: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    #search-input:focus{outline:none;border-color:#0d3b66;background:#fff}
+    #search-results{
+      position:absolute;top:calc(100% - 0px);left:12px;right:12px;z-index:3000;
+      background:#fff;border:1px solid #c5cdd8;border-top:none;
+      border-radius:0 0 6px 6px;max-height:190px;overflow-y:auto;display:none;
+      box-shadow:0 4px 14px rgba(0,0,0,.13);
     }
-    .search-item { padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; line-height: 1.35; }
-    .search-item:hover { background: #eaf3fb; }
-    .search-item .si-sub { color: #888; font-size: 0.74rem; margin-top: 1px; }
+    .si{padding:7px 11px;cursor:pointer;border-bottom:1px solid #f2f2f2;font-size:.8rem;line-height:1.35}
+    .si:hover{background:#eaf3fb}
+    .si-sub{color:#888;font-size:.73rem;margin-top:1px}
 
-    /* ── Legend panel ── */
-    #legend-wrap { flex: 1; overflow-y: auto; padding: 0 12px 16px; }
+    /* ── Legend / filter panel ── */
+    #panel{flex:1;overflow-y:auto;padding:10px 12px 14px}
 
-    .legend-section { margin-top: 14px; }
-    .legend-section-title {
-      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em;
-      color: #8894a8; margin-bottom: 8px; padding-bottom: 4px;
-      border-bottom: 1px solid #eef0f4;
+    /* HIS toggle row */
+    #his-toggles{
+      display:flex;gap:6px;margin:10px 0 14px;
     }
-    .legend-row {
-      display: flex; align-items: center; gap: 9px;
-      padding: 5px 8px; border-radius: 6px; cursor: pointer;
-      transition: background 0.12s; user-select: none;
+    .his-btn{
+      flex:1;padding:7px 4px;border-radius:8px;border:2px solid;
+      font-size:.78rem;font-weight:700;cursor:pointer;text-align:center;
+      transition:all .15s;
     }
-    .legend-row:hover { background: #f4f6fa; }
-    .legend-row input { width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; accent-color: #154360; }
-    .legend-row label { cursor: pointer; flex: 1; font-size: 0.82rem; line-height: 1.3; }
-    .cnt { background: #edf0f7; color: #667; font-size: 0.7rem; padding: 1px 7px; border-radius: 10px; min-width: 26px; text-align: center; flex-shrink: 0; }
-    .swatch { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid rgba(0,0,0,0.15); }
 
-    /* Select All / None links */
-    .sel-links { font-size: 0.72rem; color: #154360; margin-bottom: 4px; }
-    .sel-links a { cursor: pointer; text-decoration: underline; margin-right: 8px; }
-    .sel-links a:hover { color: #0a2540; }
-
-    /* ── Stats footer ── */
-    #sidebar-footer {
-      padding: 9px 12px;
-      background: #f4f7fc;
-      border-top: 1px solid #e5eaf2;
-      font-size: 0.76rem;
-      color: #667;
-      flex-shrink: 0;
+    .sec-title{
+      font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;
+      color:#8894a8;margin-bottom:8px;padding-bottom:3px;
+      border-bottom:1px solid #eef0f4;
     }
-    #sidebar-footer strong { color: #154360; }
+
+    /* ── Summary table ── */
+    #summary-table-wrap{margin-bottom:14px}
+    #summary-table{width:100%;border-collapse:collapse;font-size:.78rem}
+    #summary-table th{
+      background:#f0f5fb;padding:6px 8px;text-align:left;
+      border-bottom:2px solid #dde3ec;font-weight:700;font-size:.72rem;
+      color:#445
+    }
+    #summary-table td{padding:5px 8px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+    #summary-table tr.row-total td{background:#f7faff;font-weight:700;border-top:2px solid #dde3ec}
+    #summary-table tr:hover td{background:#f5f9ff}
+    .type-cell{cursor:pointer;color:#0d3b66;font-weight:600}
+    .type-cell:hover{text-decoration:underline}
+    .bar-wrap{width:70px;background:#eee;border-radius:3px;height:8px;display:inline-block;vertical-align:middle;margin-left:4px}
+    .bar-fill{height:8px;border-radius:3px;background:#27ae60;transition:width .3s}
+    .pct-txt{font-size:.7rem;color:#666;margin-left:4px}
+
+    /* ── HIS detail ── */
+    #his-detail{
+      background:#f8faff;border:1px solid #dde3ec;border-radius:8px;
+      padding:10px;margin-bottom:12px;font-size:.78rem;display:none;
+    }
+    #his-detail-title{font-weight:700;margin-bottom:8px;color:#0d3b66;font-size:.85rem}
+    #his-system-rows{}
+    .his-sys-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+    .his-sys-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .his-sys-label{flex:1}
+    .his-sys-count{font-weight:700;color:#333}
+
+    /* stat strip */
+    #stat-strip{
+      padding:8px 12px;background:#f4f7fc;border-top:1px solid #e5eaf2;
+      font-size:.74rem;color:#667;flex-shrink:0;
+    }
+    #stat-strip strong{color:#0d3b66}
 
     /* ── Map ── */
-    #map { flex: 1; z-index: 1; }
+    #map{flex:1;z-index:1}
 
     /* ── Unmapped button ── */
-    #btn-unmapped {
-      position: fixed; bottom: 14px; right: 16px; z-index: 1000;
-      background: #154360; color: white;
-      border: none; padding: 9px 16px; border-radius: 22px;
-      cursor: pointer; font-size: 0.8rem; font-weight: 600;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.28);
-      transition: background 0.15s;
+    #btn-unmap{
+      position:fixed;bottom:14px;right:16px;z-index:1000;
+      background:#0d3b66;color:#fff;border:none;
+      padding:8px 15px;border-radius:20px;cursor:pointer;
+      font-size:.78rem;font-weight:600;
+      box-shadow:0 3px 10px rgba(0,0,0,.28);transition:background .15s;
     }
-    #btn-unmapped:hover { background: #0d2d44; }
+    #btn-unmap:hover{background:#082a4a}
 
     /* ── Unmapped drawer ── */
-    #unmapped-panel {
-      position: fixed; bottom: 0; left: 270px; right: 0; z-index: 900;
-      background: white; border-top: 2px solid #154360; display: none;
-      max-height: 240px; flex-direction: column;
+    #unmap-panel{
+      position:fixed;bottom:0;left:290px;right:0;z-index:900;
+      background:#fff;border-top:2px solid #0d3b66;
+      max-height:230px;display:none;flex-direction:column;
     }
-    #unmapped-panel.open { display: flex; }
-    #unmapped-header {
-      background: #154360; color: white;
-      padding: 7px 14px; display: flex; align-items: center;
-      justify-content: space-between; font-size: 0.85rem; cursor: pointer; flex-shrink: 0;
+    #unmap-panel.open{display:flex}
+    #unmap-hdr{
+      background:#0d3b66;color:#fff;padding:7px 14px;
+      display:flex;align-items:center;justify-content:space-between;
+      font-size:.83rem;cursor:pointer;flex-shrink:0;
     }
-    #unmapped-body { overflow: auto; flex: 1; }
-    #unmapped-table { width: 100%; border-collapse: collapse; font-size: 0.77rem; }
-    #unmapped-table th {
-      background: #f0f4fa; position: sticky; top: 0;
-      padding: 5px 10px; text-align: left; border-bottom: 1px solid #dde; font-weight: 600;
-    }
-    #unmapped-table td { padding: 4px 10px; border-bottom: 1px solid #f2f2f2; }
-    #unmapped-table tr:hover td { background: #f8fbff; }
+    #unmap-body{overflow:auto;flex:1}
+    #unmap-tbl{width:100%;border-collapse:collapse;font-size:.75rem}
+    #unmap-tbl th{background:#f0f5fb;position:sticky;top:0;padding:5px 10px;text-align:left;border-bottom:1px solid #dde;font-weight:700}
+    #unmap-tbl td{padding:4px 10px;border-bottom:1px solid #f2f2f2}
+    #unmap-tbl tr:hover td{background:#f8fbff}
 
     /* ── Popup ── */
-    .pu-name { font-weight: 700; font-size: 0.97rem; margin-bottom: 6px; line-height: 1.3; }
-    .pu-tbl { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    .pu-tbl td { padding: 3px 5px; border-bottom: 1px solid #f2f2f2; vertical-align: top; }
-    .pu-tbl td:first-child { color: #888; white-space: nowrap; width: 110px; }
-    .his-pill {
-      display: inline-block; padding: 2px 9px; border-radius: 11px;
-      font-size: 0.73rem; font-weight: 700; letter-spacing: 0.02em;
-    }
-    .pu-coords { margin-top: 6px; font-size: 0.72rem; color: #bbb; }
+    .pu-name{font-weight:700;font-size:.95rem;margin-bottom:6px;line-height:1.3}
+    .pu-tbl{width:100%;border-collapse:collapse;font-size:.79rem}
+    .pu-tbl td{padding:3px 5px;border-bottom:1px solid #f2f2f2;vertical-align:top}
+    .pu-tbl td:first-child{color:#888;white-space:nowrap;width:105px}
+    .his-pill{display:inline-block;padding:2px 9px;border-radius:11px;font-size:.72rem;font-weight:700}
+    .pu-coords{margin-top:5px;font-size:.7rem;color:#bbb}
 
-    @media (max-width: 700px) {
-      #sidebar { width: 100%; min-width: unset; height: 200px; border-right: none; border-bottom: 1px solid #dde; }
-      #app { flex-direction: column; }
-      #unmapped-panel { left: 0; }
-      .vtab { padding: 5px 9px; font-size: 0.72rem; }
+    @media(max-width:700px){
+      #sidebar{width:100%;min-width:unset;height:auto;max-height:45vh;border-right:none;border-bottom:1px solid #dde}
+      #app{flex-direction:column}
+      #unmap-panel{left:0}
+      .ttab{padding:4px 8px;font-size:.68rem}
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
-<div id="header">
-  <div id="header-left">
-    <h1>🏥 Sri Lanka Ministry of Health — HIS Map</h1>
-    <p>Health Institution Registry 2024 · Toggle categories to show/hide on map</p>
+<!-- HEADER -->
+<div id="hdr">
+  <div>
+    <h1>🏥 Sri Lanka Ministry of Health — HIS Coverage Map</h1>
+    <p>Select a hospital category to see HIS vs No-HIS coverage</p>
   </div>
-  <div id="view-tabs">
-    <button class="vtab active" data-view="his">HIS System</button>
-    <button class="vtab"        data-view="level">Hospital Level</button>
-    <button class="vtab"        data-view="type">Hospital Type</button>
+  <div id="type-tabs">
+    <button class="ttab active" data-type="all">All Hospitals</button>
+    <button class="ttab" data-type="National / Teaching Hospital">National / Teaching</button>
+    <button class="ttab" data-type="District / Base Hospital">DGH</button>
+    <button class="ttab" data-type="Base Hospital">Base Hospital</button>
+    <button class="ttab" data-type="Divisional Hospital">Divisional</button>
+    <button class="ttab" data-type="Primary Care (PMCU)">PMCU</button>
+    <button class="ttab" data-type="Specialized Hospital">Specialized</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════ APP ═══════════════════════════════ -->
+<!-- APP -->
 <div id="app">
-
   <!-- SIDEBAR -->
   <div id="sidebar">
-    <div id="sidebar-top">
-      <div id="search-wrap">
-        <input type="text" id="search-input" placeholder="Search institution name…" autocomplete="off" />
-        <div id="search-results"></div>
+    <div id="search-wrap">
+      <input id="search-input" type="text" placeholder="🔍 Search institution…" autocomplete="off"/>
+      <div id="search-results"></div>
+    </div>
+
+    <div id="panel">
+      <!-- HIS / No-HIS toggle buttons -->
+      <div class="sec-title" style="margin-top:10px">Show on map</div>
+      <div id="his-toggles">
+        <button class="his-btn" id="btn-his"
+          style="color:#27ae60;border-color:#27ae60;background:#f0fff4"
+          data-active="true">🟢 HIS in Place</button>
+        <button class="his-btn" id="btn-nohis"
+          style="color:#e74c3c;border-color:#e74c3c;background:#fff5f5"
+          data-active="true">🔴 No HIS</button>
+      </div>
+
+      <!-- HIS system breakdown (shown when HIS filter is on) -->
+      <div id="his-detail">
+        <div id="his-detail-title">HIS Systems in place</div>
+        <div id="his-system-rows"></div>
+      </div>
+
+      <!-- Summary table -->
+      <div class="sec-title">Coverage Summary</div>
+      <div id="summary-table-wrap">
+        <table id="summary-table">
+          <thead>
+            <tr>
+              <th>Hospital Type</th>
+              <th style="text-align:right">HIS</th>
+              <th style="text-align:right">No HIS</th>
+              <th style="text-align:right">Total</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody id="summary-tbody"></tbody>
+        </table>
       </div>
     </div>
 
-    <!-- Legend injected here per view -->
-    <div id="legend-wrap"></div>
-
-    <div id="sidebar-footer">
-      Showing <strong id="stat-vis">0</strong> of <strong id="stat-tot">0</strong> mapped &nbsp;·&nbsp;
-      <strong id="stat-unmap">0</strong> without coords
+    <div id="stat-strip">
+      Showing <strong id="sv">0</strong> markers &nbsp;·&nbsp;
+      <strong id="su">0</strong> without coords (not mapped)
     </div>
   </div>
 
@@ -215,391 +237,355 @@
   <div id="map"></div>
 </div>
 
-<!-- Unmapped button -->
-<button id="btn-unmapped">📋 Unmapped Institutions</button>
+<button id="btn-unmap">📋 Unmapped Institutions</button>
 
-<!-- Unmapped drawer -->
-<div id="unmapped-panel">
-  <div id="unmapped-header" id="unmapped-hdr">
+<div id="unmap-panel">
+  <div id="unmap-hdr">
     <span>Institutions without GPS coordinates — not shown on map</span>
     <span>✕ Close</span>
   </div>
-  <div id="unmapped-body">
-    <table id="unmapped-table">
-      <thead><tr><th>#</th><th>Name</th><th>Type</th><th>Level</th><th>RDHS Division</th><th>Address</th><th>Phone</th></tr></thead>
-      <tbody id="unmapped-tbody"></tbody>
+  <div id="unmap-body">
+    <table id="unmap-tbl">
+      <thead><tr><th>#</th><th>Name</th><th>Type</th><th>Level</th><th>RDHS</th><th>Address</th></tr></thead>
+      <tbody id="unmap-tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 'use strict';
 
-// ─────────────────────────────────────────────────────────
-// VIEW DEFINITIONS
-// Each view has: key, categories (ordered), color per key
-// ─────────────────────────────────────────────────────────
-const VIEWS = {
+// ── COLOURS ────────────────────────────────────────────────────────────────
+const C_HIS   = '#27ae60';   // green  — HIS in place
+const C_NOHIS = '#e74c3c';   // red    — No HIS
+const C_DIM   = '#b0bec5';   // grey   — filtered out
 
-  his: {
-    label: 'HIS System',
-    field: inst => inst.his_name || 'No HIS',
-    categories: [
-      { key: 'HHMIS',           color: '#1565C0', label: 'HHMIS' },
-      { key: 'HIMS',            color: '#6A1B9A', label: 'HIMS' },
-      { key: 'OpenMRS',         color: '#2E7D32', label: 'OpenMRS' },
-      { key: 'HHIMS (Planned)', color: '#EF6C00', label: 'HHIMS (Planned)' },
-      { key: 'No HIS',          color: '#9E9E9E', label: 'No HIS / Unknown' },
-    ],
-  },
-
-  level: {
-    label: 'Hospital Level',
-    field: inst => inst.level || 'Other',
-    categories: [
-      { key: 'DDG and Above', color: '#B71C1C', label: 'DDG and Above (National / Teaching / DGH)' },
-      { key: 'BH and Below',  color: '#1565C0', label: 'BH and Below (Base / Divisional / PMCU)' },
-      { key: 'Other',         color: '#78909C', label: 'Other (MOH, CDC, Defence, Admin…)' },
-    ],
-  },
-
-  type: {
-    label: 'Hospital Type',
-    field: inst => inst.type_group || 'Other',
-    categories: [
-      { key: 'National / Teaching Hospital', color: '#B71C1C', label: 'National / Teaching Hospital' },
-      { key: 'Specialized Hospital',         color: '#AD1457', label: 'Specialized Hospital' },
-      { key: 'District / Base Hospital',     color: '#E65100', label: 'District / Base Hospital' },
-      { key: 'Divisional Hospital',          color: '#1565C0', label: 'Divisional Hospital (Type A/B/C)' },
-      { key: 'Primary Care',                 color: '#2E7D32', label: 'Primary Care (PMCU)' },
-      { key: 'Defence / Police Hospital',    color: '#33691E', label: 'Defence / Police / Prison Hospital' },
-      { key: 'Clinic / Outpatient',          color: '#00838F', label: 'Clinic / Outpatient (CDC, STD, Chest)' },
-      { key: 'MOH / Admin Office',           color: '#546E7A', label: 'MOH / Admin Office (RDHS, ADC, NTS…)' },
-      { key: 'Other',                        color: '#9E9E9E', label: 'Other' },
-    ],
-  },
+const HIS_SYSTEM_COLORS = {
+  'HHMIS':           '#1565C0',
+  'HIMS':            '#6A1B9A',
+  'OpenMRS':         '#2E7D32',
+  'HHIMS (Planned)': '#EF6C00',
 };
 
-// Build fast colour lookup per view
-const VIEW_COLOR = {};
-for (const [vk, vdef] of Object.entries(VIEWS)) {
-  VIEW_COLOR[vk] = {};
-  for (const cat of vdef.categories) VIEW_COLOR[vk][cat.key] = cat.color;
-}
+// Clinical type groups to include in the table (ordered)
+const CLINICAL_TYPES = [
+  'National / Teaching Hospital',
+  'District / Base Hospital',
+  'Base Hospital',
+  'Divisional Hospital',
+  'Primary Care (PMCU)',
+  'Specialized Hospital',
+];
 
-// ─────────────────────────────────────────────────────────
-// MAP INIT
-// ─────────────────────────────────────────────────────────
-const map = L.map('map', { center: [7.87, 80.70], zoom: 8, zoomControl: true });
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a> contributors | Ministry of Health Sri Lanka',
-  maxZoom: 19,
+// ── MAP ─────────────────────────────────────────────────────────────────────
+const map = L.map('map',{center:[7.87,80.70],zoom:8});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:'© <a href="https://openstreetmap.org">OpenStreetMap</a> | Ministry of Health Sri Lanka',
+  maxZoom:19
 }).addTo(map);
 
-// ─────────────────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────────────────
-let ALL_DATA   = [];
-let currentView = 'his';
+// ── STATE ───────────────────────────────────────────────────────────────────
+let ALL_DATA      = [];
+let currentType   = 'all';
+let showHIS       = true;
+let showNoHIS     = true;
 
-// Per-view state: Map of categoryKey → { group: MarkerClusterGroup, markers: [], visible: bool }
-const viewState = { his: {}, level: {}, type: {} };
+// Two cluster groups — rebuilt on type change
+let grpHIS   = null;
+let grpNoHIS = null;
 
-// ─────────────────────────────────────────────────────────
-// MARKER ICON
-// ─────────────────────────────────────────────────────────
-function makeIcon(color, big) {
-  const s = big ? 14 : 9;
-  const b = big ? 2.5 : 1.5;
+// ── ICON ────────────────────────────────────────────────────────────────────
+function icon(color, size=10){
   return L.divIcon({
-    className: '',
-    html: `<div style="width:${s}px;height:${s}px;background:${color};border:${b}px solid rgba(0,0,0,0.35);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.25)"></div>`,
-    iconSize:   [s, s],
-    iconAnchor: [s/2, s/2],
-    popupAnchor:[0, -s/2],
+    className:'',
+    html:`<div style="width:${size}px;height:${size}px;background:${color};
+      border:2px solid rgba(0,0,0,.3);border-radius:50%;
+      box-shadow:0 1px 4px rgba(0,0,0,.22)"></div>`,
+    iconSize:[size,size],iconAnchor:[size/2,size/2],popupAnchor:[0,-size/2]
   });
 }
 
-// ─────────────────────────────────────────────────────────
-// POPUP
-// ─────────────────────────────────────────────────────────
-function hisPill(his) {
-  const c = (VIEW_COLOR.his[his] || '#9E9E9E');
-  return `<span class="his-pill" style="background:${c}22;color:${c};border:1px solid ${c}55">${his || 'No HIS'}</span>`;
+// ── POPUP ───────────────────────────────────────────────────────────────────
+function pill(his){
+  const c=HIS_SYSTEM_COLORS[his]||'#9E9E9E';
+  return `<span class="his-pill" style="background:${c}22;color:${c};border:1px solid ${c}55">${his||'No HIS'}</span>`;
 }
-function lineLabel(l) {
-  return l === '1' ? '1 — National Line' : l === '2' ? '2 — Provincial' : l === '3' ? '3 — Other Ministry' : l || '—';
-}
-function makePopup(inst) {
-  return `<div style="max-width:340px;min-width:220px">
-    <div class="pu-name">${inst.name}</div>
+function lineStr(l){return l==='1'?'National Line':l==='2'?'Provincial':l==='3'?'Other Ministry':l||'—'}
+function popup(d){
+  return `<div style="max-width:340px;min-width:210px">
+    <div class="pu-name">${d.name}</div>
     <table class="pu-tbl">
-      <tr><td>Type (Atomic)</td><td>${inst.type_atomic || '—'}</td></tr>
-      <tr><td>Type Group</td><td>${inst.type_group || '—'}</td></tr>
-      <tr><td>Hospital Level</td><td>${inst.level || '—'}</td></tr>
-      <tr><td>RDHS Division</td><td>${inst.rdhs || '—'}</td></tr>
-      <tr><td>MOH Area</td><td>${inst.moh_area || '—'}</td></tr>
-      <tr><td>HIS in Place</td><td>${inst.his_in_place || 'No'}</td></tr>
-      <tr><td>HIS System</td><td>${hisPill(inst.his_name || 'No HIS')}</td></tr>
-      ${inst.health_inst_no ? `<tr><td>Health Inst No.</td><td>${inst.health_inst_no}</td></tr>` : ''}
-      ${inst.line ? `<tr><td>Line</td><td>${lineLabel(inst.line)}</td></tr>` : ''}
-      ${inst.address ? `<tr><td>Address</td><td>${inst.address}</td></tr>` : ''}
-      ${inst.phone ? `<tr><td>Phone</td><td>${inst.phone}</td></tr>` : ''}
-      ${inst.email ? `<tr><td>Email</td><td><a href="mailto:${inst.email}" style="color:#154360">${inst.email}</a></td></tr>` : ''}
+      <tr><td>Type</td><td>${d.type_atomic||'—'}</td></tr>
+      <tr><td>Type Group</td><td>${d.type_group||'—'}</td></tr>
+      <tr><td>Hospital Level</td><td>${d.level||'—'}</td></tr>
+      <tr><td>RDHS Division</td><td>${d.rdhs||'—'}</td></tr>
+      <tr><td>MOH Area</td><td>${d.moh_area||'—'}</td></tr>
+      <tr><td>HIS in Place</td><td>${d.his_in_place==='Yes'?'✅ Yes':'❌ No'}</td></tr>
+      <tr><td>HIS System</td><td>${d.his_name?pill(d.his_name):'<span style="color:#999">None</span>'}</td></tr>
+      ${d.health_inst_no?`<tr><td>Health Inst No.</td><td>${d.health_inst_no}</td></tr>`:''}
+      ${d.line?`<tr><td>Line</td><td>${lineStr(d.line)}</td></tr>`:''}
+      ${d.address?`<tr><td>Address</td><td>${d.address}</td></tr>`:''}
+      ${d.phone?`<tr><td>Phone</td><td>${d.phone}</td></tr>`:''}
+      ${d.email?`<tr><td>Email</td><td><a href="mailto:${d.email}">${d.email}</a></td></tr>`:''}
     </table>
-    <div class="pu-coords">📍 ${parseFloat(inst.lat).toFixed(5)}, ${parseFloat(inst.lon).toFixed(5)}
-      <span style="color:#ccc"> · ${inst.coord_source || ''}</span></div>
+    <div class="pu-coords">📍 ${parseFloat(d.lat).toFixed(5)}, ${parseFloat(d.lon).toFixed(5)}
+      <span style="color:#ccc"> · ${d.coord_source||''}</span></div>
   </div>`;
 }
 
-// ─────────────────────────────────────────────────────────
-// BUILD MARKERS (once, for all views)
-// ─────────────────────────────────────────────────────────
-function buildAllMarkers(data) {
-  // Initialise category buckets for each view
-  for (const [vk, vdef] of Object.entries(VIEWS)) {
-    for (const cat of vdef.categories) {
-      viewState[vk][cat.key] = {
-        group: L.markerClusterGroup({ maxClusterRadius: 40, showCoverageOnHover: false }),
-        markers: [],
-        visible: true,
-      };
-    }
+// ── RENDER MAP ───────────────────────────────────────────────────────────────
+function renderMap(){
+  // Remove old groups
+  if(grpHIS)   map.removeLayer(grpHIS);
+  if(grpNoHIS) map.removeLayer(grpNoHIS);
+
+  grpHIS   = L.markerClusterGroup({maxClusterRadius:40,showCoverageOnHover:false,
+    iconCreateFunction: c => clusterIcon(c, C_HIS)});
+  grpNoHIS = L.markerClusterGroup({maxClusterRadius:40,showCoverageOnHover:false,
+    iconCreateFunction: c => clusterIcon(c, C_NOHIS)});
+
+  let visCount = 0;
+  for(const d of ALL_DATA){
+    const lat=parseFloat(d.lat), lon=parseFloat(d.lon);
+    if(!d.lat||!d.lon||isNaN(lat)||isNaN(lon)) continue;
+
+    // Type filter
+    if(currentType !== 'all' && d.type_group !== currentType) continue;
+
+    const hasHIS = d.his_in_place === 'Yes';
+    const m = L.marker([lat,lon],{
+      icon: icon(hasHIS ? C_HIS : C_NOHIS, hasHIS ? 11 : 9)
+    }).bindPopup(popup(d),{maxWidth:360});
+
+    if(hasHIS) grpHIS.addLayer(m);
+    else       grpNoHIS.addLayer(m);
+    visCount++;
   }
 
-  let total = 0;
-  for (const inst of data) {
-    const lat = parseFloat(inst.lat), lon = parseFloat(inst.lon);
-    if (!inst.lat || !inst.lon || isNaN(lat) || isNaN(lon)) continue;
+  if(showHIS)   map.addLayer(grpHIS);
+  if(showNoHIS) map.addLayer(grpNoHIS);
 
-    // Determine category key for each view
-    const catKeys = {};
-    for (const [vk, vdef] of Object.entries(VIEWS)) {
-      catKeys[vk] = vdef.field(inst);
-    }
-
-    // Create one marker per institution (reused across views via re-add)
-    // We need separate marker objects per view since they live in different cluster groups
-    for (const [vk, vdef] of Object.entries(VIEWS)) {
-      const catKey  = catKeys[vk];
-      const color   = VIEW_COLOR[vk][catKey] || '#999';
-      const big     = (vk === 'his' && inst.his_name) || (vk === 'level' && inst.level === 'DDG and Above');
-      const marker  = L.marker([lat, lon], { icon: makeIcon(color, big) })
-        .bindPopup(makePopup(inst), { maxWidth: 370 });
-
-      const bucket = viewState[vk][catKey];
-      if (bucket) {
-        bucket.group.addLayer(marker);
-        bucket.markers.push(marker);
-      }
-    }
-    total++;
-  }
-  return total;
+  document.getElementById('sv').textContent = visCount;
+  updateHISDetail();
 }
 
-// ─────────────────────────────────────────────────────────
-// SWITCH VIEW — remove all groups, add active view's groups
-// ─────────────────────────────────────────────────────────
-function activateView(viewKey) {
-  // Remove all cluster groups from map
-  for (const vs of Object.values(viewState)) {
-    for (const bucket of Object.values(vs)) {
-      if (map.hasLayer(bucket.group)) map.removeLayer(bucket.group);
-    }
-  }
-  // Add only the active view's groups (respecting checkbox state)
-  for (const [catKey, bucket] of Object.entries(viewState[viewKey])) {
-    if (bucket.visible) map.addLayer(bucket.group);
-  }
-  buildLegend(viewKey);
-  updateStats(viewKey);
+function clusterIcon(cluster, color){
+  const n = cluster.getChildCount();
+  const s = n > 100 ? 44 : n > 10 ? 36 : 30;
+  return L.divIcon({
+    html:`<div style="width:${s}px;height:${s}px;background:${color};
+      border:3px solid rgba(255,255,255,.7);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:700;font-size:${s<36?'11':'13'}px;
+      box-shadow:0 2px 6px rgba(0,0,0,.3)">${n}</div>`,
+    className:'',iconSize:[s,s],iconAnchor:[s/2,s/2]
+  });
 }
 
-// ─────────────────────────────────────────────────────────
-// LEGEND
-// ─────────────────────────────────────────────────────────
-function buildLegend(viewKey) {
-  const vdef  = VIEWS[viewKey];
-  const vs    = viewState[viewKey];
-  const wrap  = document.getElementById('legend-wrap');
-  wrap.innerHTML = '';
+// ── SUMMARY TABLE ─────────────────────────────────────────────────────────────
+function buildSummaryTable(){
+  const tbody = document.getElementById('summary-tbody');
+  tbody.innerHTML = '';
 
-  const sec = document.createElement('div');
-  sec.className = 'legend-section';
+  let grandHIS=0, grandNo=0;
 
-  const title = document.createElement('div');
-  title.className = 'legend-section-title';
-  title.textContent = `Colour by: ${vdef.label}`;
-  sec.appendChild(title);
+  // Rows per clinical type
+  for(const tg of CLINICAL_TYPES){
+    const rows = ALL_DATA.filter(d => d.type_group === tg);
+    const total = rows.length;
+    if(!total) continue;
+    const his  = rows.filter(d => d.his_in_place==='Yes').length;
+    const nohis = total - his;
+    const pct  = total ? Math.round(his/total*100) : 0;
+    grandHIS += his; grandNo += nohis;
 
-  // Select All / None
-  const links = document.createElement('div');
-  links.className = 'sel-links';
-  links.innerHTML = '<a id="sel-all">All</a><a id="sel-none">None</a>';
-  sec.appendChild(links);
+    const tr = document.createElement('tr');
+    const isActive = currentType === tg;
+    tr.innerHTML = `
+      <td class="type-cell" data-type="${tg}"
+        style="${isActive?'font-weight:800;color:#0d3b66;background:#eef5ff':''}"
+        >${tg}</td>
+      <td style="text-align:right;color:#27ae60;font-weight:700">${his}</td>
+      <td style="text-align:right;color:#e74c3c;font-weight:700">${nohis}</td>
+      <td style="text-align:right;font-weight:600">${total}</td>
+      <td>
+        <span class="bar-wrap"><span class="bar-fill" style="width:${pct}%"></span></span>
+        <span class="pct-txt">${pct}%</span>
+      </td>`;
+    tbody.appendChild(tr);
 
-  // Count totals per category
-  const counts = {};
-  for (const [catKey, bucket] of Object.entries(vs)) {
-    counts[catKey] = bucket.markers.length;
-  }
-
-  for (const cat of vdef.categories) {
-    if (!counts[cat.key]) continue;               // skip empty categories
-    const bucket = vs[cat.key];
-    const cbId   = `cb-${viewKey}-${cat.key.replace(/\W/g,'_')}`;
-
-    const row = document.createElement('div');
-    row.className = 'legend-row';
-    row.innerHTML = `
-      <input type="checkbox" id="${cbId}" ${bucket.visible ? 'checked' : ''} />
-      <span class="swatch" style="background:${cat.color}"></span>
-      <label for="${cbId}">${cat.label}</label>
-      <span class="cnt">${counts[cat.key]}</span>`;
-    sec.appendChild(row);
-
-    row.querySelector('input').addEventListener('change', function() {
-      bucket.visible = this.checked;
-      if (this.checked) { if (!map.hasLayer(bucket.group)) map.addLayer(bucket.group); }
-      else              { if (map.hasLayer(bucket.group))  map.removeLayer(bucket.group); }
-      updateStats(viewKey);
+    tr.querySelector('.type-cell').addEventListener('click', function(){
+      selectType(this.dataset.type);
     });
   }
 
-  wrap.appendChild(sec);
-
-  // Wire Select All / None
-  document.getElementById('sel-all').addEventListener('click', () => setAllVisible(viewKey, true));
-  document.getElementById('sel-none').addEventListener('click', () => setAllVisible(viewKey, false));
+  // Grand total row
+  const grandTotal = grandHIS + grandNo;
+  const grandPct   = grandTotal ? Math.round(grandHIS/grandTotal*100) : 0;
+  const tr = document.createElement('tr');
+  tr.className = 'row-total';
+  tr.innerHTML = `
+    <td class="type-cell" data-type="all"
+      style="${currentType==='all'?'color:#0d3b66':''}">All Clinical</td>
+    <td style="text-align:right;color:#27ae60">${grandHIS}</td>
+    <td style="text-align:right;color:#e74c3c">${grandNo}</td>
+    <td style="text-align:right">${grandTotal}</td>
+    <td>
+      <span class="bar-wrap"><span class="bar-fill" style="width:${grandPct}%"></span></span>
+      <span class="pct-txt">${grandPct}%</span>
+    </td>`;
+  tbody.appendChild(tr);
+  tr.querySelector('.type-cell').addEventListener('click',()=>selectType('all'));
 }
 
-function setAllVisible(viewKey, state) {
-  const vs = viewState[viewKey];
-  for (const bucket of Object.values(vs)) {
-    bucket.visible = state;
-    if (state) { if (!map.hasLayer(bucket.group)) map.addLayer(bucket.group); }
-    else        { if (map.hasLayer(bucket.group))  map.removeLayer(bucket.group); }
+// ── HIS SYSTEM BREAKDOWN ─────────────────────────────────────────────────────
+function updateHISDetail(){
+  const rows = currentType==='all'
+    ? ALL_DATA
+    : ALL_DATA.filter(d=>d.type_group===currentType);
+
+  const counts = {};
+  for(const d of rows){
+    if(d.his_in_place!=='Yes') continue;
+    const sys = d.his_name||'Unknown';
+    counts[sys]=(counts[sys]||0)+1;
   }
-  // Sync checkboxes
-  document.querySelectorAll(`#legend-wrap input[type=checkbox]`).forEach(cb => cb.checked = state);
-  updateStats(viewKey);
-}
 
-// ─────────────────────────────────────────────────────────
-// STATS
-// ─────────────────────────────────────────────────────────
-function updateStats(viewKey) {
-  let vis = 0;
-  for (const bucket of Object.values(viewState[viewKey])) {
-    if (bucket.visible) vis += bucket.markers.length;
+  const total = Object.values(counts).reduce((a,b)=>a+b,0);
+  if(!total){ document.getElementById('his-detail').style.display='none'; return; }
+
+  document.getElementById('his-detail').style.display='block';
+  const wrap = document.getElementById('his-system-rows');
+  wrap.innerHTML='';
+  for(const [sys,cnt] of Object.entries(counts).sort((a,b)=>b[1]-a[1])){
+    const c = HIS_SYSTEM_COLORS[sys]||'#999';
+    const pct = Math.round(cnt/total*100);
+    const div = document.createElement('div');
+    div.className='his-sys-row';
+    div.innerHTML=`
+      <span class="his-sys-dot" style="background:${c}"></span>
+      <span class="his-sys-label">${sys}</span>
+      <span class="his-sys-count">${cnt} <span style="color:#aaa;font-weight:400;font-size:.7rem">(${pct}%)</span></span>`;
+    wrap.appendChild(div);
   }
-  document.getElementById('stat-vis').textContent = vis;
 }
 
-// ─────────────────────────────────────────────────────────
-// UNMAPPED TABLE
-// ─────────────────────────────────────────────────────────
-function buildUnmappedTable(data) {
-  const unmapped = data.filter(d => !d.lat || !d.lon);
-  document.getElementById('stat-unmap').textContent  = unmapped.length;
-  document.getElementById('btn-unmapped').textContent = `📋 ${unmapped.length} Unmapped Institutions`;
+// ── SELECT TYPE ──────────────────────────────────────────────────────────────
+function selectType(type){
+  currentType = type;
+  document.querySelectorAll('.ttab').forEach(b=>{
+    b.classList.toggle('active', b.dataset.type===type);
+  });
+  buildSummaryTable();
+  renderMap();
+}
 
-  const tbody = document.getElementById('unmapped-tbody');
-  tbody.innerHTML = '';
-  unmapped.forEach((inst, i) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${i+1}</td>
-      <td>${inst.name}</td>
-      <td>${inst.type_atomic || '—'}</td>
-      <td>${inst.level || '—'}</td>
-      <td>${inst.rdhs || '—'}</td>
-      <td>${inst.address || '—'}</td>
-      <td>${inst.phone || '—'}</td>`;
+// ── HIS TOGGLE BUTTONS ────────────────────────────────────────────────────────
+function styleToggleBtn(btn, active, colorOn, colorOff){
+  if(active){
+    btn.style.background = colorOn + '18';
+    btn.style.color      = colorOn;
+    btn.style.borderColor= colorOn;
+    btn.style.opacity    = '1';
+  } else {
+    btn.style.background = '#f4f4f4';
+    btn.style.color      = '#aaa';
+    btn.style.borderColor= '#ccc';
+    btn.style.opacity    = '.7';
+  }
+}
+
+document.getElementById('btn-his').addEventListener('click',function(){
+  showHIS = !showHIS;
+  styleToggleBtn(this, showHIS, C_HIS, '#ccc');
+  if(showHIS){ if(!map.hasLayer(grpHIS))   map.addLayer(grpHIS);   }
+  else        { if(map.hasLayer(grpHIS))    map.removeLayer(grpHIS); }
+  updateVisCount();
+});
+document.getElementById('btn-nohis').addEventListener('click',function(){
+  showNoHIS = !showNoHIS;
+  styleToggleBtn(this, showNoHIS, C_NOHIS, '#ccc');
+  if(showNoHIS){ if(!map.hasLayer(grpNoHIS)) map.addLayer(grpNoHIS);   }
+  else          { if(map.hasLayer(grpNoHIS))  map.removeLayer(grpNoHIS); }
+  updateVisCount();
+});
+
+function updateVisCount(){
+  const h = grpHIS   ? grpHIS.getLayers().length   : 0;
+  const n = grpNoHIS ? grpNoHIS.getLayers().length  : 0;
+  document.getElementById('sv').textContent = (showHIS?h:0)+(showNoHIS?n:0);
+}
+
+// ── TYPE TABS (header) ────────────────────────────────────────────────────────
+document.querySelectorAll('.ttab').forEach(btn=>{
+  btn.addEventListener('click',()=>selectType(btn.dataset.type));
+});
+
+// ── SEARCH ───────────────────────────────────────────────────────────────────
+const sinput = document.getElementById('search-input');
+const sres   = document.getElementById('search-results');
+sinput.addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();
+  sres.innerHTML='';
+  if(q.length<2){sres.style.display='none';return}
+  const hits=ALL_DATA.filter(d=>d.lat&&d.lon&&d.name.toLowerCase().includes(q)).slice(0,14);
+  if(!hits.length){sres.style.display='none';return}
+  for(const d of hits){
+    const el=document.createElement('div');
+    el.className='si';
+    el.innerHTML=`<div>${d.name}</div>
+      <div class="si-sub">${d.type_atomic||''} · ${d.rdhs||''} · ${d.his_in_place==='Yes'?'✅ HIS':'❌ No HIS'}</div>`;
+    el.addEventListener('click',()=>{
+      map.setView([parseFloat(d.lat),parseFloat(d.lon)],15);
+      sres.style.display='none';
+      sinput.value=d.name;
+    });
+    sres.appendChild(el);
+  }
+  sres.style.display='block';
+});
+document.addEventListener('click',e=>{
+  if(!e.target.closest('#search-wrap')) sres.style.display='none';
+});
+
+// ── UNMAPPED DRAWER ────────────────────────────────────────────────────────────
+function buildUnmapped(data){
+  const unm=data.filter(d=>!d.lat||!d.lon);
+  document.getElementById('su').textContent=unm.length;
+  document.getElementById('btn-unmap').textContent=`📋 ${unm.length} without coords`;
+  const tbody=document.getElementById('unmap-tbody');
+  tbody.innerHTML='';
+  unm.forEach((d,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${i+1}</td><td>${d.name}</td><td>${d.type_atomic||'—'}</td>
+      <td>${d.level||'—'}</td><td>${d.rdhs||'—'}</td><td>${d.address||'—'}</td>`;
     tbody.appendChild(tr);
   });
 }
-
-// ─────────────────────────────────────────────────────────
-// SEARCH
-// ─────────────────────────────────────────────────────────
-const searchInput   = document.getElementById('search-input');
-const searchResults = document.getElementById('search-results');
-
-searchInput.addEventListener('input', function() {
-  const q = this.value.trim().toLowerCase();
-  searchResults.innerHTML = '';
-  if (q.length < 2) { searchResults.style.display = 'none'; return; }
-
-  const hits = ALL_DATA
-    .filter(d => d.lat && d.lon && d.name.toLowerCase().includes(q))
-    .slice(0, 14);
-
-  if (!hits.length) { searchResults.style.display = 'none'; return; }
-
-  for (const inst of hits) {
-    const el = document.createElement('div');
-    el.className = 'search-item';
-    el.innerHTML = `<div>${inst.name}</div>
-      <div class="si-sub">${inst.type_atomic || ''} &nbsp;·&nbsp; ${inst.rdhs || ''}</div>`;
-    el.addEventListener('click', () => {
-      map.setView([parseFloat(inst.lat), parseFloat(inst.lon)], 15);
-      searchResults.style.display = 'none';
-      searchInput.value = inst.name;
-    });
-    searchResults.appendChild(el);
-  }
-  searchResults.style.display = 'block';
+document.getElementById('btn-unmap').addEventListener('click',()=>{
+  document.getElementById('unmap-panel').classList.toggle('open');
 });
-document.addEventListener('click', e => {
-  if (!e.target.closest('#search-wrap')) searchResults.style.display = 'none';
+document.getElementById('unmap-hdr').addEventListener('click',()=>{
+  document.getElementById('unmap-panel').classList.remove('open');
 });
 
-// ─────────────────────────────────────────────────────────
-// VIEW TABS
-// ─────────────────────────────────────────────────────────
-document.querySelectorAll('.vtab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentView = btn.dataset.view;
-    activateView(currentView);
-  });
-});
-
-// ─────────────────────────────────────────────────────────
-// UNMAPPED DRAWER
-// ─────────────────────────────────────────────────────────
-document.getElementById('btn-unmapped').addEventListener('click', () => {
-  document.getElementById('unmapped-panel').classList.toggle('open');
-});
-document.getElementById('unmapped-header').addEventListener('click', () => {
-  document.getElementById('unmapped-panel').classList.remove('open');
-});
-
-// ─────────────────────────────────────────────────────────
-// MAIN
-// ─────────────────────────────────────────────────────────
+// ── MAIN ──────────────────────────────────────────────────────────────────────
 fetch('institutions_final.json')
-  .then(r => r.json())
-  .then(data => {
-    ALL_DATA = data;
-    const total = buildAllMarkers(data);
-    document.getElementById('stat-tot').textContent = total;
-    buildUnmappedTable(data);
-    activateView('his');   // start on HIS view
+  .then(r=>r.json())
+  .then(data=>{
+    ALL_DATA=data;
+    buildSummaryTable();
+    buildUnmapped(data);
+    renderMap();
   })
-  .catch(err => {
-    document.getElementById('map').innerHTML =
-      `<p style="padding:24px;color:#c00;font-size:1rem">
-        ⚠ Could not load <code>institutions_final.json</code>.<br>
-        Please serve this folder via a local web server:<br>
-        <code>python -m http.server 8080</code> → open <a href="http://localhost:8080">localhost:8080</a>
+  .catch(()=>{
+    document.getElementById('map').innerHTML=
+      `<p style="padding:24px;color:#c00">
+        ⚠ Cannot load <code>institutions_final.json</code>.<br>
+        Run: <code>python -m http.server 8080</code> then open
+        <a href="http://localhost:8080">localhost:8080</a>
       </p>`;
   });
 </script>
