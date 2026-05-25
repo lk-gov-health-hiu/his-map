@@ -96,8 +96,8 @@
     "lat": "6.918231",
     "lon": "79.876479",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "6",
@@ -216,8 +216,8 @@
     "lat": "6.784699703",
     "lon": "79.97563062",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "13",
@@ -236,8 +236,8 @@
     "lat": "6.932249",
     "lon": "79.871295",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "14",
@@ -253,9 +253,9 @@
     "address": "DH Moratuwa, Lunawa, Moratuwa",
     "phone": "011-2645231",
     "email": "divhosmoratuwa@gmail.com",
-    "lat": "6.805540423",
-    "lon": "81.21377017",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -336,8 +336,8 @@
     "lat": "6.906433",
     "lon": "79.928477",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "19",
@@ -416,8 +416,8 @@
     "lat": "6.837244",
     "lon": "79.92032",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "23",
@@ -513,9 +513,9 @@
     "address": "Prison Hospital, Welikada Prison, Colombo 09",
     "phone": "011-2662455",
     "email": "prisonhospital2@gmail.com",
-    "lat": "7.947781667",
-    "lon": "81.245785",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -533,9 +533,9 @@
     "address": "PMCU Angoda, Delgahawatta, Angoda",
     "phone": "011-2568484",
     "email": "angodacd@gmail.com",
-    "lat": "7.93713852",
-    "lon": "80.05312417",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -573,9 +573,9 @@
     "address": "PMCU, Brahmanagama, Pannipitiya",
     "phone": "0112-782990",
     "email": "hetalagala@gmail.com",
-    "lat": "7.27210793",
-    "lon": "79.8643154",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -693,9 +693,9 @@
     "address": "PMCU, Kaduwela",
     "phone": "011-2538368",
     "email": "chandrimamihiripenna@gmail.com",
-    "lat": "7.123055039",
-    "lon": "81.23691609",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -713,11 +713,11 @@
     "address": "PMCU, Government Factory, Kolonnawa",
     "phone": "070-2788693",
     "email": "subhanihendavitharana@gmail.com / pmcukolonnawa@gmail.com",
-    "lat": "6.932007",
-    "lon": "79.885441",
+    "lat": "6.406471667",
+    "lon": "80.69076333",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHIMS (Planned)",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "39",
@@ -813,9 +813,9 @@
     "address": "PMCU, , Jayamangala Rd, Pagoda, Nugegoda",
     "phone": "0112-890971",
     "email": "pmcudelkanda123@gmail.com",
-    "lat": "6.8768194",
-    "lon": "79.89849826",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -833,9 +833,9 @@
     "address": "PMCU, Obesekarapura, Rajagiriya",
     "phone": "011-2870748",
     "email": "ukwaththa@gmail.com",
-    "lat": "6.915375",
-    "lon": "79.891434",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -893,9 +893,9 @@
     "address": "PMCU, Pinnawala, Waga",
     "phone": "0112-197513",
     "email": "devikagunasekara@gmail.com",
-    "lat": "6.709212",
-    "lon": "80.678632",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -913,9 +913,9 @@
     "address": "PMCU, Ratmalana",
     "phone": "011-2623075/ 0718461562",
     "email": "sarasidoc@gmail.com / rathmalanapmcu@gmail.com",
-    "lat": "7.99857615",
-    "lon": "79.84047006",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -1053,9 +1053,9 @@
     "address": "PMCU, Weragala, Padukka",
     "phone": "071-8278191 / 0718278191",
     "email": "chandraniseneviratne4@gmail.com",
-    "lat": "6.82446",
-    "lon": "80.121794",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -1413,9 +1413,9 @@
     "address": "Community Dental Clinic,Millagahawaththa Rd,Nawala,Koswatta.",
     "phone": "077-3057000",
     "email": "Sathini.novaya@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.20918",
+    "lon": "79.84969",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -1596,8 +1596,8 @@
     "lat": "6.922206",
     "lon": "79.916246",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHIMS (Planned)",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "83",
@@ -1913,9 +1913,9 @@
     "address": "De Seram Place, Colombo 10",
     "phone": "011-2691916",
     "email": "",
-    "lat": "9.666443",
-    "lon": "80.00478",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -2113,8 +2113,8 @@
     "address": "No.375, Baddegama Wilmalawansa Thero Mawatha, Colombo 10",
     "phone": "011-2694113, 011-2694114",
     "email": "",
-    "lat": "6.920834",
-    "lon": "79.864828",
+    "lat": "9.666308",
+    "lon": "80.004397",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -2456,8 +2456,8 @@
     "lat": "6.935427",
     "lon": "79.870306",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1741",
@@ -3133,11 +3133,11 @@
     "address": "District Genaral Hospital, Negombo",
     "phone": "031 - 2224216",
     "email": "dghnegambo@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "7.2086",
+    "lon": "79.8412",
+    "coord_source": "KMZ",
+    "his_name": "HHIMS (Planned)",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "134",
@@ -3196,8 +3196,8 @@
     "lat": "7.2581459",
     "lon": "80.135418",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "137",
@@ -3236,8 +3236,8 @@
     "lat": "6.949895531",
     "lon": "80.0592973",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "139",
@@ -3333,8 +3333,8 @@
     "address": "Divisional Hospital, Biyagama",
     "phone": "011 - 2489785",
     "email": "dhcbiyagama@gmail.com",
-    "lat": "6.946791667",
-    "lon": "79.99409167",
+    "lat": "6.946591667",
+    "lon": "79.993795",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -3516,8 +3516,8 @@
     "lat": "7.02316008",
     "lon": "79.92604832",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "154",
@@ -4176,8 +4176,8 @@
     "lat": "7.1975628",
     "lon": "80.0945498",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "187",
@@ -4216,8 +4216,8 @@
     "lat": "6.95987",
     "lon": "79.881221",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "189",
@@ -4513,9 +4513,9 @@
     "address": "Bandaranayake M.V, Gampaha",
     "phone": "033-2222202",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.1262319",
+    "lon": "80.1116886",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -4553,9 +4553,9 @@
     "address": "Hiripitiya Junior School, Hiripitiya, Veyangoda",
     "phone": "033 - 2287214",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.6559068",
+    "lon": "80.36769386",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -4776,8 +4776,8 @@
     "lat": "7.020806667",
     "lon": "79.97337167",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "217",
@@ -4856,8 +4856,8 @@
     "lat": "6.976741667",
     "lon": "80.117385",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "221",
@@ -5153,9 +5153,9 @@
     "address": "RDHS Office, Gampaha",
     "phone": "033-2222874",
     "email": "arcgampaha@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "9.663055",
+    "lon": "80.012641",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -5356,8 +5356,8 @@
     "lat": "",
     "lon": "",
     "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "230",
@@ -5436,8 +5436,8 @@
     "lat": "6.74154242",
     "lon": "80.16178701",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "234",
@@ -5516,8 +5516,8 @@
     "lat": "6.514502",
     "lon": "80.233079",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "238",
@@ -5636,8 +5636,8 @@
     "lat": "6.435148697",
     "lon": "80.19804314",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "244",
@@ -5653,9 +5653,9 @@
     "address": "",
     "phone": "034-2275261",
     "email": "",
-    "lat": "8.13688835",
-    "lon": "80.04409128",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -5716,8 +5716,8 @@
     "lat": "6.692054",
     "lon": "80.034409",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "248",
@@ -5873,8 +5873,8 @@
     "address": "PMCU, Panapitiya",
     "phone": "034-2222385",
     "email": "panapitiyapmcu1@gmail.com",
-    "lat": "7.28753511",
-    "lon": "79.85835948",
+    "lat": "7.904391667",
+    "lon": "81.11322",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -6013,9 +6013,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "8.13688835",
-    "lon": "80.04409128",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -6196,8 +6196,8 @@
     "lat": "6.74299",
     "lon": "80.166442",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "273",
@@ -6256,8 +6256,8 @@
     "lat": "6.523505",
     "lon": "80.126334",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "276",
@@ -6716,8 +6716,8 @@
     "lat": "7.266255",
     "lon": "80.59814",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "285",
@@ -6753,8 +6753,8 @@
     "address": "District General Hospital, Nawalapitiya",
     "phone": "054-2222261",
     "email": "mrddhn@gmail.com",
-    "lat": "7.521068826",
-    "lon": "80.57611042",
+    "lat": "6.260033",
+    "lon": "80.037845",
     "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
@@ -6776,8 +6776,8 @@
     "lat": "7.156164",
     "lon": "80.565029",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "288",
@@ -7156,8 +7156,8 @@
     "lat": "7.203951667",
     "lon": "80.565415",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "307",
@@ -8096,8 +8096,8 @@
     "lat": "7.384885764",
     "lon": "80.62599071",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "355",
@@ -8196,8 +8196,8 @@
     "lat": "7.016773333",
     "lon": "80.531695",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "360",
@@ -8556,8 +8556,8 @@
     "lat": "7.204113333",
     "lon": "80.56534",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "378",
@@ -8716,8 +8716,8 @@
     "lat": "7.298749",
     "lon": "80.637324",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "386",
@@ -9133,9 +9133,9 @@
     "address": "Regional Training Centre-Kadugannawa",
     "phone": "081-2210687",
     "email": "rmoamckandy@yahoo.com",
-    "lat": "9.666876",
-    "lon": "80.003936",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -9396,8 +9396,8 @@
     "lat": "7.685834",
     "lon": "80.576863",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "416",
@@ -9516,8 +9516,8 @@
     "lat": "7.550841713",
     "lon": "80.77086146",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "422",
@@ -9536,8 +9536,8 @@
     "lat": "7.94159121",
     "lon": "80.73216997",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "423",
@@ -9713,8 +9713,8 @@
     "address": "Chest clinic, District General Hospital, Matale",
     "phone": "066 2224888",
     "email": "",
-    "lat": "7.297216",
-    "lon": "81.689849",
+    "lat": "8.98279",
+    "lon": "79.9029",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -9936,8 +9936,8 @@
     "lat": "7.608136489",
     "lon": "80.606816",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "443",
@@ -9996,8 +9996,8 @@
     "lat": "7.714987",
     "lon": "80.597426",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "446",
@@ -10136,8 +10136,8 @@
     "lat": "7.592192487",
     "lon": "80.84321094",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "454",
@@ -10176,8 +10176,8 @@
     "lat": "7.466024879",
     "lon": "80.61865071",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "456",
@@ -10313,9 +10313,9 @@
     "address": "Regional Director of Health services Office, M.C. Road,  Matale",
     "phone": "066 2231520",
     "email": "moplanningmatale@gmail.com",
-    "lat": "7.460648183",
-    "lon": "80.62603197",
-    "coord_source": "GIS",
+    "lat": "7.4672",
+    "lon": "80.6233",
+    "coord_source": "KMZ",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
   },
@@ -10396,8 +10396,8 @@
     "lat": "7.87099848",
     "lon": "80.65034596",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1965",
@@ -10433,11 +10433,11 @@
     "address": "District general Hospital Nuwara Eliya, Hawa Eliya, Nuwara Eliya",
     "phone": "052-2222261",
     "email": "planning.dghne@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.9737541",
+    "lon": "80.7808205",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "467",
@@ -10973,9 +10973,9 @@
     "address": "District Sexual Transmitted Disease Clinic, General Hospital, Hawa Eliya, Nuwara Eliya",
     "phone": "052-2223210",
     "email": "stdnuwaraeliya@gmail.com",
-    "lat": "6.9733321",
-    "lon": "80.7687131",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -11176,8 +11176,8 @@
     "lat": "7.0538644",
     "lon": "80.9262549",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "504",
@@ -11636,8 +11636,8 @@
     "lat": "6.9733321",
     "lon": "80.7687131",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "527",
@@ -11776,8 +11776,8 @@
     "lat": "6.9722135",
     "lon": "80.7805457",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "533",
@@ -11796,8 +11796,8 @@
     "lat": "6.066744",
     "lon": "80.226084",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "534",
@@ -11896,8 +11896,8 @@
     "lat": "6.248676",
     "lon": "80.062676",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "539",
@@ -12076,8 +12076,8 @@
     "lat": "5.99887",
     "lon": "80.378769",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "548",
@@ -12336,8 +12336,8 @@
     "lat": "5.977199",
     "lon": "80.364507",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "561",
@@ -12376,8 +12376,8 @@
     "lat": "6.236144",
     "lon": "80.054852",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "564",
@@ -12756,8 +12756,8 @@
     "lat": "6.044631",
     "lon": "80.221371",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "583",
@@ -12833,9 +12833,9 @@
     "address": "Dental Surgeon, Adolecent Dental Clinic,  Gintota (Sahera Mahavidyalaya)",
     "phone": "0772337295",
     "email": "",
-    "lat": "6.071593",
-    "lon": "80.179234",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -12893,9 +12893,9 @@
     "address": "Dental Surgeon,  Adolecent Dental Clinic, Pitigala  (CD Pitigala)",
     "phone": "0714263797",
     "email": "yamini85@gmail.com",
-    "lat": "6.347897",
-    "lon": "80.228804",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -12996,8 +12996,8 @@
     "lat": "6.248492",
     "lon": "80.062912",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "595",
@@ -13553,8 +13553,8 @@
     "address": "Medical Officer, STD Clinic, Balapitiya",
     "phone": "091-2285266    /   077-1115111",
     "email": "",
-    "lat": "6.311796",
-    "lon": "80.03451",
+    "lat": "6.280089",
+    "lon": "80.039949",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -13573,9 +13573,9 @@
     "address": "Medical Officer of  Health,  MOH Office,  Rathgama",
     "phone": "0912267030",
     "email": "mohrathgama@yahoo.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.09063",
+    "lon": "80.147686",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -13773,8 +13773,8 @@
     "address": "Base Hospital, Kamburupitiya",
     "phone": "041-2292261     /     041-2293323",
     "email": "bhkamburupitiya@gmail.com",
-    "lat": "6.06533393",
-    "lon": "80.56595589",
+    "lat": "6.094814",
+    "lon": "80.564122",
     "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
@@ -13916,8 +13916,8 @@
     "lat": "5.974320291",
     "lon": "80.41871308",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "634",
@@ -13973,9 +13973,9 @@
     "address": "Divisional Hospital, Talalla",
     "phone": "041-2259261",
     "email": "divisionalthalalla@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "5.948424763",
+    "lon": "80.6139895",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -14073,9 +14073,9 @@
     "address": "PMCU, Dehigaspe",
     "phone": "041-3495789",
     "email": "pmcudehi@gmail.com",
-    "lat": "6.17814953",
-    "lon": "80.47818272",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -14333,9 +14333,9 @@
     "address": "PMCU, Makandura",
     "phone": "041-2268262",
     "email": "pmcumakandura@gmail.com",
-    "lat": "6.87004413",
-    "lon": "81.15458119",
-    "coord_source": "GIS",
+    "lat": "7.3206791",
+    "lon": "79.9739785",
+    "coord_source": "KMZ",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
   },
@@ -14373,11 +14373,11 @@
     "address": "Divisional Hospital, Midigama",
     "phone": "041-2253263",
     "email": "pmcumidigama@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "5.970862155",
+    "lon": "80.39363911",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "657",
@@ -14393,9 +14393,9 @@
     "address": "PMCU, Mirissa",
     "phone": "041-2250269",
     "email": "pmcumirissa@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "5.953212154",
+    "lon": "80.45415164",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -14493,11 +14493,11 @@
     "address": "Dental Surgeon, ADC, Makandura.",
     "phone": "",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "7.3206791",
+    "lon": "79.9739785",
+    "coord_source": "KMZ",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "663",
@@ -14716,8 +14716,8 @@
     "lat": "5.951749702",
     "lon": "80.53854465",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "674",
@@ -14836,8 +14836,8 @@
     "lat": "5.974706064",
     "lon": "80.41962051",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "680",
@@ -14856,8 +14856,8 @@
     "lat": "6.006213625",
     "lon": "80.44433507",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "681",
@@ -14973,9 +14973,9 @@
     "address": "-",
     "phone": "",
     "email": "",
-    "lat": "8.325471045",
-    "lon": "80.41212436",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -15413,9 +15413,9 @@
     "address": "Divisional Hospital-Gonadeniya.",
     "phone": "047-5673377",
     "email": "dhgonadeniya@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.072988294",
+    "lon": "80.20088543",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -15853,9 +15853,9 @@
     "address": "Adult Dental Clinic - Angunakolapelessa",
     "phone": "",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.1652957",
+    "lon": "80.89995239",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -16096,8 +16096,8 @@
     "lat": "6.286446448",
     "lon": "81.26123712",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "737",
@@ -16316,8 +16316,8 @@
     "lat": "9.665931",
     "lon": "80.014377",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "745",
@@ -16853,9 +16853,9 @@
     "address": "Chest Clinic ,  Health Village, Pannai",
     "phone": "021-2222494",
     "email": "dtcojfa@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "8.98279",
+    "lon": "79.9029",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -17013,9 +17013,9 @@
     "address": "Nithiyavaddai, Mulliyan",
     "phone": "021-3203796",
     "email": "pmcu.mulliyan@gmail.com",
-    "lat": "9.553097",
-    "lon": "80.477565",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -17236,8 +17236,8 @@
     "lat": "9.66352",
     "lon": "80.16621",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "793",
@@ -17256,8 +17256,8 @@
     "lat": "9.673993",
     "lon": "80.027679",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "794",
@@ -17456,8 +17456,8 @@
     "lat": "9.665129",
     "lon": "80.014838",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "806",
@@ -17753,9 +17753,9 @@
     "address": "Sioranpattu - Thalaiyady Road, Maruthankerney",
     "phone": "021-2265578",
     "email": "mohmaruthankerny@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "9.62216",
+    "lon": "80.396727",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -17933,11 +17933,11 @@
     "address": "Divisional Hospital, Akkarayan Kulam",
     "phone": "021-2050072",
     "email": "dhakkarayan@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "9.3117867",
+    "lon": "80.31519804",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "813",
@@ -17973,9 +17973,9 @@
     "address": "Divisional Hospital, Poonakary",
     "phone": "021-2060854",
     "email": "Dhpoonakary2020@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "9.5077187",
+    "lon": "80.2086395",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -18213,11 +18213,11 @@
     "address": "Anti Malaria Campaign, Kilinochchi",
     "phone": "021-2285517",
     "email": "amckilinochchi@yahoo.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "9.3727554",
+    "lon": "80.4109718",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1745",
@@ -18233,9 +18233,9 @@
     "address": "Primary Medical Care Unit, Jeyapuram",
     "phone": "021-2283679",
     "email": "",
-    "lat": "9.3063281",
-    "lon": "80.1696373",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -18256,8 +18256,8 @@
     "lat": "9.3967205",
     "lon": "80.4079995",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1864",
@@ -18313,9 +18313,9 @@
     "address": "STD Clinic Centre, DGH - Kilinochchi",
     "phone": "021-2283709",
     "email": "stdkilinochchi@gmail.com",
-    "lat": "7.248175",
-    "lon": "81.714989",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -18333,9 +18333,9 @@
     "address": "Chest Clinic Centre, DGH - Kilinochchi",
     "phone": "021-2283709",
     "email": "",
-    "lat": "7.248175",
-    "lon": "81.714989",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -18413,9 +18413,9 @@
     "address": "Tharmpuram, Kilinochchi",
     "phone": "021-2060459",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.245687",
+    "lon": "80.578589",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -18433,9 +18433,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "6.899973",
-    "lon": "79.87596",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -19053,9 +19053,9 @@
     "address": "RDHS Office, Mannar",
     "phone": "023-2250573",
     "email": "reunit2016@gmail.com",
-    "lat": "6.890772781",
-    "lon": "79.87718794",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -19273,9 +19273,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "6.899973",
-    "lon": "79.87596",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -19296,8 +19296,8 @@
     "lat": "8.76066",
     "lon": "80.49991",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "860",
@@ -19493,9 +19493,9 @@
     "address": "Chest Clinic, Vavuniya",
     "phone": "024-2221421",
     "email": "dtcovya@gmail.com",
-    "lat": "7.287402",
-    "lon": "80.635755",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -19693,11 +19693,11 @@
     "address": "NTS, Mannar Rd, Vavuniya",
     "phone": "024-2223025",
     "email": "convavuniya@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "8.760589",
+    "lon": "80.5000512",
+    "coord_source": "KMZ",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "880",
@@ -19893,9 +19893,9 @@
     "address": "PMCU, Kanagarayankulam",
     "phone": "077-3932629",
     "email": "pmcukanagarayankulam@hotmail.com",
-    "lat": "9.060349",
-    "lon": "80.506543",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -19933,9 +19933,9 @@
     "address": "PMCU, Semamadu, Vavuniya",
     "phone": "",
     "email": "pmcusemamadu@hotmail.com",
-    "lat": "8.889998",
-    "lon": "80.579856",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -20136,8 +20136,8 @@
     "lat": "9.31542",
     "lon": "80.70463",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "889",
@@ -20336,8 +20336,8 @@
     "lat": "9.32106",
     "lon": "80.68301",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "900",
@@ -20393,9 +20393,9 @@
     "address": "Chest Clinic, RDHS, Mullaitivu",
     "phone": "021-2060009",
     "email": "std@gmail.com",
-    "lat": "9.224908",
-    "lon": "80.775921",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -20453,9 +20453,9 @@
     "address": "RMSD - Mullaitivu",
     "phone": "021-2290080",
     "email": "rmsd@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "9.22707",
+    "lon": "80.80068",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -20533,9 +20533,9 @@
     "address": "SLAF Mullativu",
     "phone": "",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "9.22707",
+    "lon": "80.80068",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -20553,9 +20553,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "6.899973",
-    "lon": "79.87596",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -20596,8 +20596,8 @@
     "lat": "7.708293551",
     "lon": "81.69119854",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "903",
@@ -20656,8 +20656,8 @@
     "lat": "7.910897051",
     "lon": "81.5332387",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "906",
@@ -21336,8 +21336,8 @@
     "lat": "7.708495",
     "lon": "81.691352",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "942",
@@ -21416,8 +21416,8 @@
     "lat": "7.68347962",
     "lon": "81.7307588",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "946",
@@ -21536,8 +21536,8 @@
     "lat": "7.912186544",
     "lon": "81.53282694",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "952",
@@ -21596,8 +21596,8 @@
     "lat": "7.718272401",
     "lon": "81.69870917",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "955",
@@ -21613,11 +21613,11 @@
     "address": "NTS, Batticaloa",
     "phone": "065-2222891",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "7.708032299999998",
+    "lon": "81.6906221",
+    "coord_source": "KMZ",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "957",
@@ -21896,8 +21896,8 @@
     "lat": "7.409752",
     "lon": "81.242538",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "965",
@@ -22116,8 +22116,8 @@
     "lat": "7.705117162",
     "lon": "81.08136946",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "978",
@@ -22396,8 +22396,8 @@
     "lat": "7.530201353",
     "lon": "81.35454121",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "994",
@@ -22416,8 +22416,8 @@
     "lat": "7.4105441",
     "lon": "81.2442077",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "995",
@@ -22613,8 +22613,8 @@
     "address": "PMCU Gonagala",
     "phone": "",
     "email": "",
-    "lat": "7.160077364",
-    "lon": "81.24939359",
+    "lat": "6.757522",
+    "lon": "81.043262",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -23416,8 +23416,8 @@
     "lat": "8.454653333",
     "lon": "81.264465",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1041",
@@ -23573,11 +23573,11 @@
     "address": "Love Lane, Uppuveli.",
     "phone": "026-2222584",
     "email": "amc.trinco@gmail.co",
-    "lat": "8.563673333",
-    "lon": "81.23947833",
+    "lat": "8.564653333",
+    "lon": "81.23957",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1049",
@@ -23893,9 +23893,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "6.899973",
-    "lon": "79.87596",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -23936,8 +23936,8 @@
     "lat": "7.403621",
     "lon": "81.8314",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHIMS (Planned)",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1052",
@@ -23993,9 +23993,9 @@
     "address": "Base Hospital, Sammanthurai",
     "phone": "067-2260261",
     "email": "bhsammanthurai@gmail.com",
-    "lat": "7.3684859",
-    "lon": "81.8127959",
-    "coord_source": "KMZ",
+    "lat": "7.368087",
+    "lon": "81.812523",
+    "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
   },
@@ -24153,8 +24153,8 @@
     "address": "Divisional Hospital, Addalaichenai",
     "phone": "067-2278435",
     "email": "dhaddalaicheni@gmail.com",
-    "lat": "7.260716",
-    "lon": "81.85344",
+    "lat": "7.253364",
+    "lon": "81.85403",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -24373,9 +24373,9 @@
     "address": "PMCU, Alamkulam",
     "phone": "",
     "email": "alamkulampmcu@gmail.com",
-    "lat": "7.759936455",
-    "lon": "81.47739428",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -24493,9 +24493,9 @@
     "address": "DH, Sennelkiramam",
     "phone": "067-2051160",
     "email": "sennelkiramampmcu@gmail.com",
-    "lat": "7.346953",
-    "lon": "81.780756",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -24533,11 +24533,11 @@
     "address": "Thambiluvil National School, Thambiluvil",
     "phone": "067-2265054",
     "email": "",
-    "lat": "7.111748",
-    "lon": "81.853073",
+    "lat": "7.1158",
+    "lon": "81.851894",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1083",
@@ -24656,8 +24656,8 @@
     "lat": "7.405904",
     "lon": "81.841123",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1089",
@@ -24813,8 +24813,8 @@
     "address": "RDHS, RDHS Office Kalmunai",
     "phone": "067-2223228",
     "email": "rdhskalmunai2@gmail.com",
-    "lat": "7.413508",
-    "lon": "81.826635",
+    "lat": "7.269497",
+    "lon": "81.847983",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -24993,11 +24993,11 @@
     "address": "Kurunegala",
     "phone": "037-2222261  -  63",
     "email": "",
-    "lat": "7.484676667",
-    "lon": "80.35332333",
+    "lat": "7.479479354",
+    "lon": "80.35857174",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1101",
@@ -25173,9 +25173,9 @@
     "address": "Polpitigama",
     "phone": "037-2273099",
     "email": "bhpolpithigama@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.81564",
+    "lon": "80.404859",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -25896,8 +25896,8 @@
     "lat": "7.557087681",
     "lon": "80.36907016",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1146",
@@ -25956,8 +25956,8 @@
     "lat": "7.55012",
     "lon": "80.449055",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1149",
@@ -26696,8 +26696,8 @@
     "lat": "7.460685",
     "lon": "80.021947",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1186",
@@ -27053,9 +27053,9 @@
     "address": "Polgawella M.M.M.V",
     "phone": "",
     "email": "",
-    "lat": "7.33103",
-    "lon": "80.29485833",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -27276,8 +27276,8 @@
     "lat": "7.484676667",
     "lon": "80.35332333",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1219",
@@ -27296,8 +27296,8 @@
     "lat": "7.490898333",
     "lon": "80.367165",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1220",
@@ -27536,8 +27536,8 @@
     "lat": "7.484292105",
     "lon": "80.35383892",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1232",
@@ -27556,8 +27556,8 @@
     "lat": "7.479606189",
     "lon": "80.35853335",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HIMS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1233",
@@ -27733,9 +27733,9 @@
     "address": "AMC Maho",
     "phone": "037-2275254",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.824129",
+    "lon": "80.282",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -27853,9 +27853,9 @@
     "address": "Ehetuwewa",
     "phone": "037-2253329",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.936491168",
+    "lon": "80.34706423",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -27873,9 +27873,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "7.618056277",
-    "lon": "80.59140297",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -27896,8 +27896,8 @@
     "lat": "7.936693355",
     "lon": "80.56491539",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1235",
@@ -27913,8 +27913,8 @@
     "address": "",
     "phone": "032-2222261",
     "email": "",
-    "lat": "7.57929881",
-    "lon": "79.80070021",
+    "lat": "7.57220396",
+    "lon": "79.79742705",
     "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
@@ -28016,8 +28016,8 @@
     "lat": "8.23411801",
     "lon": "79.76660342",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1241",
@@ -28093,9 +28093,9 @@
     "address": "Divisional Hospital, Aluthgama, Ihalapuliyankulama",
     "phone": "037-3619961",
     "email": "",
-    "lat": "8.13688835",
-    "lon": "80.04409128",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -28213,8 +28213,8 @@
     "address": "Primary Medical Care Unit, Karativu, Ponparrippu",
     "phone": "032-3021171",
     "email": "",
-    "lat": "8.21766861",
-    "lon": "79.81556634",
+    "lat": "7.369535",
+    "lon": "81.842931",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -28373,9 +28373,9 @@
     "address": "Primary Medical Care Unit, Wanathawilluwa",
     "phone": "032-3297391",
     "email": "",
-    "lat": "8.18972519",
-    "lon": "79.85987581",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -28776,8 +28776,8 @@
     "lat": "7.45786156",
     "lon": "79.8627748",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1281",
@@ -28976,8 +28976,8 @@
     "lat": "8.22862875",
     "lon": "79.7614028",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1291",
@@ -29073,9 +29073,9 @@
     "address": "Regional Malaria Office, Puttalam",
     "phone": "032-2265319",
     "email": "",
-    "lat": "8.02280164",
-    "lon": "79.8331275",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -29256,8 +29256,8 @@
     "lat": "8.324937955",
     "lon": "80.41297135",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1298",
@@ -29276,8 +29276,8 @@
     "lat": "8.641731269",
     "lon": "80.66798861",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1299",
@@ -29516,8 +29516,8 @@
     "lat": "8.233798882",
     "lon": "80.34849959",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1312",
@@ -29916,8 +29916,8 @@
     "lat": "8.199083512",
     "lon": "80.15246306",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1332",
@@ -29936,8 +29936,8 @@
     "lat": "8.165548397",
     "lon": "80.2139677",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1333",
@@ -30316,8 +30316,8 @@
     "lat": "7.945290506",
     "lon": "80.62967221",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1352",
@@ -30533,11 +30533,11 @@
     "address": "Anuradhapura",
     "phone": "No",
     "email": "",
-    "lat": "8.326223823",
-    "lon": "80.41103479",
+    "lat": "8.324937955",
+    "lon": "80.41297135",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1364",
@@ -30596,8 +30596,8 @@
     "lat": "8.153256504",
     "lon": "80.29554826",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1367",
@@ -30896,8 +30896,8 @@
     "lat": "8.16529979",
     "lon": "80.21387961",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1383",
@@ -30996,8 +30996,8 @@
     "lat": "8.325471045",
     "lon": "80.41212436",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1388",
@@ -31016,8 +31016,8 @@
     "lat": "8.326223823",
     "lon": "80.41103479",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1389",
@@ -31173,8 +31173,8 @@
     "address": "Army Hospital, Jayanthi Mawatha, Anuradhapura",
     "phone": "025-2223241",
     "email": "",
-    "lat": "8.320300165",
-    "lon": "80.39278639",
+    "lat": "8.324937955",
+    "lon": "80.41297135",
     "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
@@ -31276,8 +31276,8 @@
     "lat": "7.9425338",
     "lon": "81.0092566",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1392",
@@ -31376,8 +31376,8 @@
     "lat": "7.7753521",
     "lon": "80.8197157",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1397",
@@ -31653,9 +31653,9 @@
     "address": "PMCU Kakulawela",
     "phone": "071-1111261",
     "email": "pmcukakuluwela@gmail.com  /  nuwanisenadheera@yahoo.com",
-    "lat": "7.123055039",
-    "lon": "81.23691609",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -31976,8 +31976,8 @@
     "lat": "7.942622",
     "lon": "81.0089176",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1890",
@@ -31993,8 +31993,8 @@
     "address": "PMCU , Meegaswewa",
     "phone": "077-9187448",
     "email": "pmcumeegaswewa@gmail.com",
-    "lat": "7.646454",
-    "lon": "80.158996",
+    "lat": "8.057913845",
+    "lon": "80.35574927",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -32033,9 +32033,9 @@
     "address": "MOH, Siripura",
     "phone": "027-2050346",
     "email": "mohsiripura@gmail.com",
-    "lat": "7.729638333",
-    "lon": "81.01646167",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -32093,9 +32093,9 @@
     "address": "",
     "phone": "",
     "email": "",
-    "lat": "8.501666667",
-    "lon": "81.18753333",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -32133,11 +32133,11 @@
     "address": "TH Badulla",
     "phone": "055-2222261",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.990918",
+    "lon": "81.051619",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1431",
@@ -32336,8 +32336,8 @@
     "lat": "7.069411",
     "lon": "81.16166",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1441",
@@ -32553,9 +32553,9 @@
     "address": "Divisional Hospital, Galauda",
     "phone": "055-4934151",
     "email": "",
-    "lat": "8.06269897",
-    "lon": "79.73154776",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -32613,9 +32613,9 @@
     "address": "Divisional Hospital, Hoptan",
     "phone": "055-3561335",
     "email": "hoptanhospital@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.984793",
+    "lon": "81.19791",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -32973,9 +32973,9 @@
     "address": "DH Udaweriya (EH)",
     "phone": "",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.787074",
+    "lon": "80.856218",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -33113,9 +33113,9 @@
     "address": "STD Clinic,PGH, Badulla",
     "phone": "055-2222578",
     "email": "",
-    "lat": "6.988263",
-    "lon": "81.053076",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -33496,8 +33496,8 @@
     "lat": "6.988263",
     "lon": "81.053076",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1500",
@@ -33813,11 +33813,11 @@
     "address": "RDHS Office, Mahiyangana Rd, Badulla",
     "phone": "055-2222430",
     "email": "rdhsbdpu@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.990918",
+    "lon": "81.051619",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1516",
@@ -33833,11 +33833,11 @@
     "address": "Principal, Nursing School, Badulla",
     "phone": "055-2222532",
     "email": "principal.nts@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.990918",
+    "lon": "81.051619",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1517",
@@ -34033,9 +34033,9 @@
     "address": "District General Hospital Moneragala",
     "phone": "055-2276261   /    055-2277024",
     "email": "dghmonaragala@yahoo.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.89188",
+    "lon": "81.34253",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -34056,8 +34056,8 @@
     "lat": "7.164722",
     "lon": "81.225",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1524",
@@ -34716,8 +34716,8 @@
     "lat": "6.980497",
     "lon": "81.375786",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1557",
@@ -34953,11 +34953,11 @@
     "address": "",
     "phone": "045-2222261 - 66",
     "email": "",
-    "lat": "6.6871687",
-    "lon": "80.3902339",
-    "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.686824499999999",
+    "lon": "80.39308770000001",
+    "coord_source": "KMZ",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1566",
@@ -35053,8 +35053,8 @@
     "address": "Base Hospital, Eheliyagoda",
     "phone": "036-2258261",
     "email": "bhehaliyagoda@gmail.com",
-    "lat": "6.848855",
-    "lon": "80.26458833",
+    "lat": "6.848183333",
+    "lon": "80.26451833",
     "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
@@ -36373,11 +36373,11 @@
     "address": "MOH Office,Rathnapura MC",
     "phone": "045-2230758",
     "email": "ratnapuramohmc@gmail.com",
-    "lat": "6.6871687",
-    "lon": "80.3902339",
-    "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.686824499999999",
+    "lon": "80.39308770000001",
+    "coord_source": "KMZ",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1639",
@@ -36393,11 +36393,11 @@
     "address": "MOH Office,Rathnapura PS",
     "phone": "045-2222278",
     "email": "mohratnapura@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.686824499999999",
+    "lon": "80.39308770000001",
+    "coord_source": "KMZ",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1640",
@@ -36436,8 +36436,8 @@
     "lat": "6.7060451",
     "lon": "80.3816041",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1642",
@@ -36456,8 +36456,8 @@
     "lat": "6.6871687",
     "lon": "80.3902339",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1643",
@@ -36893,8 +36893,8 @@
     "address": "PMCU Morahela",
     "phone": "077-7886416",
     "email": "pmcumorahela@gmail.com",
-    "lat": "6.6923692",
-    "lon": "80.6905572",
+    "lat": "7.160114385",
+    "lon": "80.67014172",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -37033,9 +37033,9 @@
     "address": "PMCU, Pussalla, Parakaduwa",
     "phone": "045-2264447",
     "email": "pmcupussella@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.116351667",
+    "lon": "80.624575",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37093,9 +37093,9 @@
     "address": "PMCU, Denagama",
     "phone": "071-4624196",
     "email": "PMCUDenagama@gmail.com",
-    "lat": "6.7021637",
-    "lon": "80.7246318",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37113,9 +37113,9 @@
     "address": "PMCU, Kalalella",
     "phone": "072-3355424",
     "email": "pmcukalalella@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.709181",
+    "lon": "80.4848569",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37173,9 +37173,9 @@
     "address": "PMCU, Paragala",
     "phone": "071-8618800",
     "email": "pmcuparagala@gmail.com",
-    "lat": "7.160077364",
-    "lon": "81.24939359",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37373,9 +37373,9 @@
     "address": "MOH Office, Kaltota",
     "phone": "076 -8593373",
     "email": "mohkaltota@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "6.6597528",
+    "lon": "80.8857446",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37413,9 +37413,9 @@
     "address": "PMCU, Hindurangala, Erepola, Eheliyagoda",
     "phone": "045 2266450",
     "email": "pmcuhindurangala@gmail.com",
-    "lat": "6.86208",
-    "lon": "81.095475",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37453,8 +37453,8 @@
     "address": "PMCU, Ammaduwa",
     "phone": "070-3524173",
     "email": "ammaduwapmcu10@gmail.com",
-    "lat": "8.131219768",
-    "lon": "80.44764326",
+    "lat": "7.569015463",
+    "lon": "80.69691632",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -37573,9 +37573,9 @@
     "address": "PMCU, Seelogama",
     "phone": "070-5931745",
     "email": "sujathasagarika@gmail.com",
-    "lat": "7.587800008",
-    "lon": "80.59499747",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37673,11 +37673,11 @@
     "address": "PMCU, Hangamauwa,",
     "phone": "071-9322056",
     "email": "pmcuhangamuwa@gmail.com",
-    "lat": "7.507829284",
-    "lon": "80.83820495",
+    "lat": "7.631637253",
+    "lon": "80.92787211",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "OpenMRS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "2006",
@@ -37713,11 +37713,11 @@
     "address": "PMCU, Ellawala",
     "phone": "045-2050440",
     "email": "pmcuellawala@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
-    "his_name": "",
-    "his_in_place": "No"
+    "lat": "6.731013",
+    "lon": "81.098273",
+    "coord_source": "GIS",
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "2012",
@@ -37753,9 +37753,9 @@
     "address": "PMCU, Rambuka",
     "phone": "071-1460606",
     "email": "rambukapmcu@gmail.com",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.326450324",
+    "lon": "80.39543288",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37833,9 +37833,9 @@
     "address": "",
     "phone": "035-2222261  -  62",
     "email": "",
-    "lat": "",
-    "lon": "",
-    "coord_source": "",
+    "lat": "7.247643",
+    "lon": "80.346439",
+    "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -37853,9 +37853,9 @@
     "address": "Base Hospital Karawanella",
     "phone": "036-2266261",
     "email": "basehospitalkarawanella@gmail.com",
-    "lat": "7.0245298",
-    "lon": "80.2617521",
-    "coord_source": "KMZ",
+    "lat": "7.024809712",
+    "lon": "80.26136665",
+    "coord_source": "GIS",
     "his_name": "HHMIS",
     "his_in_place": "Yes"
   },
@@ -38133,9 +38133,9 @@
     "address": "Walihelatanna,Yatiyanthota.",
     "phone": "036-3366724",
     "email": "halgolladh@gmail.com",
-    "lat": "7.042354",
-    "lon": "80.36691",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -38333,9 +38333,9 @@
     "address": "Genaral hospital ,Kegalle.",
     "phone": "035-2231222",
     "email": "stdunit.kegalle@gmail.com",
-    "lat": "7.247751644",
-    "lon": "80.34367081",
-    "coord_source": "GIS",
+    "lat": "",
+    "lon": "",
+    "coord_source": "",
     "his_name": "",
     "his_in_place": "No"
   },
@@ -38836,8 +38836,8 @@
     "lat": "7.277231428",
     "lon": "80.29233727",
     "coord_source": "GIS",
-    "his_name": "",
-    "his_in_place": "No"
+    "his_name": "HHMIS",
+    "his_in_place": "Yes"
   },
   {
     "inst_no": "1698",
