@@ -3,542 +3,513 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sri Lanka Ministry of Health — HIS Map</title>
+  <title>Sri Lanka MoH — HIS Map</title>
 
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <!-- Leaflet MarkerCluster CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #222; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #222; overflow: hidden; }
 
+    /* ── Header ── */
     #header {
-      background: #1a5276;
+      background: #154360;
       color: white;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 1000;
-      position: relative;
-    }
-    #header img { height: 42px; }
-    #header h1 { font-size: 1.2rem; font-weight: 600; }
-    #header p  { font-size: 0.78rem; opacity: 0.85; }
-
-    #app { display: flex; height: calc(100vh - 68px); }
-
-    /* ---- Sidebar ---- */
-    #sidebar {
-      width: 300px;
-      min-width: 260px;
-      background: white;
-      overflow-y: auto;
-      border-right: 1px solid #ddd;
-      padding: 14px 14px 20px;
-      font-size: 0.83rem;
-    }
-    #sidebar h3 {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #666;
-      margin: 16px 0 8px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #eee;
-    }
-    #sidebar h3:first-child { margin-top: 4px; }
-
-    .filter-group { margin-bottom: 6px; }
-    .filter-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 6px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .filter-row:hover { background: #f5f7fa; }
-    .filter-row input[type=checkbox] { width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
-    .filter-row label { cursor: pointer; flex: 1; line-height: 1.3; }
-    .count-badge {
-      background: #e8edf3;
-      color: #555;
-      font-size: 0.72rem;
-      padding: 1px 6px;
-      border-radius: 10px;
-      min-width: 28px;
-      text-align: center;
-    }
-    .dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      border: 1.5px solid rgba(0,0,0,0.18);
-    }
-
-    #toggle-all-btn {
-      width: 100%;
-      padding: 7px;
-      background: #1a5276;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.82rem;
-      margin-bottom: 4px;
-    }
-    #toggle-all-btn:hover { background: #154360; }
-
-    #search-wrap { margin-bottom: 10px; }
-    #search-input {
-      width: 100%;
-      padding: 7px 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 0.85rem;
-    }
-    #search-results {
-      max-height: 180px;
-      overflow-y: auto;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      display: none;
-      background: white;
-    }
-    .search-item {
-      padding: 7px 10px;
-      cursor: pointer;
-      border-bottom: 1px solid #f0f0f0;
-      font-size: 0.82rem;
-      line-height: 1.35;
-    }
-    .search-item:hover { background: #eaf3fb; }
-    .search-item .si-type { color: #888; font-size: 0.76rem; }
-
-    /* Stats strip */
-    #stats-strip {
-      background: #f8f9fa;
-      border-top: 1px solid #eee;
-      padding: 8px 14px;
-      font-size: 0.78rem;
-      color: #555;
-    }
-    #stats-strip span { margin-right: 12px; font-weight: 600; color: #1a5276; }
-
-    /* ---- Map ---- */
-    #map { flex: 1; }
-
-    /* ---- Bottom panel (unmapped) ---- */
-    #bottom-panel {
-      position: fixed;
-      bottom: 0; left: 300px; right: 0;
-      background: white;
-      border-top: 2px solid #1a5276;
-      max-height: 220px;
-      display: none;
-      z-index: 900;
-    }
-    #bottom-panel-header {
-      background: #1a5276;
-      color: white;
-      padding: 6px 14px;
+      padding: 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.85rem;
-      cursor: pointer;
+      gap: 12px;
+      height: 56px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      z-index: 1100;
+      position: relative;
     }
-    #bottom-table-wrap {
-      overflow: auto;
-      max-height: 176px;
-    }
-    #bottom-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.78rem;
-    }
-    #bottom-table th {
-      background: #f0f4fa;
-      position: sticky;
-      top: 0;
-      padding: 5px 10px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-      font-weight: 600;
-    }
-    #bottom-table td {
-      padding: 4px 10px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    #bottom-table tr:hover td { background: #f9fbff; }
+    #header-left h1 { font-size: 1.05rem; font-weight: 700; line-height: 1.2; }
+    #header-left p  { font-size: 0.72rem; opacity: 0.8; margin-top: 1px; }
 
-    .toggle-bottom-btn {
-      position: fixed;
-      bottom: 12px;
-      right: 16px;
-      background: #1a5276;
-      color: white;
-      border: none;
-      padding: 8px 14px;
+    /* ── View-mode tabs ── */
+    #view-tabs {
+      display: flex;
+      gap: 4px;
+    }
+    .vtab {
+      padding: 6px 14px;
+      border: 2px solid rgba(255,255,255,0.35);
       border-radius: 20px;
+      color: rgba(255,255,255,0.75);
+      background: transparent;
       cursor: pointer;
-      font-size: 0.82rem;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    }
-
-    /* Popup */
-    .popup-name { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
-    .popup-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-    .popup-table td { padding: 3px 6px; border-bottom: 1px solid #f0f0f0; }
-    .popup-table td:first-child { color: #666; white-space: nowrap; width: 120px; }
-    .his-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.18s;
     }
+    .vtab:hover { background: rgba(255,255,255,0.15); color: white; }
+    .vtab.active { background: white; color: #154360; border-color: white; }
 
-    @media (max-width: 768px) {
-      #sidebar { width: 100%; min-width: unset; height: 220px; overflow-y: scroll; }
+    /* ── Layout ── */
+    #app { display: flex; height: calc(100vh - 56px); }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      width: 270px;
+      min-width: 240px;
+      background: white;
+      overflow-y: auto;
+      border-right: 1px solid #dde3ec;
+      display: flex;
+      flex-direction: column;
+    }
+    #sidebar-top { padding: 12px 12px 0; }
+
+    #search-wrap { margin-bottom: 10px; position: relative; }
+    #search-input {
+      width: 100%;
+      padding: 7px 10px 7px 32px;
+      border: 1px solid #ccd3de;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      background: #f8f9fc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 9px center no-repeat;
+    }
+    #search-input:focus { outline: none; border-color: #154360; background-color: white; }
+    #search-results {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: 2000;
+      background: white; border: 1px solid #ccd3de; border-top: none;
+      border-radius: 0 0 6px 6px; max-height: 200px; overflow-y: auto; display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .search-item { padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f0f0f0; font-size: 0.82rem; line-height: 1.35; }
+    .search-item:hover { background: #eaf3fb; }
+    .search-item .si-sub { color: #888; font-size: 0.74rem; margin-top: 1px; }
+
+    /* ── Legend panel ── */
+    #legend-wrap { flex: 1; overflow-y: auto; padding: 0 12px 16px; }
+
+    .legend-section { margin-top: 14px; }
+    .legend-section-title {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em;
+      color: #8894a8; margin-bottom: 8px; padding-bottom: 4px;
+      border-bottom: 1px solid #eef0f4;
+    }
+    .legend-row {
+      display: flex; align-items: center; gap: 9px;
+      padding: 5px 8px; border-radius: 6px; cursor: pointer;
+      transition: background 0.12s; user-select: none;
+    }
+    .legend-row:hover { background: #f4f6fa; }
+    .legend-row input { width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; accent-color: #154360; }
+    .legend-row label { cursor: pointer; flex: 1; font-size: 0.82rem; line-height: 1.3; }
+    .cnt { background: #edf0f7; color: #667; font-size: 0.7rem; padding: 1px 7px; border-radius: 10px; min-width: 26px; text-align: center; flex-shrink: 0; }
+    .swatch { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid rgba(0,0,0,0.15); }
+
+    /* Select All / None links */
+    .sel-links { font-size: 0.72rem; color: #154360; margin-bottom: 4px; }
+    .sel-links a { cursor: pointer; text-decoration: underline; margin-right: 8px; }
+    .sel-links a:hover { color: #0a2540; }
+
+    /* ── Stats footer ── */
+    #sidebar-footer {
+      padding: 9px 12px;
+      background: #f4f7fc;
+      border-top: 1px solid #e5eaf2;
+      font-size: 0.76rem;
+      color: #667;
+      flex-shrink: 0;
+    }
+    #sidebar-footer strong { color: #154360; }
+
+    /* ── Map ── */
+    #map { flex: 1; z-index: 1; }
+
+    /* ── Unmapped button ── */
+    #btn-unmapped {
+      position: fixed; bottom: 14px; right: 16px; z-index: 1000;
+      background: #154360; color: white;
+      border: none; padding: 9px 16px; border-radius: 22px;
+      cursor: pointer; font-size: 0.8rem; font-weight: 600;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.28);
+      transition: background 0.15s;
+    }
+    #btn-unmapped:hover { background: #0d2d44; }
+
+    /* ── Unmapped drawer ── */
+    #unmapped-panel {
+      position: fixed; bottom: 0; left: 270px; right: 0; z-index: 900;
+      background: white; border-top: 2px solid #154360; display: none;
+      max-height: 240px; flex-direction: column;
+    }
+    #unmapped-panel.open { display: flex; }
+    #unmapped-header {
+      background: #154360; color: white;
+      padding: 7px 14px; display: flex; align-items: center;
+      justify-content: space-between; font-size: 0.85rem; cursor: pointer; flex-shrink: 0;
+    }
+    #unmapped-body { overflow: auto; flex: 1; }
+    #unmapped-table { width: 100%; border-collapse: collapse; font-size: 0.77rem; }
+    #unmapped-table th {
+      background: #f0f4fa; position: sticky; top: 0;
+      padding: 5px 10px; text-align: left; border-bottom: 1px solid #dde; font-weight: 600;
+    }
+    #unmapped-table td { padding: 4px 10px; border-bottom: 1px solid #f2f2f2; }
+    #unmapped-table tr:hover td { background: #f8fbff; }
+
+    /* ── Popup ── */
+    .pu-name { font-weight: 700; font-size: 0.97rem; margin-bottom: 6px; line-height: 1.3; }
+    .pu-tbl { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    .pu-tbl td { padding: 3px 5px; border-bottom: 1px solid #f2f2f2; vertical-align: top; }
+    .pu-tbl td:first-child { color: #888; white-space: nowrap; width: 110px; }
+    .his-pill {
+      display: inline-block; padding: 2px 9px; border-radius: 11px;
+      font-size: 0.73rem; font-weight: 700; letter-spacing: 0.02em;
+    }
+    .pu-coords { margin-top: 6px; font-size: 0.72rem; color: #bbb; }
+
+    @media (max-width: 700px) {
+      #sidebar { width: 100%; min-width: unset; height: 200px; border-right: none; border-bottom: 1px solid #dde; }
       #app { flex-direction: column; }
-      #bottom-panel { left: 0; }
+      #unmapped-panel { left: 0; }
+      .vtab { padding: 5px 9px; font-size: 0.72rem; }
     }
   </style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
 <div id="header">
-  <div>
-    <h1>🏥 Sri Lanka Ministry of Health — Hospital Information Systems Map</h1>
-    <p>Health Institution Registry 2024 &nbsp;|&nbsp; Toggle layers to explore HIS status and hospital categories</p>
+  <div id="header-left">
+    <h1>🏥 Sri Lanka Ministry of Health — HIS Map</h1>
+    <p>Health Institution Registry 2024 · Toggle categories to show/hide on map</p>
+  </div>
+  <div id="view-tabs">
+    <button class="vtab active" data-view="his">HIS System</button>
+    <button class="vtab"        data-view="level">Hospital Level</button>
+    <button class="vtab"        data-view="type">Hospital Type</button>
   </div>
 </div>
 
+<!-- ═══════════════════════════════ APP ═══════════════════════════════ -->
 <div id="app">
-  <!-- ===== SIDEBAR ===== -->
-  <div id="sidebar">
 
-    <div id="search-wrap">
-      <input type="text" id="search-input" placeholder="🔍 Search institution name..." />
-      <div id="search-results"></div>
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div id="sidebar-top">
+      <div id="search-wrap">
+        <input type="text" id="search-input" placeholder="Search institution name…" autocomplete="off" />
+        <div id="search-results"></div>
+      </div>
     </div>
 
-    <button id="toggle-all-btn">Toggle All Layers</button>
+    <!-- Legend injected here per view -->
+    <div id="legend-wrap"></div>
 
-    <!-- BY HIS STATUS -->
-    <h3>By HIS Status</h3>
-    <div class="filter-group" id="his-filters"></div>
-
-    <!-- BY HOSPITAL LEVEL -->
-    <h3>By Hospital Level</h3>
-    <div class="filter-group" id="level-filters"></div>
-
-    <!-- BY HOSPITAL TYPE GROUP -->
-    <h3>By Hospital Type</h3>
-    <div class="filter-group" id="type-filters"></div>
-
-    <!-- BY RDHS DIVISION -->
-    <h3>By RDHS Division</h3>
-    <div class="filter-group" id="rdhs-filters"></div>
-
-    <div id="stats-strip">
-      Showing <span id="stat-visible">0</span> of <span id="stat-total">0</span> mapped institutions.
-      <span id="stat-unmapped">0</span> without coordinates.
+    <div id="sidebar-footer">
+      Showing <strong id="stat-vis">0</strong> of <strong id="stat-tot">0</strong> mapped &nbsp;·&nbsp;
+      <strong id="stat-unmap">0</strong> without coords
     </div>
   </div>
 
-  <!-- ===== MAP ===== -->
+  <!-- MAP -->
   <div id="map"></div>
 </div>
 
-<!-- Bottom unmapped panel toggle -->
-<button class="toggle-bottom-btn" id="toggle-bottom">📋 Unmapped Institutions</button>
+<!-- Unmapped button -->
+<button id="btn-unmapped">📋 Unmapped Institutions</button>
 
-<!-- Unmapped table -->
-<div id="bottom-panel">
-  <div id="bottom-panel-header" onclick="toggleBottom()">
-    <span>Institutions without GPS coordinates (no marker on map)</span>
-    <span>▼ Close</span>
+<!-- Unmapped drawer -->
+<div id="unmapped-panel">
+  <div id="unmapped-header" id="unmapped-hdr">
+    <span>Institutions without GPS coordinates — not shown on map</span>
+    <span>✕ Close</span>
   </div>
-  <div id="bottom-table-wrap">
-    <table id="bottom-table">
-      <thead>
-        <tr>
-          <th>#</th><th>Name</th><th>Type</th><th>RDHS Division</th><th>Address</th><th>Phone</th>
-        </tr>
-      </thead>
-      <tbody id="bottom-tbody"></tbody>
+  <div id="unmapped-body">
+    <table id="unmapped-table">
+      <thead><tr><th>#</th><th>Name</th><th>Type</th><th>Level</th><th>RDHS Division</th><th>Address</th><th>Phone</th></tr></thead>
+      <tbody id="unmapped-tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- Leaflet + MarkerCluster JS -->
+<!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
 <script>
-// =====================================================
-// CONFIG — colours per category
-// =====================================================
-const HIS_CONFIG = {
-  'HHMIS':           { color: '#1565C0', label: 'HHMIS' },
-  'HIMS':            { color: '#6A1B9A', label: 'HIMS' },
-  'OpenMRS':         { color: '#2E7D32', label: 'OpenMRS' },
-  'HHIMS (Planned)': { color: '#EF6C00', label: 'HHIMS (Planned)' },
-  'No HIS':          { color: '#9E9E9E', label: 'No HIS / Unknown' },
+'use strict';
+
+// ─────────────────────────────────────────────────────────
+// VIEW DEFINITIONS
+// Each view has: key, categories (ordered), color per key
+// ─────────────────────────────────────────────────────────
+const VIEWS = {
+
+  his: {
+    label: 'HIS System',
+    field: inst => inst.his_name || 'No HIS',
+    categories: [
+      { key: 'HHMIS',           color: '#1565C0', label: 'HHMIS' },
+      { key: 'HIMS',            color: '#6A1B9A', label: 'HIMS' },
+      { key: 'OpenMRS',         color: '#2E7D32', label: 'OpenMRS' },
+      { key: 'HHIMS (Planned)', color: '#EF6C00', label: 'HHIMS (Planned)' },
+      { key: 'No HIS',          color: '#9E9E9E', label: 'No HIS / Unknown' },
+    ],
+  },
+
+  level: {
+    label: 'Hospital Level',
+    field: inst => inst.level || 'Other',
+    categories: [
+      { key: 'DDG and Above', color: '#B71C1C', label: 'DDG and Above (National / Teaching / DGH)' },
+      { key: 'BH and Below',  color: '#1565C0', label: 'BH and Below (Base / Divisional / PMCU)' },
+      { key: 'Other',         color: '#78909C', label: 'Other (MOH, CDC, Defence, Admin…)' },
+    ],
+  },
+
+  type: {
+    label: 'Hospital Type',
+    field: inst => inst.type_group || 'Other',
+    categories: [
+      { key: 'National / Teaching Hospital', color: '#B71C1C', label: 'National / Teaching Hospital' },
+      { key: 'Specialized Hospital',         color: '#AD1457', label: 'Specialized Hospital' },
+      { key: 'District / Base Hospital',     color: '#E65100', label: 'District / Base Hospital' },
+      { key: 'Divisional Hospital',          color: '#1565C0', label: 'Divisional Hospital (Type A/B/C)' },
+      { key: 'Primary Care',                 color: '#2E7D32', label: 'Primary Care (PMCU)' },
+      { key: 'Defence / Police Hospital',    color: '#33691E', label: 'Defence / Police / Prison Hospital' },
+      { key: 'Clinic / Outpatient',          color: '#00838F', label: 'Clinic / Outpatient (CDC, STD, Chest)' },
+      { key: 'MOH / Admin Office',           color: '#546E7A', label: 'MOH / Admin Office (RDHS, ADC, NTS…)' },
+      { key: 'Other',                        color: '#9E9E9E', label: 'Other' },
+    ],
+  },
 };
 
-const LEVEL_CONFIG = {
-  'DDG and Above': { color: '#B71C1C', label: 'DDG and Above' },
-  'BH and Below':  { color: '#1565C0', label: 'BH and Below' },
-  'Other':         { color: '#757575', label: 'Other' },
-};
+// Build fast colour lookup per view
+const VIEW_COLOR = {};
+for (const [vk, vdef] of Object.entries(VIEWS)) {
+  VIEW_COLOR[vk] = {};
+  for (const cat of vdef.categories) VIEW_COLOR[vk][cat.key] = cat.color;
+}
 
-const TYPE_CONFIG = {
-  'National / Teaching Hospital': { color: '#B71C1C' },
-  'District / Base Hospital':     { color: '#E65100' },
-  'Divisional Hospital':          { color: '#1565C0' },
-  'Primary Care':                 { color: '#2E7D32' },
-  'Specialized Hospital':         { color: '#6A1B9A' },
-  'Defence / Police Hospital':    { color: '#33691E' },
-  'Clinic / Outpatient':          { color: '#00838F' },
-  'MOH / Admin Office':           { color: '#546E7A' },
-  'Other':                        { color: '#9E9E9E' },
-};
-
-// =====================================================
-// INIT MAP
-// =====================================================
-const map = L.map('map', { center: [7.9, 80.7], zoom: 8 });
+// ─────────────────────────────────────────────────────────
+// MAP INIT
+// ─────────────────────────────────────────────────────────
+const map = L.map('map', { center: [7.87, 80.70], zoom: 8, zoomControl: true });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors | Ministry of Health Sri Lanka',
-  maxZoom: 18,
+  attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a> contributors | Ministry of Health Sri Lanka',
+  maxZoom: 19,
 }).addTo(map);
 
-// =====================================================
-// DATA LOADING
-// =====================================================
-let ALL_DATA = [];
-let markerMap = {};  // inst key -> marker
-let clusterGroups = {};  // groupKey -> MarkerClusterGroup
+// ─────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────
+let ALL_DATA   = [];
+let currentView = 'his';
 
-// Active filters
-let activeHIS    = new Set();
-let activeLevel  = new Set();
-let activeType   = new Set();
-let activeRDHS   = new Set();
+// Per-view state: Map of categoryKey → { group: MarkerClusterGroup, markers: [], visible: bool }
+const viewState = { his: {}, level: {}, type: {} };
 
-function makeMarkerIcon(color, size = 10) {
+// ─────────────────────────────────────────────────────────
+// MARKER ICON
+// ─────────────────────────────────────────────────────────
+function makeIcon(color, big) {
+  const s = big ? 14 : 9;
+  const b = big ? 2.5 : 1.5;
   return L.divIcon({
     className: '',
-    html: `<div style="
-      width:${size}px;height:${size}px;
-      background:${color};
-      border:2px solid rgba(0,0,0,0.4);
-      border-radius:50%;
-      box-shadow:0 1px 3px rgba(0,0,0,0.3);
-    "></div>`,
-    iconSize: [size, size],
-    iconAnchor: [size/2, size/2],
-    popupAnchor: [0, -size/2],
+    html: `<div style="width:${s}px;height:${s}px;background:${color};border:${b}px solid rgba(0,0,0,0.35);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.25)"></div>`,
+    iconSize:   [s, s],
+    iconAnchor: [s/2, s/2],
+    popupAnchor:[0, -s/2],
   });
 }
 
-function getHISBadge(his) {
-  const cfg = HIS_CONFIG[his] || HIS_CONFIG['No HIS'];
-  return `<span class="his-badge" style="background:${cfg.color}22;color:${cfg.color};border:1px solid ${cfg.color}66">${cfg.label}</span>`;
+// ─────────────────────────────────────────────────────────
+// POPUP
+// ─────────────────────────────────────────────────────────
+function hisPill(his) {
+  const c = (VIEW_COLOR.his[his] || '#9E9E9E');
+  return `<span class="his-pill" style="background:${c}22;color:${c};border:1px solid ${c}55">${his || 'No HIS'}</span>`;
 }
-
+function lineLabel(l) {
+  return l === '1' ? '1 — National Line' : l === '2' ? '2 — Provincial' : l === '3' ? '3 — Other Ministry' : l || '—';
+}
 function makePopup(inst) {
-  const hisBadge = getHISBadge(inst.his_name || 'No HIS');
-  const coordSrc = inst.coord_source ? `<small style="color:#888">(${inst.coord_source})</small>` : '';
-  return `
-    <div style="max-width:340px">
-      <div class="popup-name">${inst.name}</div>
-      <table class="popup-table">
-        <tr><td>Type</td><td>${inst.type_atomic || '—'}</td></tr>
-        <tr><td>Level</td><td>${inst.level || '—'}</td></tr>
-        <tr><td>RDHS Division</td><td>${inst.rdhs || '—'}</td></tr>
-        <tr><td>MOH Area</td><td>${inst.moh_area || '—'}</td></tr>
-        <tr><td>HIS Status</td><td>${hisBadge}</td></tr>
-        ${inst.health_inst_no ? `<tr><td>Health Inst. No.</td><td>${inst.health_inst_no}</td></tr>` : ''}
-        ${inst.line ? `<tr><td>Line</td><td>${inst.line == '1' ? '1 — National Line' : inst.line == '2' ? '2 — Provincial' : '3 — Other Ministry'}</td></tr>` : ''}
-        ${inst.address ? `<tr><td>Address</td><td>${inst.address}</td></tr>` : ''}
-        ${inst.phone ? `<tr><td>Phone</td><td>${inst.phone}</td></tr>` : ''}
-        ${inst.email ? `<tr><td>Email</td><td><a href="mailto:${inst.email}">${inst.email}</a></td></tr>` : ''}
-      </table>
-      <div style="margin-top:6px;font-size:0.75rem;color:#aaa">
-        Coords: ${parseFloat(inst.lat).toFixed(5)}, ${parseFloat(inst.lon).toFixed(5)} ${coordSrc}
-      </div>
-    </div>`;
+  return `<div style="max-width:340px;min-width:220px">
+    <div class="pu-name">${inst.name}</div>
+    <table class="pu-tbl">
+      <tr><td>Type (Atomic)</td><td>${inst.type_atomic || '—'}</td></tr>
+      <tr><td>Type Group</td><td>${inst.type_group || '—'}</td></tr>
+      <tr><td>Hospital Level</td><td>${inst.level || '—'}</td></tr>
+      <tr><td>RDHS Division</td><td>${inst.rdhs || '—'}</td></tr>
+      <tr><td>MOH Area</td><td>${inst.moh_area || '—'}</td></tr>
+      <tr><td>HIS in Place</td><td>${inst.his_in_place || 'No'}</td></tr>
+      <tr><td>HIS System</td><td>${hisPill(inst.his_name || 'No HIS')}</td></tr>
+      ${inst.health_inst_no ? `<tr><td>Health Inst No.</td><td>${inst.health_inst_no}</td></tr>` : ''}
+      ${inst.line ? `<tr><td>Line</td><td>${lineLabel(inst.line)}</td></tr>` : ''}
+      ${inst.address ? `<tr><td>Address</td><td>${inst.address}</td></tr>` : ''}
+      ${inst.phone ? `<tr><td>Phone</td><td>${inst.phone}</td></tr>` : ''}
+      ${inst.email ? `<tr><td>Email</td><td><a href="mailto:${inst.email}" style="color:#154360">${inst.email}</a></td></tr>` : ''}
+    </table>
+    <div class="pu-coords">📍 ${parseFloat(inst.lat).toFixed(5)}, ${parseFloat(inst.lon).toFixed(5)}
+      <span style="color:#ccc"> · ${inst.coord_source || ''}</span></div>
+  </div>`;
 }
 
-function getMarkerColor(inst) {
-  // Priority: HIS status if has HIS
-  if (inst.his_name) {
-    return (HIS_CONFIG[inst.his_name] || HIS_CONFIG['No HIS']).color;
-  }
-  // Otherwise by level
-  return (LEVEL_CONFIG[inst.level] || LEVEL_CONFIG['Other']).color;
-}
-
-// =====================================================
-// BUILD FILTERS
-// =====================================================
-function buildFilterUI(counts, configObj, containerId, activeSet) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-
-  // Sort by config order, then remaining
-  const keys = [...Object.keys(configObj).filter(k => counts[k]), ...Object.keys(counts).filter(k => !configObj[k])];
-  const seen = new Set();
-  for (const key of keys) {
-    if (seen.has(key) || !counts[key]) continue;
-    seen.add(key);
-    activeSet.add(key);
-
-    const color = (configObj[key] || {}).color || '#999';
-    const label = (configObj[key] || {}).label || key;
-    const cnt = counts[key] || 0;
-
-    const row = document.createElement('div');
-    row.className = 'filter-row';
-    row.innerHTML = `
-      <input type="checkbox" id="cb-${containerId}-${key.replace(/\W/g,'_')}" checked data-filter="${containerId}" data-key="${key}" />
-      <div class="dot" style="background:${color}"></div>
-      <label for="cb-${containerId}-${key.replace(/\W/g,'_')}">${label}</label>
-      <span class="count-badge">${cnt}</span>`;
-    container.appendChild(row);
-
-    row.querySelector('input').addEventListener('change', function() {
-      if (this.checked) activeSet.add(key); else activeSet.delete(key);
-      applyFilters();
-    });
-  }
-}
-
-function buildAllFilters(data) {
-  const mapped = data.filter(d => d.lat && d.lon);
-
-  const hisCounts = {}, levelCounts = {}, typeCounts = {}, rdhsCounts = {};
-  for (const d of mapped) {
-    const h = d.his_name || 'No HIS';
-    hisCounts[h] = (hisCounts[h] || 0) + 1;
-    levelCounts[d.level || 'Other'] = (levelCounts[d.level || 'Other'] || 0) + 1;
-    typeCounts[d.type_group || 'Other'] = (typeCounts[d.type_group || 'Other'] || 0) + 1;
-    rdhsCounts[d.rdhs || 'Unknown'] = (rdhsCounts[d.rdhs || 'Unknown'] || 0) + 1;
+// ─────────────────────────────────────────────────────────
+// BUILD MARKERS (once, for all views)
+// ─────────────────────────────────────────────────────────
+function buildAllMarkers(data) {
+  // Initialise category buckets for each view
+  for (const [vk, vdef] of Object.entries(VIEWS)) {
+    for (const cat of vdef.categories) {
+      viewState[vk][cat.key] = {
+        group: L.markerClusterGroup({ maxClusterRadius: 40, showCoverageOnHover: false }),
+        markers: [],
+        visible: true,
+      };
+    }
   }
 
-  buildFilterUI(hisCounts, HIS_CONFIG, 'his-filters', activeHIS);
-  buildFilterUI(levelCounts, LEVEL_CONFIG, 'level-filters', activeLevel);
-  buildFilterUI(typeCounts, TYPE_CONFIG, 'type-filters', activeType);
-
-  // RDHS: plain (no config)
-  const rdhs_container = document.getElementById('rdhs-filters');
-  rdhs_container.innerHTML = '';
-  for (const [rdhs, cnt] of Object.entries(rdhsCounts).sort()) {
-    activeRDHS.add(rdhs);
-    const id = 'cb-rdhs-' + rdhs.replace(/\W/g,'_');
-    const row = document.createElement('div');
-    row.className = 'filter-row';
-    row.innerHTML = `
-      <input type="checkbox" id="${id}" checked data-filter="rdhs-filters" data-key="${rdhs}" />
-      <label for="${id}">${rdhs}</label>
-      <span class="count-badge">${cnt}</span>`;
-    rdhs_container.appendChild(row);
-    row.querySelector('input').addEventListener('change', function() {
-      if (this.checked) activeRDHS.add(rdhs); else activeRDHS.delete(rdhs);
-      applyFilters();
-    });
-  }
-}
-
-// =====================================================
-// MARKERS
-// =====================================================
-function buildMarkers(data) {
-  // Remove existing cluster groups
-  for (const g of Object.values(clusterGroups)) map.removeLayer(g);
-  clusterGroups = {};
-  markerMap = {};
-
-  // One cluster group per HIS category
-  const groups = {};
-  const KEYS = Object.keys(HIS_CONFIG);
-  for (const k of KEYS) {
-    groups[k] = L.markerClusterGroup({ maxClusterRadius: 40, showCoverageOnHover: false });
-    clusterGroups[k] = groups[k];
-  }
-
-  let count = 0;
+  let total = 0;
   for (const inst of data) {
-    if (!inst.lat || !inst.lon) continue;
-    const lat = parseFloat(inst.lat);
-    const lon = parseFloat(inst.lon);
-    if (isNaN(lat) || isNaN(lon)) continue;
+    const lat = parseFloat(inst.lat), lon = parseFloat(inst.lon);
+    if (!inst.lat || !inst.lon || isNaN(lat) || isNaN(lon)) continue;
 
-    const his = inst.his_name || 'No HIS';
-    const color = getMarkerColor(inst);
-    const icon = makeMarkerIcon(color, his === 'No HIS' ? 9 : 13);
-    const marker = L.marker([lat, lon], { icon })
-      .bindPopup(makePopup(inst), { maxWidth: 360 });
-
-    const key = inst.health_inst_no || inst.inst_no || inst.name;
-    markerMap[key] = { marker, inst, his };
-
-    if (!groups[his]) {
-      groups[his] = L.markerClusterGroup({ maxClusterRadius: 40, showCoverageOnHover: false });
-      clusterGroups[his] = groups[his];
+    // Determine category key for each view
+    const catKeys = {};
+    for (const [vk, vdef] of Object.entries(VIEWS)) {
+      catKeys[vk] = vdef.field(inst);
     }
-    groups[his].addLayer(marker);
-    count++;
-  }
 
-  for (const g of Object.values(groups)) map.addLayer(g);
-  return count;
+    // Create one marker per institution (reused across views via re-add)
+    // We need separate marker objects per view since they live in different cluster groups
+    for (const [vk, vdef] of Object.entries(VIEWS)) {
+      const catKey  = catKeys[vk];
+      const color   = VIEW_COLOR[vk][catKey] || '#999';
+      const big     = (vk === 'his' && inst.his_name) || (vk === 'level' && inst.level === 'DDG and Above');
+      const marker  = L.marker([lat, lon], { icon: makeIcon(color, big) })
+        .bindPopup(makePopup(inst), { maxWidth: 370 });
+
+      const bucket = viewState[vk][catKey];
+      if (bucket) {
+        bucket.group.addLayer(marker);
+        bucket.markers.push(marker);
+      }
+    }
+    total++;
+  }
+  return total;
 }
 
-// =====================================================
-// FILTERING
-// =====================================================
-function applyFilters() {
-  let visible = 0;
-  for (const [key, { marker, inst, his }] of Object.entries(markerMap)) {
-    const hisKey = inst.his_name || 'No HIS';
-    const show = activeHIS.has(hisKey)
-              && activeLevel.has(inst.level || 'Other')
-              && activeType.has(inst.type_group || 'Other')
-              && activeRDHS.has(inst.rdhs || 'Unknown');
-
-    // Get the cluster group this marker belongs to
-    const grp = clusterGroups[hisKey];
-    if (grp) {
-      if (show) { if (!grp.hasLayer(marker)) grp.addLayer(marker); visible++; }
-      else       { if (grp.hasLayer(marker)) grp.removeLayer(marker); }
+// ─────────────────────────────────────────────────────────
+// SWITCH VIEW — remove all groups, add active view's groups
+// ─────────────────────────────────────────────────────────
+function activateView(viewKey) {
+  // Remove all cluster groups from map
+  for (const vs of Object.values(viewState)) {
+    for (const bucket of Object.values(vs)) {
+      if (map.hasLayer(bucket.group)) map.removeLayer(bucket.group);
     }
   }
-  document.getElementById('stat-visible').textContent = visible;
+  // Add only the active view's groups (respecting checkbox state)
+  for (const [catKey, bucket] of Object.entries(viewState[viewKey])) {
+    if (bucket.visible) map.addLayer(bucket.group);
+  }
+  buildLegend(viewKey);
+  updateStats(viewKey);
 }
 
-// =====================================================
+// ─────────────────────────────────────────────────────────
+// LEGEND
+// ─────────────────────────────────────────────────────────
+function buildLegend(viewKey) {
+  const vdef  = VIEWS[viewKey];
+  const vs    = viewState[viewKey];
+  const wrap  = document.getElementById('legend-wrap');
+  wrap.innerHTML = '';
+
+  const sec = document.createElement('div');
+  sec.className = 'legend-section';
+
+  const title = document.createElement('div');
+  title.className = 'legend-section-title';
+  title.textContent = `Colour by: ${vdef.label}`;
+  sec.appendChild(title);
+
+  // Select All / None
+  const links = document.createElement('div');
+  links.className = 'sel-links';
+  links.innerHTML = '<a id="sel-all">All</a><a id="sel-none">None</a>';
+  sec.appendChild(links);
+
+  // Count totals per category
+  const counts = {};
+  for (const [catKey, bucket] of Object.entries(vs)) {
+    counts[catKey] = bucket.markers.length;
+  }
+
+  for (const cat of vdef.categories) {
+    if (!counts[cat.key]) continue;               // skip empty categories
+    const bucket = vs[cat.key];
+    const cbId   = `cb-${viewKey}-${cat.key.replace(/\W/g,'_')}`;
+
+    const row = document.createElement('div');
+    row.className = 'legend-row';
+    row.innerHTML = `
+      <input type="checkbox" id="${cbId}" ${bucket.visible ? 'checked' : ''} />
+      <span class="swatch" style="background:${cat.color}"></span>
+      <label for="${cbId}">${cat.label}</label>
+      <span class="cnt">${counts[cat.key]}</span>`;
+    sec.appendChild(row);
+
+    row.querySelector('input').addEventListener('change', function() {
+      bucket.visible = this.checked;
+      if (this.checked) { if (!map.hasLayer(bucket.group)) map.addLayer(bucket.group); }
+      else              { if (map.hasLayer(bucket.group))  map.removeLayer(bucket.group); }
+      updateStats(viewKey);
+    });
+  }
+
+  wrap.appendChild(sec);
+
+  // Wire Select All / None
+  document.getElementById('sel-all').addEventListener('click', () => setAllVisible(viewKey, true));
+  document.getElementById('sel-none').addEventListener('click', () => setAllVisible(viewKey, false));
+}
+
+function setAllVisible(viewKey, state) {
+  const vs = viewState[viewKey];
+  for (const bucket of Object.values(vs)) {
+    bucket.visible = state;
+    if (state) { if (!map.hasLayer(bucket.group)) map.addLayer(bucket.group); }
+    else        { if (map.hasLayer(bucket.group))  map.removeLayer(bucket.group); }
+  }
+  // Sync checkboxes
+  document.querySelectorAll(`#legend-wrap input[type=checkbox]`).forEach(cb => cb.checked = state);
+  updateStats(viewKey);
+}
+
+// ─────────────────────────────────────────────────────────
+// STATS
+// ─────────────────────────────────────────────────────────
+function updateStats(viewKey) {
+  let vis = 0;
+  for (const bucket of Object.values(viewState[viewKey])) {
+    if (bucket.visible) vis += bucket.markers.length;
+  }
+  document.getElementById('stat-vis').textContent = vis;
+}
+
+// ─────────────────────────────────────────────────────────
 // UNMAPPED TABLE
-// =====================================================
+// ─────────────────────────────────────────────────────────
 function buildUnmappedTable(data) {
   const unmapped = data.filter(d => !d.lat || !d.lon);
-  document.getElementById('stat-unmapped').textContent = unmapped.length;
-  document.getElementById('toggle-bottom').textContent =
-    `📋 ${unmapped.length} Unmapped Institutions`;
+  document.getElementById('stat-unmap').textContent  = unmapped.length;
+  document.getElementById('btn-unmapped').textContent = `📋 ${unmapped.length} Unmapped Institutions`;
 
-  const tbody = document.getElementById('bottom-tbody');
+  const tbody = document.getElementById('unmapped-tbody');
   tbody.innerHTML = '';
   unmapped.forEach((inst, i) => {
     const tr = document.createElement('tr');
@@ -546,6 +517,7 @@ function buildUnmappedTable(data) {
       <td>${i+1}</td>
       <td>${inst.name}</td>
       <td>${inst.type_atomic || '—'}</td>
+      <td>${inst.level || '—'}</td>
       <td>${inst.rdhs || '—'}</td>
       <td>${inst.address || '—'}</td>
       <td>${inst.phone || '—'}</td>`;
@@ -553,16 +525,10 @@ function buildUnmappedTable(data) {
   });
 }
 
-function toggleBottom() {
-  const panel = document.getElementById('bottom-panel');
-  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-}
-document.getElementById('toggle-bottom').addEventListener('click', toggleBottom);
-
-// =====================================================
+// ─────────────────────────────────────────────────────────
 // SEARCH
-// =====================================================
-const searchInput = document.getElementById('search-input');
+// ─────────────────────────────────────────────────────────
+const searchInput   = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 
 searchInput.addEventListener('input', function() {
@@ -570,73 +536,71 @@ searchInput.addEventListener('input', function() {
   searchResults.innerHTML = '';
   if (q.length < 2) { searchResults.style.display = 'none'; return; }
 
-  const matches = ALL_DATA.filter(d =>
-    d.lat && d.lon && d.name.toLowerCase().includes(q)
-  ).slice(0, 12);
+  const hits = ALL_DATA
+    .filter(d => d.lat && d.lon && d.name.toLowerCase().includes(q))
+    .slice(0, 14);
 
-  if (matches.length === 0) { searchResults.style.display = 'none'; return; }
+  if (!hits.length) { searchResults.style.display = 'none'; return; }
 
-  for (const inst of matches) {
-    const div = document.createElement('div');
-    div.className = 'search-item';
-    div.innerHTML = `<div>${inst.name}</div><div class="si-type">${inst.type_atomic || ''} — ${inst.rdhs || ''}</div>`;
-    div.addEventListener('click', () => {
-      const lat = parseFloat(inst.lat), lon = parseFloat(inst.lon);
-      map.setView([lat, lon], 15);
-      const key = inst.health_inst_no || inst.inst_no || inst.name;
-      if (markerMap[key]) {
-        markerMap[key].marker.openPopup();
-      }
+  for (const inst of hits) {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.innerHTML = `<div>${inst.name}</div>
+      <div class="si-sub">${inst.type_atomic || ''} &nbsp;·&nbsp; ${inst.rdhs || ''}</div>`;
+    el.addEventListener('click', () => {
+      map.setView([parseFloat(inst.lat), parseFloat(inst.lon)], 15);
       searchResults.style.display = 'none';
       searchInput.value = inst.name;
     });
-    searchResults.appendChild(div);
+    searchResults.appendChild(el);
   }
   searchResults.style.display = 'block';
 });
-
 document.addEventListener('click', e => {
   if (!e.target.closest('#search-wrap')) searchResults.style.display = 'none';
 });
 
-// =====================================================
-// TOGGLE ALL
-// =====================================================
-let allOn = true;
-document.getElementById('toggle-all-btn').addEventListener('click', () => {
-  allOn = !allOn;
-  document.querySelectorAll('#sidebar input[type=checkbox]').forEach(cb => {
-    cb.checked = allOn;
-    const key = cb.dataset.key;
-    const filter = cb.dataset.filter;
-    if (filter === 'his-filters') allOn ? activeHIS.add(key) : activeHIS.delete(key);
-    else if (filter === 'level-filters') allOn ? activeLevel.add(key) : activeLevel.delete(key);
-    else if (filter === 'type-filters') allOn ? activeType.add(key) : activeType.delete(key);
-    else if (filter === 'rdhs-filters') allOn ? activeRDHS.add(key) : activeRDHS.delete(key);
+// ─────────────────────────────────────────────────────────
+// VIEW TABS
+// ─────────────────────────────────────────────────────────
+document.querySelectorAll('.vtab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentView = btn.dataset.view;
+    activateView(currentView);
   });
-  applyFilters();
-  document.getElementById('toggle-all-btn').textContent = allOn ? 'Toggle All Layers' : 'Toggle All Layers (off)';
 });
 
-// =====================================================
-// MAIN: load data
-// =====================================================
+// ─────────────────────────────────────────────────────────
+// UNMAPPED DRAWER
+// ─────────────────────────────────────────────────────────
+document.getElementById('btn-unmapped').addEventListener('click', () => {
+  document.getElementById('unmapped-panel').classList.toggle('open');
+});
+document.getElementById('unmapped-header').addEventListener('click', () => {
+  document.getElementById('unmapped-panel').classList.remove('open');
+});
+
+// ─────────────────────────────────────────────────────────
+// MAIN
+// ─────────────────────────────────────────────────────────
 fetch('institutions_final.json')
   .then(r => r.json())
   .then(data => {
     ALL_DATA = data;
-
-    buildAllFilters(data);
-    const mappedCount = buildMarkers(data);
+    const total = buildAllMarkers(data);
+    document.getElementById('stat-tot').textContent = total;
     buildUnmappedTable(data);
-
-    document.getElementById('stat-total').textContent = mappedCount;
-    document.getElementById('stat-visible').textContent = mappedCount;
+    activateView('his');   // start on HIS view
   })
   .catch(err => {
-    console.error('Failed to load data:', err);
     document.getElementById('map').innerHTML =
-      '<p style="padding:20px;color:red">Error loading institutions_final.json. Serve this page from a local web server.</p>';
+      `<p style="padding:24px;color:#c00;font-size:1rem">
+        ⚠ Could not load <code>institutions_final.json</code>.<br>
+        Please serve this folder via a local web server:<br>
+        <code>python -m http.server 8080</code> → open <a href="http://localhost:8080">localhost:8080</a>
+      </p>`;
   });
 </script>
 </body>
