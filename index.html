@@ -24,7 +24,7 @@
     #hdr p{font-size:.7rem;opacity:.78;margin-top:1px}
 
     /* ── Type tabs ── */
-    #type-tabs{display:flex;gap:4px;flex-wrap:wrap}
+    #type-tabs{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
     .ttab{
       padding:5px 11px;border:1.5px solid rgba(255,255,255,.3);border-radius:16px;
       color:rgba(255,255,255,.75);background:transparent;
@@ -33,6 +33,22 @@
     }
     .ttab:hover{background:rgba(255,255,255,.18);color:#fff}
     .ttab.active{background:#fff;color:#0d3b66;border-color:#fff}
+
+    /* level-tab — slightly different accent colour */
+    .ltab{
+      padding:5px 11px;border:1.5px solid rgba(255,220,100,.55);border-radius:16px;
+      color:rgba(255,235,160,.9);background:transparent;
+      cursor:pointer;font-size:.75rem;font-weight:600;white-space:nowrap;
+      transition:all .15s
+    }
+    .ltab:hover{background:rgba(255,220,100,.18);color:#ffe680}
+    .ltab.active{background:#ffe040;color:#0d3b66;border-color:#ffe040}
+
+    /* vertical splitter between tab groups */
+    .tab-sep{
+      width:1.5px;height:28px;background:rgba(255,255,255,.25);
+      border-radius:2px;flex-shrink:0;margin:0 4px;
+    }
 
     /* ── Layout ── */
     #app{display:flex;height:calc(100vh - 54px)}
@@ -179,6 +195,9 @@
     <button class="ttab" data-type="Divisional Hospital">Divisional</button>
     <button class="ttab" data-type="Primary Care (PMCU)">PMCU</button>
     <button class="ttab" data-type="Specialized Hospital">Specialized</button>
+    <div class="tab-sep"></div>
+    <button class="ltab" data-level="DDG and Above" title="National, Teaching, Specialized Teaching, DGH, Other Specialized">🏛 DDG &amp; Above</button>
+    <button class="ltab" data-level="BH and Below" title="Base Hospital A/B, Divisional, PMCU">🏥 BH &amp; Below</button>
   </div>
 </div>
 
@@ -288,7 +307,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 
 // ── STATE ───────────────────────────────────────────────────────────────────
 let ALL_DATA      = [];
-let currentType   = 'all';
+let currentType   = 'all';   // type_group filter  OR  'all'
+let currentLevel  = null;    // level filter: 'DDG and Above' | 'BH and Below' | null
 let showHIS       = true;
 let showNoHIS     = true;
 
@@ -351,8 +371,10 @@ function renderMap(){
     const lat=parseFloat(d.lat), lon=parseFloat(d.lon);
     if(!d.lat||!d.lon||isNaN(lat)||isNaN(lon)) continue;
 
-    // Type filter
-    if(currentType !== 'all' && d.type_group !== currentType) continue;
+    // Type / level filter
+    if(currentLevel !== null){
+      if(d.level !== currentLevel) continue;
+    } else if(currentType !== 'all' && d.type_group !== currentType) continue;
 
     const hasHIS = d.his_in_place === 'Yes';
     const m = L.marker([lat,lon],{
@@ -391,9 +413,21 @@ function buildSummaryTable(){
 
   let grandHIS=0, grandNo=0;
 
+  // When a level filter is active, restrict which type_groups appear
+  const levelTypeGroups = {
+    'DDG and Above': ['National / Teaching Hospital','District / Base Hospital','Specialized Hospital'],
+    'BH and Below':  ['Base Hospital','Divisional Hospital','Primary Care (PMCU)'],
+  };
+  const activeClinicalTypes = currentLevel
+    ? CLINICAL_TYPES.filter(tg => levelTypeGroups[currentLevel].includes(tg))
+    : CLINICAL_TYPES;
+
   // Rows per clinical type
-  for(const tg of CLINICAL_TYPES){
-    const rows = ALL_DATA.filter(d => d.type_group === tg);
+  for(const tg of activeClinicalTypes){
+    // When level filter active: only count rows matching that level
+    const rows = currentLevel
+      ? ALL_DATA.filter(d => d.type_group === tg && d.level === currentLevel)
+      : ALL_DATA.filter(d => d.type_group === tg);
     const total = rows.length;
     if(!total) continue;
     const his  = rows.filter(d => d.his_in_place==='Yes').length;
@@ -402,7 +436,7 @@ function buildSummaryTable(){
     grandHIS += his; grandNo += nohis;
 
     const tr = document.createElement('tr');
-    const isActive = currentType === tg;
+    const isActive = !currentLevel && currentType === tg;
     tr.innerHTML = `
       <td class="type-cell" data-type="${tg}"
         style="${isActive?'font-weight:800;color:#0d3b66;background:#eef5ff':''}"
@@ -421,14 +455,15 @@ function buildSummaryTable(){
     });
   }
 
-  // Grand total row
+  // Grand total row (scoped to current level if active)
   const grandTotal = grandHIS + grandNo;
   const grandPct   = grandTotal ? Math.round(grandHIS/grandTotal*100) : 0;
   const tr = document.createElement('tr');
   tr.className = 'row-total';
+  const totalLabel = currentLevel ? currentLevel : 'All Clinical';
   tr.innerHTML = `
     <td class="type-cell" data-type="all"
-      style="${currentType==='all'?'color:#0d3b66':''}">All Clinical</td>
+      style="${!currentLevel&&currentType==='all'?'color:#0d3b66':''}">${totalLabel}</td>
     <td style="text-align:right;color:#27ae60">${grandHIS}</td>
     <td style="text-align:right;color:#e74c3c">${grandNo}</td>
     <td style="text-align:right">${grandTotal}</td>
@@ -442,9 +477,11 @@ function buildSummaryTable(){
 
 // ── HIS SYSTEM BREAKDOWN ─────────────────────────────────────────────────────
 function updateHISDetail(){
-  const rows = currentType==='all'
-    ? ALL_DATA
-    : ALL_DATA.filter(d=>d.type_group===currentType);
+  const rows = currentLevel !== null
+    ? ALL_DATA.filter(d=>d.level===currentLevel)
+    : currentType==='all'
+      ? ALL_DATA
+      : ALL_DATA.filter(d=>d.type_group===currentType);
 
   const counts = {};
   for(const d of rows){
@@ -474,10 +511,34 @@ function updateHISDetail(){
 
 // ── SELECT TYPE ──────────────────────────────────────────────────────────────
 function selectType(type){
-  currentType = type;
+  currentType  = type;
+  currentLevel = null;          // clear level filter when a type tab is used
   document.querySelectorAll('.ttab').forEach(b=>{
     b.classList.toggle('active', b.dataset.type===type);
   });
+  document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
+  buildSummaryTable();
+  renderMap();
+}
+
+// ── SELECT LEVEL ─────────────────────────────────────────────────────────────
+function selectLevel(level){
+  if(currentLevel === level){
+    // toggle off → go back to 'all'
+    currentLevel = null;
+    currentType  = 'all';
+    document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.ttab').forEach(b=>{
+      b.classList.toggle('active', b.dataset.type==='all');
+    });
+  } else {
+    currentLevel = level;
+    currentType  = 'all';
+    document.querySelectorAll('.ltab').forEach(b=>{
+      b.classList.toggle('active', b.dataset.level===level);
+    });
+    document.querySelectorAll('.ttab').forEach(b=>b.classList.remove('active'));
+  }
   buildSummaryTable();
   renderMap();
 }
@@ -521,6 +582,10 @@ function updateVisCount(){
 // ── TYPE TABS (header) ────────────────────────────────────────────────────────
 document.querySelectorAll('.ttab').forEach(btn=>{
   btn.addEventListener('click',()=>selectType(btn.dataset.type));
+});
+// ── LEVEL TABS (header) ───────────────────────────────────────────────────────
+document.querySelectorAll('.ltab').forEach(btn=>{
+  btn.addEventListener('click',()=>selectLevel(btn.dataset.level));
 });
 
 // ── SEARCH ───────────────────────────────────────────────────────────────────
