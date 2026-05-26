@@ -43,14 +43,22 @@
       flex:1;min-width:130px;background:#fff;border-radius:10px;
       box-shadow:0 1px 6px rgba(0,0,0,.09);padding:14px 16px;
       border-left:4px solid #0d3b66;
+      cursor:pointer;transition:transform .12s,box-shadow .12s;
+      position:relative;
     }
+    .kpi:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.14)}
+    .kpi:active{transform:translateY(0)}
     .kpi-val{font-size:1.7rem;font-weight:800;color:#0d3b66;line-height:1}
     .kpi-lbl{font-size:.72rem;color:#667;margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+    .kpi-hint{font-size:.62rem;color:#aab;margin-top:5px}
     .kpi.green{border-color:#27ae60}.kpi.green .kpi-val{color:#27ae60}
     .kpi.red  {border-color:#e74c3c}.kpi.red   .kpi-val{color:#e74c3c}
     .kpi.amber{border-color:#f39c12}.kpi.amber  .kpi-val{color:#f39c12}
+    /* active-filter highlight on a KPI */
+    .kpi.kpi-active{outline:2px solid #0d3b66;outline-offset:2px}
 
-    /* ── Charts row ── */
+    /* ── Charts layout ── */
+    #chart-combined-wrap{margin-bottom:18px}
     #charts-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
     @media(max-width:860px){#charts-row{grid-template-columns:1fr}}
     .chart-wrap{position:relative;height:300px}
@@ -144,34 +152,58 @@
 
   <!-- KPI STRIP -->
   <div id="kpi-strip">
-    <div class="kpi" id="kpi-total"><div class="kpi-val" id="kv-total">—</div><div class="kpi-lbl">Total Institutions</div></div>
-    <div class="kpi green" id="kpi-his"><div class="kpi-val" id="kv-his">—</div><div class="kpi-lbl">HIS in Place</div></div>
-    <div class="kpi red"   id="kpi-nohis"><div class="kpi-val" id="kv-nohis">—</div><div class="kpi-lbl">No HIS</div></div>
-    <div class="kpi amber" id="kpi-pct"><div class="kpi-val" id="kv-pct">—</div><div class="kpi-lbl">Coverage</div></div>
-    <div class="kpi" style="border-color:#1565C0"><div class="kpi-val" style="color:#1565C0" id="kv-hhmis">—</div><div class="kpi-lbl">HHMIS</div></div>
-    <div class="kpi" style="border-color:#6A1B9A"><div class="kpi-val" style="color:#6A1B9A" id="kv-hims">—</div><div class="kpi-lbl">HIMS</div></div>
-    <div class="kpi" style="border-color:#2E7D32"><div class="kpi-val" style="color:#2E7D32" id="kv-openmrs">—</div><div class="kpi-lbl">OpenMRS</div></div>
-    <div class="kpi" style="border-color:#EF6C00"><div class="kpi-val" style="color:#EF6C00" id="kv-planned">—</div><div class="kpi-lbl">Planned</div></div>
+    <div class="kpi" id="kpi-total" data-filter-his="" data-filter-sys="">
+      <div class="kpi-val" id="kv-total">—</div>
+      <div class="kpi-lbl">Total Institutions</div>
+      <div class="kpi-hint">click to show all</div>
+    </div>
+    <div class="kpi green" id="kpi-his" data-filter-his="Yes" data-filter-sys="">
+      <div class="kpi-val" id="kv-his">—</div>
+      <div class="kpi-lbl">HIS in Place</div>
+      <div class="kpi-hint">click to filter ↓</div>
+    </div>
+    <div class="kpi red" id="kpi-nohis" data-filter-his="No" data-filter-sys="">
+      <div class="kpi-val" id="kv-nohis">—</div>
+      <div class="kpi-lbl">No HIS</div>
+      <div class="kpi-hint">click to filter ↓</div>
+    </div>
+    <div class="kpi amber" id="kpi-pct" style="cursor:default">
+      <div class="kpi-val" id="kv-pct">—</div>
+      <div class="kpi-lbl">Coverage</div>
+    </div>
+    <div class="kpi" style="border-color:#1565C0;cursor:pointer" id="kpi-hhmis" data-filter-his="Yes" data-filter-sys="HHMIS">
+      <div class="kpi-val" style="color:#1565C0" id="kv-hhmis">—</div>
+      <div class="kpi-lbl">HHMIS</div>
+      <div class="kpi-hint">click to filter ↓</div>
+    </div>
+    <div class="kpi" style="border-color:#6A1B9A;cursor:pointer" id="kpi-hims" data-filter-his="Yes" data-filter-sys="HIMS">
+      <div class="kpi-val" style="color:#6A1B9A" id="kv-hims">—</div>
+      <div class="kpi-lbl">HIMS</div>
+      <div class="kpi-hint">click to filter ↓</div>
+    </div>
+    <div class="kpi" style="border-color:#2E7D32;cursor:pointer" id="kpi-openmrs" data-filter-his="Yes" data-filter-sys="OpenMRS">
+      <div class="kpi-val" style="color:#2E7D32" id="kv-openmrs">—</div>
+      <div class="kpi-lbl">OpenMRS</div>
+      <div class="kpi-hint">click to filter ↓</div>
+    </div>
+    <div class="kpi" style="border-color:#EF6C00;cursor:pointer" id="kpi-planned" data-filter-his="Yes" data-filter-sys="HHIMS (Planned)">
+      <div class="kpi-val" style="color:#EF6C00" id="kv-planned">—</div>
+      <div class="kpi-lbl">Planned</div>
+      <div class="kpi-hint">click to filter ↓</div>
+    </div>
+  </div>
+
+  <!-- COMBINED STACKED CHART: DDG & Above vs BH & Below side by side -->
+  <div id="chart-combined-wrap" class="card">
+    <div class="card-title">
+      <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+      HIS Implementation Status — DDG &amp; Above vs BH &amp; Below (by hospital type)
+    </div>
+    <div class="chart-wrap" style="height:340px"><canvas id="chart-combined"></canvas></div>
   </div>
 
   <!-- CHARTS -->
   <div id="charts-row">
-    <!-- Stacked bar: DDG and Above -->
-    <div class="card">
-      <div class="card-title">
-        <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
-        HIS Status — DDG &amp; Above Hospitals
-      </div>
-      <div class="chart-wrap"><canvas id="chart-ddg"></canvas></div>
-    </div>
-    <!-- Stacked bar: BH and Below -->
-    <div class="card">
-      <div class="card-title">
-        <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
-        HIS Status — BH &amp; Below Hospitals
-      </div>
-      <div class="chart-wrap"><canvas id="chart-bh"></canvas></div>
-    </div>
     <!-- Donut: HIS system breakdown -->
     <div class="card">
       <div class="card-title">
@@ -515,81 +547,174 @@ function updateSortIcons(){
   el.addEventListener(id==='f-search'?'input':'change', applyFilters);
 });
 document.getElementById('btn-reset').addEventListener('click',()=>{
-  document.getElementById('f-search').value = '';
-  document.getElementById('f-level').value  = '';
+  document.getElementById('f-search').value    = '';
+  document.getElementById('f-level').value     = '';
   document.getElementById('f-typegroup').value = '';
-  document.getElementById('f-his').value    = '';
-  document.getElementById('f-hissys').value = '';
-  document.getElementById('f-rdhs').value   = '';
+  document.getElementById('f-his').value       = '';
+  document.getElementById('f-hissys').value    = '';
+  document.getElementById('f-rdhs').value      = '';
+  document.querySelectorAll('.kpi').forEach(k=>k.classList.remove('kpi-active'));
   applyFilters();
+});
+
+// ── KPI CLICK HANDLERS ───────────────────────────────────────────────────────
+document.querySelectorAll('.kpi[data-filter-his]').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const hisVal = card.dataset.filterHis;   // '' | 'Yes' | 'No'
+    const sysVal = card.dataset.filterSys;   // '' | 'HHMIS' | 'HIMS' | 'OpenMRS' | 'HHIMS (Planned)'
+
+    // Reset all filter controls first
+    document.getElementById('f-search').value    = '';
+    document.getElementById('f-level').value     = '';
+    document.getElementById('f-typegroup').value = '';
+    document.getElementById('f-rdhs').value      = '';
+    document.getElementById('f-his').value       = hisVal;
+    document.getElementById('f-hissys').value    = sysVal;
+
+    // Highlight the active KPI
+    document.querySelectorAll('.kpi').forEach(k=>k.classList.remove('kpi-active'));
+    card.classList.add('kpi-active');
+
+    applyFilters();
+
+    // Smooth-scroll to the table
+    document.getElementById('tbl-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+  });
 });
 
 // ── CHARTS ───────────────────────────────────────────────────────────────────
 function buildCharts(){
-  buildStackedChart('chart-ddg', 'DDG and Above', DDG_TYPES);
-  buildStackedChart('chart-bh',  'BH and Below',  BH_TYPES);
+  buildCombinedChart();
   buildDonutChart();
   buildRdhsChart();
 }
 
-function buildStackedChart(canvasId, level, typeGroups){
-  const labels = [];
-  const dataHIS    = [];
-  const dataNoHIS  = [];
-  const dataPlanned= [];
+// Combined grouped-stacked chart: DDG & Above | BH & Below, each column stacked
+function buildCombinedChart(){
+  // We use Chart.js "stack" property to create two separate stacks side-by-side.
+  // Each stack group is a pair of columns (DDG / BH) per type-group label.
+  // Strategy: labels = all type groups; DDG datasets only fill DDG-level positions,
+  //           BH datasets only fill BH-level positions. Non-applicable = null (skip gap).
 
-  for(const tg of typeGroups){
-    const rows = ALL_DATA.filter(d => d.level===level && d.type_group===tg);
+  // Build type-group order: DDG types first, then BH types, with a visual spacer
+  const DDG_SHORT = {
+    'National / Teaching Hospital': 'Natl/Teaching',
+    'District / Base Hospital':     'DGH',
+    'Specialized Hospital':         'Specialized',
+  };
+  const BH_SHORT = {
+    'Base Hospital':        'Base Hosp.',
+    'Divisional Hospital':  'Divisional',
+    'Primary Care (PMCU)':  'PMCU',
+  };
+
+  // Collect data per type
+  function rowsFor(level, tg){
+    return ALL_DATA.filter(d=>d.level===level && d.type_group===tg);
+  }
+
+  // Build interleaved label list: for each DDG type → two bars (DDG, BH placeholder), etc.
+  // Simpler approach: use chartjs grouped stacking.
+  // Labels: each entry is "TypeShort\n(DDG)" and "TypeShort\n(BH)" interleaved.
+  const labels = [];
+  const active_ddg=[], planned_ddg=[], nohis_ddg=[];
+  const active_bh =[], planned_bh =[], nohis_bh  =[];
+
+  const allTypes = [
+    {tg:'National / Teaching Hospital', short:'Natl/Teaching', level:'DDG and Above'},
+    {tg:'District / Base Hospital',     short:'DGH',           level:'DDG and Above'},
+    {tg:'Specialized Hospital',         short:'Specialized',   level:'DDG and Above'},
+    {tg:'Base Hospital',                short:'Base Hospital', level:'BH and Below'},
+    {tg:'Divisional Hospital',          short:'Divisional',    level:'BH and Below'},
+    {tg:'Primary Care (PMCU)',          short:'PMCU',          level:'BH and Below'},
+  ];
+
+  for(const {tg, short, level} of allTypes){
+    const rows = rowsFor(level, tg);
     if(!rows.length) continue;
-    // Shorten label for chart
-    const short = tg
-      .replace('National / Teaching Hospital','Natl/Teaching')
-      .replace('District / Base Hospital','DGH')
-      .replace('Specialized Hospital','Specialized')
-      .replace('Base Hospital','Base Hosp.')
-      .replace('Divisional Hospital','Divisional')
-      .replace('Primary Care (PMCU)','PMCU');
     labels.push(short);
     const planned = rows.filter(d=>d.his_name==='HHIMS (Planned)').length;
     const active  = rows.filter(d=>d.his_in_place==='Yes'&&d.his_name!=='HHIMS (Planned)').length;
     const nohis   = rows.filter(d=>d.his_in_place!=='Yes').length;
-    dataHIS.push(active);
-    dataPlanned.push(planned);
-    dataNoHIS.push(nohis);
+
+    if(level==='DDG and Above'){
+      active_ddg.push(active); planned_ddg.push(planned); nohis_ddg.push(nohis);
+      active_bh.push(null);    planned_bh.push(null);     nohis_bh.push(null);
+    } else {
+      active_ddg.push(null);   planned_ddg.push(null);    nohis_ddg.push(null);
+      active_bh.push(active);  planned_bh.push(planned);  nohis_bh.push(nohis);
+    }
   }
 
-  new Chart(document.getElementById(canvasId), {
+  // Background colours: DDG = slightly saturated, BH = slightly desaturated variant
+  new Chart(document.getElementById('chart-combined'), {
     type: 'bar',
     data: {
       labels,
       datasets: [
-        { label:'HIS Active',  data:dataHIS,     backgroundColor:'#27ae60cc', borderColor:'#27ae60', borderWidth:1 },
-        { label:'Planned',     data:dataPlanned,  backgroundColor:'#EF6C00aa', borderColor:'#EF6C00', borderWidth:1 },
-        { label:'No HIS',      data:dataNoHIS,    backgroundColor:'#e74c3caa', borderColor:'#e74c3c', borderWidth:1 },
+        // DDG stack (stack:'ddg')
+        { label:'DDG — HIS Active',  data:active_ddg,  stack:'ddg',
+          backgroundColor:'#27ae60cc', borderColor:'#27ae60', borderWidth:1 },
+        { label:'DDG — Planned',     data:planned_ddg, stack:'ddg',
+          backgroundColor:'#EF6C00bb', borderColor:'#EF6C00', borderWidth:1 },
+        { label:'DDG — No HIS',      data:nohis_ddg,   stack:'ddg',
+          backgroundColor:'#e74c3cbb', borderColor:'#e74c3c', borderWidth:1 },
+        // BH stack (stack:'bh') — slightly lighter shades for visual distinction
+        { label:'BH — HIS Active',   data:active_bh,   stack:'bh',
+          backgroundColor:'#82e0aa', borderColor:'#1abc9c', borderWidth:1 },
+        { label:'BH — Planned',      data:planned_bh,  stack:'bh',
+          backgroundColor:'#f8c471', borderColor:'#f39c12', borderWidth:1 },
+        { label:'BH — No HIS',       data:nohis_bh,    stack:'bh',
+          backgroundColor:'#f1948a', borderColor:'#c0392b', borderWidth:1 },
       ]
     },
     options:{
       responsive:true, maintainAspectRatio:false,
       plugins:{
-        legend:{ position:'bottom', labels:{font:{size:11}, boxWidth:12, padding:10} },
+        legend:{
+          position:'bottom',
+          labels:{font:{size:11}, boxWidth:13, padding:10}
+        },
         tooltip:{
           callbacks:{
+            title: ctx => {
+              const label = ctx[0].label;
+              const stack = ctx[0].dataset.stack;
+              return `${label}  (${stack==='ddg'?'DDG & Above':'BH & Below'})`;
+            },
             label: ctx => {
-              const total = ctx.dataset.data.reduce((a,b)=>a+b,0)
-                + (ctx.chart.data.datasets
-                    .filter((_,i)=>i!==ctx.datasetIndex)
-                    .reduce((a,ds)=>a+(ds.data[ctx.dataIndex]||0),0));
-              const allTot = ctx.chart.data.datasets
-                .reduce((a,ds)=>a+(ds.data[ctx.dataIndex]||0),0);
-              const pct = allTot ? Math.round(ctx.parsed.y/allTot*100) : 0;
-              return ` ${ctx.dataset.label}: ${ctx.parsed.y} (${pct}%)`;
+              if(ctx.parsed.y===null) return null;
+              // Total for this bar (same stack + same index)
+              const stackId = ctx.dataset.stack;
+              const idx = ctx.dataIndex;
+              const stackTotal = ctx.chart.data.datasets
+                .filter(ds=>ds.stack===stackId)
+                .reduce((a,ds)=>a+(ds.data[idx]||0),0);
+              const pct = stackTotal ? Math.round(ctx.parsed.y/stackTotal*100) : 0;
+              const shortLabel = ctx.dataset.label.replace(/^(DDG|BH) — /,'');
+              return ` ${shortLabel}: ${ctx.parsed.y} (${pct}%)`;
+            },
+            afterBody: ctx => {
+              const stackId = ctx[0].dataset.stack;
+              const idx = ctx[0].dataIndex;
+              const stackTotal = ctx[0].chart.data.datasets
+                .filter(ds=>ds.stack===stackId)
+                .reduce((a,ds)=>a+(ds.data[idx]||0),0);
+              return [`Total: ${stackTotal}`];
             }
           }
         }
       },
       scales:{
-        x:{ stacked:true, ticks:{font:{size:11}} },
-        y:{ stacked:true, ticks:{font:{size:11}}, title:{display:true,text:'No. of Hospitals',font:{size:11}} }
+        x:{
+          stacked:true,
+          ticks:{font:{size:11}},
+        },
+        y:{
+          stacked:true,
+          ticks:{font:{size:11}},
+          title:{display:true,text:'No. of Hospitals',font:{size:11}}
+        }
       }
     }
   });
