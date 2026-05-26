@@ -60,7 +60,10 @@
     /* ── Charts layout ── */
     #chart-combined-wrap{margin-bottom:18px}
     #charts-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
-    @media(max-width:860px){#charts-row{grid-template-columns:1fr}}
+    @media(max-width:860px){
+      #charts-row{grid-template-columns:1fr}
+      #chart-combined-wrap .inner-grid{grid-template-columns:1fr !important}
+    }
     .chart-wrap{position:relative;height:300px}
 
     /* ── Filters ── */
@@ -193,13 +196,28 @@
     </div>
   </div>
 
-  <!-- COMBINED STACKED CHART: DDG & Above vs BH & Below side by side -->
+  <!-- SUMMARY 2-COLUMN CHART + DETAILED BREAKDOWN: one card, side by side -->
   <div id="chart-combined-wrap" class="card">
     <div class="card-title">
       <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
-      HIS Implementation Status — DDG &amp; Above vs BH &amp; Below (by hospital type)
+      HIS Implementation Status — Level Summary &amp; Breakdown by Hospital Type
     </div>
-    <div class="chart-wrap" style="height:340px"><canvas id="chart-combined"></canvas></div>
+    <div class="inner-grid" style="display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start">
+      <!-- LEFT: 2-column summary (DDG as one bar, BH as one bar) -->
+      <div>
+        <div style="font-size:.72rem;font-weight:700;color:#445;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">
+          Level Summary
+        </div>
+        <div class="chart-wrap" style="height:320px"><canvas id="chart-2col"></canvas></div>
+      </div>
+      <!-- RIGHT: per-type grouped breakdown -->
+      <div>
+        <div style="font-size:.72rem;font-weight:700;color:#445;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">
+          Breakdown by Hospital Type
+        </div>
+        <div class="chart-wrap" style="height:320px"><canvas id="chart-combined"></canvas></div>
+      </div>
+    </div>
   </div>
 
   <!-- CHARTS -->
@@ -584,9 +602,108 @@ document.querySelectorAll('.kpi[data-filter-his]').forEach(card=>{
 
 // ── CHARTS ───────────────────────────────────────────────────────────────────
 function buildCharts(){
+  build2ColChart();
   buildCombinedChart();
   buildDonutChart();
   buildRdhsChart();
+}
+
+// ── 2-COLUMN SUMMARY CHART ────────────────────────────────────────────────────
+// Just two bars: DDG & Above (all types combined) and BH & Below (all types combined)
+// Each bar stacked: HIS Active / Planned / No HIS
+function build2ColChart(){
+  const ddg = ALL_DATA.filter(d => d.level === 'DDG and Above');
+  const bh  = ALL_DATA.filter(d => d.level === 'BH and Below');
+
+  function counts(rows){
+    return {
+      active:  rows.filter(d => d.his_in_place==='Yes' && d.his_name!=='HHIMS (Planned)').length,
+      planned: rows.filter(d => d.his_name==='HHIMS (Planned)').length,
+      nohis:   rows.filter(d => d.his_in_place!=='Yes').length,
+      total:   rows.length,
+    };
+  }
+  const D = counts(ddg);
+  const B = counts(bh);
+
+  new Chart(document.getElementById('chart-2col'), {
+    type: 'bar',
+    data: {
+      labels: ['DDG & Above', 'BH & Below'],
+      datasets: [
+        {
+          label: 'HIS Active',
+          data: [D.active, B.active],
+          backgroundColor: ['#27ae60dd', '#52be80dd'],
+          borderColor:     ['#1e8449',   '#27ae60'],
+          borderWidth: 1,
+          stack: 'main',
+        },
+        {
+          label: 'Planned',
+          data: [D.planned, B.planned],
+          backgroundColor: ['#e67e22cc', '#f0a75acc'],
+          borderColor:     ['#d35400',   '#e67e22'],
+          borderWidth: 1,
+          stack: 'main',
+        },
+        {
+          label: 'No HIS',
+          data: [D.nohis, B.nohis],
+          backgroundColor: ['#e74c3ccc', '#f1948acc'],
+          borderColor:     ['#c0392b',   '#e74c3c'],
+          borderWidth: 1,
+          stack: 'main',
+        },
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font:{size:11}, boxWidth:12, padding:10 }
+        },
+        tooltip: {
+          callbacks: {
+            title: ctx => {
+              const lbl   = ctx[0].label;
+              const rows  = lbl.startsWith('DDG') ? ddg : bh;
+              const tot   = rows.length;
+              const hisCt = rows.filter(d=>d.his_in_place==='Yes').length;
+              const pct   = tot ? Math.round(hisCt/tot*100) : 0;
+              return `${lbl}  (${pct}% HIS coverage, n=${tot})`;
+            },
+            label: ctx => {
+              const tot = ctx.chart.data.datasets
+                .reduce((a,ds) => a + (ds.data[ctx.dataIndex]||0), 0);
+              const pct = tot ? Math.round(ctx.parsed.y / tot * 100) : 0;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y}  (${pct}%)`;
+            },
+            afterBody: ctx => {
+              const idx = ctx[0].dataIndex;
+              const tot = ctx[0].chart.data.datasets
+                .reduce((a,ds) => a + (ds.data[idx]||0), 0);
+              return [`─────────────`, `Total: ${tot}`];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: { font:{size:12}, color:'#333' },
+          grid:  { display:false },
+        },
+        y: {
+          stacked: true,
+          ticks: { font:{size:11} },
+          title: { display:true, text:'No. of Hospitals', font:{size:11} }
+        }
+      }
+    }
+  });
 }
 
 // Combined grouped-stacked chart: DDG & Above | BH & Below, each column stacked
