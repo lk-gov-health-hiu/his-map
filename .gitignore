@@ -28,3 +28,4 @@ match_test.py
 # Temp
 *.tmp
 *.bak
+tmp/
