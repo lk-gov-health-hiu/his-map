@@ -335,7 +335,21 @@ for inst in institutions:
             inst['lon']          = payload['lon']
             inst['coord_source'] = 'KMZ'
 
-# ── 7. Summary ─────────────────────────────────────────────────────────────────
+# ── 7. Clear HIS from MOH / Admin Offices ────────────────────────────────────
+# MOH offices (MOH, RDHS, PDHS, ADC, NTS) are administrative — they may have
+# access to HIS systems but are NOT hospitals and must NOT appear in any HIS
+# implementation count or status. Force his_in_place=No, his_name=''.
+moh_cleared = 0
+for inst in institutions:
+    if inst['type_group'] == 'MOH / Admin Office':
+        if inst['his_in_place'] == 'Yes' or inst['his_name']:
+            inst['his_in_place'] = 'No'
+            inst['his_name']     = ''
+            moh_cleared += 1
+
+print(f'MOH / Admin Office records cleared of HIS status: {moh_cleared}')
+
+# ── 8. Summary ─────────────────────────────────────────────────────────────────
 mapped   = [i for i in institutions if i['lat'] and i['lon']]
 unmapped = [i for i in institutions if not i['lat']]
 
@@ -373,7 +387,7 @@ grand_total = grand_his + grand_no
 print(f'  {"-"*65}')
 print(f'  {"TOTAL":<35} {grand_his:>5} {grand_no:>7} {grand_total:>6} {grand_his/grand_total*100:>8.1f}%')
 
-# ── 8. Save ───────────────────────────────────────────────────────────────────
+# ── 9. Save ───────────────────────────────────────────────────────────────────
 with open('institutions_final.json', 'w', encoding='utf-8') as f:
     json.dump(institutions, f, ensure_ascii=False, indent=2)
 with open('unmapped_institutions.json', 'w', encoding='utf-8') as f:

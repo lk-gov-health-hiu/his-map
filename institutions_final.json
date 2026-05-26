@@ -1556,8 +1556,8 @@
     "lat": "6.846962881",
     "lon": "79.99283136",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "81",
@@ -1596,8 +1596,8 @@
     "lat": "6.922206",
     "lon": "79.916246",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "83",
@@ -4676,8 +4676,8 @@
     "lat": "7.0903867",
     "lon": "80.0020626",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "212",
@@ -4776,8 +4776,8 @@
     "lat": "7.020806667",
     "lon": "79.97337167",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "217",
@@ -4816,8 +4816,8 @@
     "lat": "7.2569367",
     "lon": "80.1353014",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "219",
@@ -4836,8 +4836,8 @@
     "lat": "7.2055",
     "lon": "79.85197",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "220",
@@ -4856,8 +4856,8 @@
     "lat": "6.976741667",
     "lon": "80.117385",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "221",
@@ -4936,8 +4936,8 @@
     "lat": "7.0848751",
     "lon": "80.0115787",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "226",
@@ -5873,8 +5873,8 @@
     "address": "PMCU, Panapitiya",
     "phone": "034-2222385",
     "email": "panapitiyapmcu1@gmail.com",
-    "lat": "7.904391667",
-    "lon": "81.11322",
+    "lat": "6.629242",
+    "lon": "79.980399",
     "coord_source": "GIS",
     "his_name": "",
     "his_in_place": "No"
@@ -6116,8 +6116,8 @@
     "lat": "6.713377",
     "lon": "79.991643",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "269",
@@ -6176,8 +6176,8 @@
     "lat": "6.713117",
     "lon": "80.067765",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "272",
@@ -6196,8 +6196,8 @@
     "lat": "6.74299",
     "lon": "80.166442",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "273",
@@ -6256,8 +6256,8 @@
     "lat": "6.523505",
     "lon": "80.126334",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "276",
@@ -6296,8 +6296,8 @@
     "lat": "6.724178",
     "lon": "79.907132",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "278",
@@ -8556,8 +8556,8 @@
     "lat": "7.204113333",
     "lon": "80.56534",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "378",
@@ -8716,8 +8716,8 @@
     "lat": "7.298749",
     "lon": "80.637324",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "386",
@@ -8996,8 +8996,8 @@
     "lat": "7.29657",
     "lon": "80.63567333",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "401",
@@ -10096,8 +10096,8 @@
     "lat": "7.87099848",
     "lon": "80.65034596",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "452",
@@ -10116,8 +10116,8 @@
     "lat": "7.760946667",
     "lon": "80.57189667",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "453",
@@ -10136,8 +10136,8 @@
     "lat": "7.592192487",
     "lon": "80.84321094",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "454",
@@ -10156,8 +10156,8 @@
     "lat": "7.460648183",
     "lon": "80.62603197",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "455",
@@ -10176,8 +10176,8 @@
     "lat": "7.466024879",
     "lon": "80.61865071",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "456",
@@ -10276,8 +10276,8 @@
     "lat": "7.540074222",
     "lon": "80.91481085",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "461",
@@ -10316,8 +10316,8 @@
     "lat": "7.4672",
     "lon": "80.6233",
     "coord_source": "KMZ",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "463",
@@ -10396,8 +10396,8 @@
     "lat": "7.87099848",
     "lon": "80.65034596",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1965",
@@ -11616,8 +11616,8 @@
     "lat": "6.9722135",
     "lon": "80.7805457",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "526",
@@ -11636,8 +11636,8 @@
     "lat": "6.9733321",
     "lon": "80.7687131",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "527",
@@ -11716,8 +11716,8 @@
     "lat": "6.9722135",
     "lon": "80.7805457",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "532",
@@ -12996,8 +12996,8 @@
     "lat": "6.248492",
     "lon": "80.062912",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "595",
@@ -13036,8 +13036,8 @@
     "lat": "6.311796",
     "lon": "80.03451",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "597",
@@ -13096,8 +13096,8 @@
     "lat": "6.295304",
     "lon": "80.164482",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "600",
@@ -14496,8 +14496,8 @@
     "lat": "7.3206791",
     "lon": "79.9739785",
     "coord_source": "KMZ",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "663",
@@ -14656,8 +14656,8 @@
     "lat": "6.06533393",
     "lon": "80.56595589",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "671",
@@ -14716,8 +14716,8 @@
     "lat": "5.951749702",
     "lon": "80.53854465",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "674",
@@ -14836,8 +14836,8 @@
     "lat": "5.974706064",
     "lon": "80.41962051",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "680",
@@ -14856,8 +14856,8 @@
     "lat": "6.006213625",
     "lon": "80.44433507",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "681",
@@ -14876,8 +14876,8 @@
     "lat": "6.094814",
     "lon": "80.564122",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "682",
@@ -16076,8 +16076,8 @@
     "lat": "6.02358552",
     "lon": "80.79576482",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "736",
@@ -16096,8 +16096,8 @@
     "lat": "6.286446448",
     "lon": "81.26123712",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "737",
@@ -16116,8 +16116,8 @@
     "lat": "6.143948",
     "lon": "80.6958923",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "738",
@@ -17236,8 +17236,8 @@
     "lat": "9.66352",
     "lon": "80.16621",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "793",
@@ -17256,8 +17256,8 @@
     "lat": "9.673993",
     "lon": "80.027679",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "794",
@@ -17296,8 +17296,8 @@
     "lat": "9.695588",
     "lon": "79.867123",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "796",
@@ -17356,8 +17356,8 @@
     "lat": "9.805785",
     "lon": "80.223",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "800",
@@ -17456,8 +17456,8 @@
     "lat": "9.665129",
     "lon": "80.014838",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "806",
@@ -18196,8 +18196,8 @@
     "lat": "9.3727554",
     "lon": "80.4109718",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "831",
@@ -18876,8 +18876,8 @@
     "lat": "8.9792",
     "lon": "79.91389",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "853",
@@ -18936,8 +18936,8 @@
     "lat": "8.98328",
     "lon": "79.90268",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "856",
@@ -19596,8 +19596,8 @@
     "lat": "8.65744",
     "lon": "80.31264",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "875",
@@ -19616,8 +19616,8 @@
     "lat": "8.76204",
     "lon": "80.49849",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "876",
@@ -19676,8 +19676,8 @@
     "lat": "8.76184",
     "lon": "80.49206",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "879",
@@ -19696,8 +19696,8 @@
     "lat": "8.760589",
     "lon": "80.5000512",
     "coord_source": "KMZ",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "880",
@@ -20336,8 +20336,8 @@
     "lat": "9.32106",
     "lon": "80.68301",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "900",
@@ -21336,8 +21336,8 @@
     "lat": "7.708495",
     "lon": "81.691352",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "942",
@@ -21376,8 +21376,8 @@
     "lat": "7.78371178",
     "lon": "81.60567932",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "944",
@@ -21396,8 +21396,8 @@
     "lat": "7.50940751",
     "lon": "81.79216818",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "945",
@@ -21416,8 +21416,8 @@
     "lat": "7.68347962",
     "lon": "81.7307588",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "946",
@@ -21536,8 +21536,8 @@
     "lat": "7.912186544",
     "lon": "81.53282694",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "952",
@@ -21596,8 +21596,8 @@
     "lat": "7.718272401",
     "lon": "81.69870917",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "955",
@@ -21616,8 +21616,8 @@
     "lat": "7.708032299999998",
     "lon": "81.6906221",
     "coord_source": "KMZ",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "957",
@@ -22316,8 +22316,8 @@
     "lat": "7.296619",
     "lon": "81.689872",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "990",
@@ -22356,8 +22356,8 @@
     "lat": "7.674159935",
     "lon": "81.04531449",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "992",
@@ -22396,8 +22396,8 @@
     "lat": "7.530201353",
     "lon": "81.35454121",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "994",
@@ -22416,8 +22416,8 @@
     "lat": "7.4105441",
     "lon": "81.2442077",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "995",
@@ -22456,8 +22456,8 @@
     "lat": "7.297008",
     "lon": "81.690059",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "997",
@@ -23356,8 +23356,8 @@
     "lat": "8.363656667",
     "lon": "81.00577667",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1038",
@@ -23376,8 +23376,8 @@
     "lat": "8.498786667",
     "lon": "81.17970667",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1039",
@@ -23416,8 +23416,8 @@
     "lat": "8.454653333",
     "lon": "81.264465",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1041",
@@ -23496,8 +23496,8 @@
     "lat": "8.563673333",
     "lon": "81.23947833",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1045",
@@ -23536,8 +23536,8 @@
     "lat": "8.564858333",
     "lon": "81.23757833",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1047",
@@ -24536,8 +24536,8 @@
     "lat": "7.1158",
     "lon": "81.851894",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1083",
@@ -24636,8 +24636,8 @@
     "lat": "7.419404",
     "lon": "81.821191",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1088",
@@ -24656,8 +24656,8 @@
     "lat": "7.405904",
     "lon": "81.841123",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1089",
@@ -24716,8 +24716,8 @@
     "lat": "7.353009",
     "lon": "81.85706",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1092",
@@ -24736,8 +24736,8 @@
     "lat": "6.877029",
     "lon": "81.829287",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1093",
@@ -24776,8 +24776,8 @@
     "lat": "7.369546",
     "lon": "81.812467",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1095",
@@ -24796,8 +24796,8 @@
     "lat": "7.111748",
     "lon": "81.853073",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1096",
@@ -24956,8 +24956,8 @@
     "lat": "6.876184",
     "lon": "81.830245",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1910",
@@ -27156,8 +27156,8 @@
     "lat": "8.005518333",
     "lon": "80.28471333",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1213",
@@ -27256,8 +27256,8 @@
     "lat": "7.471222",
     "lon": "80.044643",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1218",
@@ -27276,8 +27276,8 @@
     "lat": "7.484676667",
     "lon": "80.35332333",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1219",
@@ -27296,8 +27296,8 @@
     "lat": "7.490898333",
     "lon": "80.367165",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1220",
@@ -27376,8 +27376,8 @@
     "lat": "7.74755",
     "lon": "80.11530667",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1224",
@@ -27536,8 +27536,8 @@
     "lat": "7.484292105",
     "lon": "80.35383892",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1232",
@@ -27556,8 +27556,8 @@
     "lat": "7.479606189",
     "lon": "80.35853335",
     "coord_source": "GIS",
-    "his_name": "HIMS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1233",
@@ -28936,8 +28936,8 @@
     "lat": "7.57929881",
     "lon": "79.80070021",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1289",
@@ -28976,8 +28976,8 @@
     "lat": "8.22862875",
     "lon": "79.7614028",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1291",
@@ -29036,8 +29036,8 @@
     "lat": "8.02280164",
     "lon": "79.8331275",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1295",
@@ -29056,8 +29056,8 @@
     "lat": "8.027698",
     "lon": "79.838729",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1296",
@@ -30536,8 +30536,8 @@
     "lat": "8.324937955",
     "lon": "80.41297135",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1364",
@@ -30556,8 +30556,8 @@
     "lat": "8.043700461",
     "lon": "80.59569156",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1365",
@@ -30576,8 +30576,8 @@
     "lat": "8.541148594",
     "lon": "80.49180259",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1366",
@@ -30596,8 +30596,8 @@
     "lat": "8.153256504",
     "lon": "80.29554826",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1367",
@@ -30636,8 +30636,8 @@
     "lat": "8.034402458",
     "lon": "80.48137564",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1370",
@@ -30716,8 +30716,8 @@
     "lat": "8.642036624",
     "lon": "80.66724821",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1374",
@@ -30736,8 +30736,8 @@
     "lat": "8.043338028",
     "lon": "80.59578275",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1375",
@@ -30756,8 +30756,8 @@
     "lat": "8.541281648",
     "lon": "80.49152638",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1376",
@@ -30896,8 +30896,8 @@
     "lat": "8.16529979",
     "lon": "80.21387961",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1383",
@@ -30936,8 +30936,8 @@
     "lat": "8.243257776",
     "lon": "80.35551089",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1385",
@@ -30956,8 +30956,8 @@
     "lat": "8.153256504",
     "lon": "80.29554826",
     "coord_source": "GIS",
-    "his_name": "OpenMRS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1386",
@@ -30996,8 +30996,8 @@
     "lat": "8.325471045",
     "lon": "80.41212436",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1388",
@@ -31016,8 +31016,8 @@
     "lat": "8.326223823",
     "lon": "80.41103479",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1389",
@@ -31876,8 +31876,8 @@
     "lat": "8.046191667",
     "lon": "80.96567667",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1425",
@@ -31916,8 +31916,8 @@
     "lat": "8.143781667",
     "lon": "80.96681833",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1427",
@@ -31976,8 +31976,8 @@
     "lat": "7.942622",
     "lon": "81.0089176",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1890",
@@ -33496,8 +33496,8 @@
     "lat": "6.988263",
     "lon": "81.053076",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1500",
@@ -33816,8 +33816,8 @@
     "lat": "6.990918",
     "lon": "81.051619",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1516",
@@ -33836,8 +33836,8 @@
     "lat": "6.990918",
     "lon": "81.051619",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1517",
@@ -34716,8 +34716,8 @@
     "lat": "6.980497",
     "lon": "81.375786",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1557",
@@ -34796,8 +34796,8 @@
     "lat": "6.92746",
     "lon": "81.553793",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1561",
@@ -34836,8 +34836,8 @@
     "lat": "6.734543",
     "lon": "81.100189",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1563",
@@ -36096,8 +36096,8 @@
     "lat": "6.6487708",
     "lon": "80.6974721",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1625",
@@ -36116,8 +36116,8 @@
     "lat": "6.848855",
     "lon": "80.26458833",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1626",
@@ -36276,8 +36276,8 @@
     "lat": "6.406383333",
     "lon": "80.69076833",
     "coord_source": "GIS",
-    "his_name": "HHIMS (Planned)",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1634",
@@ -36376,8 +36376,8 @@
     "lat": "6.686824499999999",
     "lon": "80.39308770000001",
     "coord_source": "KMZ",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1639",
@@ -36396,8 +36396,8 @@
     "lat": "6.686824499999999",
     "lon": "80.39308770000001",
     "coord_source": "KMZ",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1640",
@@ -36436,8 +36436,8 @@
     "lat": "6.7060451",
     "lon": "80.3816041",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1642",
@@ -36456,8 +36456,8 @@
     "lat": "6.6871687",
     "lon": "80.3902339",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1643",
@@ -38836,8 +38836,8 @@
     "lat": "7.277231428",
     "lon": "80.29233727",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1698",
@@ -38876,8 +38876,8 @@
     "lat": "7.253811755",
     "lon": "80.44643708",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1700",
@@ -38936,8 +38936,8 @@
     "lat": "7.225001942",
     "lon": "80.19648846",
     "coord_source": "GIS",
-    "his_name": "HHMIS",
-    "his_in_place": "Yes"
+    "his_name": "",
+    "his_in_place": "No"
   },
   {
     "inst_no": "1703",

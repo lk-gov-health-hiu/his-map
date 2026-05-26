@@ -378,6 +378,9 @@ function renderMap(){
     const lat=parseFloat(d.lat), lon=parseFloat(d.lon);
     if(!d.lat||!d.lon||isNaN(lat)||isNaN(lon)) continue;
 
+    // Always exclude MOH / Admin Office from the map
+    if(d.type_group === 'MOH / Admin Office') continue;
+
     // Type / level filter
     if(currentLevel !== null){
       if(d.level !== currentLevel) continue;
@@ -624,7 +627,8 @@ document.addEventListener('click',e=>{
 
 // ── UNMAPPED DRAWER ────────────────────────────────────────────────────────────
 function buildUnmapped(data){
-  const unm=data.filter(d=>!d.lat||!d.lon);
+  // Exclude MOH / Admin Offices — they are not hospitals
+  const unm=data.filter(d=>(!d.lat||!d.lon) && d.type_group!=='MOH / Admin Office');
   document.getElementById('su').textContent=unm.length;
   document.getElementById('btn-unmap').textContent=`📋 ${unm.length} without coords`;
   const tbody=document.getElementById('unmap-tbody');

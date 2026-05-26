@@ -332,22 +332,27 @@ const HIS_COLORS = {
 };
 const PAGE_SIZE = 25;
 
+// MOH / Admin Office type groups — excluded from all counts, charts and default table
+const EXCLUDED_GROUPS = new Set(['MOH / Admin Office']);
+
 // DDG-level type groups (for stacked chart)
 const DDG_TYPES = ['National / Teaching Hospital','District / Base Hospital','Specialized Hospital'];
 const BH_TYPES  = ['Base Hospital','Divisional Hospital','Primary Care (PMCU)'];
 
 // ── STATE ────────────────────────────────────────────────────────────────────
-let ALL_DATA     = [];
-let filtered     = [];
-let sortCol      = 'name';
-let sortDir      = 1;   // 1 = asc, -1 = desc
-let currentPage  = 1;
+let ALL_DATA      = [];   // every record from JSON
+let HOSP_DATA     = [];   // hospitals only — MOH / Admin Office excluded
+let filtered      = [];
+let sortCol       = 'name';
+let sortDir       = 1;   // 1 = asc, -1 = desc
+let currentPage   = 1;
 
 // ── LOAD DATA ────────────────────────────────────────────────────────────────
 fetch('institutions_final.json')
   .then(r => r.json())
   .then(data => {
-    ALL_DATA = data;
+    ALL_DATA  = data;
+    HOSP_DATA = data.filter(d => !EXCLUDED_GROUPS.has(d.type_group));
     initFilters();
     applyFilters();
     buildCharts();
@@ -363,8 +368,9 @@ fetch('institutions_final.json')
 
 // ── INIT FILTERS ────────────────────────────────────────────────────────────
 function initFilters(){
-  const typeGroups = [...new Set(ALL_DATA.map(d=>d.type_group).filter(Boolean))].sort();
-  const rdhs       = [...new Set(ALL_DATA.map(d=>d.rdhs).filter(Boolean))].sort();
+  // Only show non-excluded type groups in the dropdown
+  const typeGroups = [...new Set(HOSP_DATA.map(d=>d.type_group).filter(Boolean))].sort();
+  const rdhs       = [...new Set(HOSP_DATA.map(d=>d.rdhs).filter(Boolean))].sort();
 
   const fg = document.getElementById('f-typegroup');
   typeGroups.forEach(tg=>{
@@ -390,7 +396,8 @@ function applyFilters(){
   const fHisSys  = document.getElementById('f-hissys').value;
   const fRdhs    = document.getElementById('f-rdhs').value;
 
-  filtered = ALL_DATA.filter(d => {
+  // Always filter from HOSP_DATA (MOH / Admin Office already excluded)
+  filtered = HOSP_DATA.filter(d => {
     if(fSearch  && !d.name.toLowerCase().includes(fSearch)) return false;
     if(fLevel   && d.level      !== fLevel)    return false;
     if(fTypegrp && d.type_group !== fTypegrp)  return false;
@@ -612,8 +619,8 @@ function buildCharts(){
 // Just two bars: DDG & Above (all types combined) and BH & Below (all types combined)
 // Each bar stacked: HIS Active / Planned / No HIS
 function build2ColChart(){
-  const ddg = ALL_DATA.filter(d => d.level === 'DDG and Above');
-  const bh  = ALL_DATA.filter(d => d.level === 'BH and Below');
+  const ddg = HOSP_DATA.filter(d => d.level === 'DDG and Above');
+  const bh  = HOSP_DATA.filter(d => d.level === 'BH and Below');
 
   function counts(rows){
     return {
@@ -708,26 +715,9 @@ function build2ColChart(){
 
 // Combined grouped-stacked chart: DDG & Above | BH & Below, each column stacked
 function buildCombinedChart(){
-  // We use Chart.js "stack" property to create two separate stacks side-by-side.
-  // Each stack group is a pair of columns (DDG / BH) per type-group label.
-  // Strategy: labels = all type groups; DDG datasets only fill DDG-level positions,
-  //           BH datasets only fill BH-level positions. Non-applicable = null (skip gap).
-
-  // Build type-group order: DDG types first, then BH types, with a visual spacer
-  const DDG_SHORT = {
-    'National / Teaching Hospital': 'Natl/Teaching',
-    'District / Base Hospital':     'DGH',
-    'Specialized Hospital':         'Specialized',
-  };
-  const BH_SHORT = {
-    'Base Hospital':        'Base Hosp.',
-    'Divisional Hospital':  'Divisional',
-    'Primary Care (PMCU)':  'PMCU',
-  };
-
-  // Collect data per type
+  // Collect data per type — using HOSP_DATA (MOH excluded)
   function rowsFor(level, tg){
-    return ALL_DATA.filter(d=>d.level===level && d.type_group===tg);
+    return HOSP_DATA.filter(d=>d.level===level && d.type_group===tg);
   }
 
   // Build interleaved label list: for each DDG type → two bars (DDG, BH placeholder), etc.
@@ -839,7 +829,7 @@ function buildCombinedChart(){
 
 function buildDonutChart(){
   const counts = {};
-  for(const d of ALL_DATA){
+  for(const d of HOSP_DATA){
     if(d.his_in_place!=='Yes') continue;
     const sys = d.his_name || 'Unknown';
     counts[sys] = (counts[sys]||0)+1;
@@ -874,11 +864,10 @@ function buildDonutChart(){
 }
 
 function buildRdhsChart(){
-  // Coverage % per RDHS, sorted descending
-  const rdhs = [...new Set(ALL_DATA.map(d=>d.rdhs).filter(Boolean))].sort();
+  // Coverage % per RDHS, sorted descending — MOH offices already excluded from HOSP_DATA
+  const rdhs = [...new Set(HOSP_DATA.map(d=>d.rdhs).filter(Boolean))].sort();
   const entries = rdhs.map(r=>{
-    // Only clinical hospitals (not MOH offices)
-    const rows = ALL_DATA.filter(d=>d.rdhs===r && ['DDG and Above','BH and Below'].includes(d.level));
+    const rows = HOSP_DATA.filter(d=>d.rdhs===r);
     const total = rows.length;
     const his   = rows.filter(d=>d.his_in_place==='Yes').length;
     return { r, pct: total ? Math.round(his/total*100) : 0, total, his };
