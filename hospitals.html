@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital HIS Status — Sri Lanka MoH</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e}
+
+    /* ── Top bar ── */
+    #topbar{
+      background:linear-gradient(135deg,#0d3b66,#1a5276);
+      color:#fff;padding:0 20px;height:54px;
+      display:flex;align-items:center;justify-content:space-between;
+      box-shadow:0 2px 8px rgba(0,0,0,.35);position:sticky;top:0;z-index:200;
+    }
+    #topbar h1{font-size:1rem;font-weight:700}
+    #topbar p{font-size:.7rem;opacity:.78;margin-top:1px}
+    #back-btn{
+      background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.4);
+      color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;
+      font-size:.78rem;font-weight:600;text-decoration:none;
+      transition:background .15s;white-space:nowrap;
+    }
+    #back-btn:hover{background:rgba(255,255,255,.28)}
+
+    /* ── Page wrapper ── */
+    #page{max-width:1400px;margin:0 auto;padding:18px 20px 40px}
+
+    /* ── Section cards ── */
+    .card{background:#fff;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.09);padding:18px 20px;margin-bottom:18px}
+    .card-title{font-size:.95rem;font-weight:700;color:#0d3b66;margin-bottom:14px;
+      display:flex;align-items:center;gap:8px}
+    .card-title svg{flex-shrink:0}
+
+    /* ── KPI strip ── */
+    #kpi-strip{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+    .kpi{
+      flex:1;min-width:130px;background:#fff;border-radius:10px;
+      box-shadow:0 1px 6px rgba(0,0,0,.09);padding:14px 16px;
+      border-left:4px solid #0d3b66;
+    }
+    .kpi-val{font-size:1.7rem;font-weight:800;color:#0d3b66;line-height:1}
+    .kpi-lbl{font-size:.72rem;color:#667;margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+    .kpi.green{border-color:#27ae60}.kpi.green .kpi-val{color:#27ae60}
+    .kpi.red  {border-color:#e74c3c}.kpi.red   .kpi-val{color:#e74c3c}
+    .kpi.amber{border-color:#f39c12}.kpi.amber  .kpi-val{color:#f39c12}
+
+    /* ── Charts row ── */
+    #charts-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+    @media(max-width:860px){#charts-row{grid-template-columns:1fr}}
+    .chart-wrap{position:relative;height:300px}
+
+    /* ── Filters ── */
+    #filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+    .filter-group{display:flex;flex-direction:column;gap:4px;min-width:130px}
+    .filter-group label{font-size:.7rem;color:#889;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+    .filter-group select,
+    .filter-group input{
+      padding:7px 10px;border:1px solid #c5cdd8;border-radius:6px;
+      font-size:.82rem;background:#f8f9fc;color:#1a1a2e;
+    }
+    .filter-group select:focus,
+    .filter-group input:focus{outline:none;border-color:#0d3b66;background:#fff}
+    #search-filter{flex:1;min-width:180px}
+    #btn-reset{
+      padding:7px 16px;background:#e8edf5;border:1px solid #c5cdd8;
+      border-radius:6px;cursor:pointer;font-size:.82rem;color:#445;font-weight:600;
+      align-self:flex-end;
+    }
+    #btn-reset:hover{background:#dde3ee}
+
+    /* ── Table ── */
+    #tbl-wrap{overflow-x:auto}
+    #tbl{width:100%;border-collapse:collapse;font-size:.8rem;min-width:750px}
+    #tbl thead th{
+      background:#f0f5fb;padding:8px 10px;text-align:left;
+      border-bottom:2px solid #dde3ec;font-weight:700;font-size:.73rem;
+      color:#445;white-space:nowrap;cursor:pointer;user-select:none;
+      position:sticky;top:0;
+    }
+    #tbl thead th:hover{background:#e4edf8}
+    #tbl thead th .sort-icon{color:#aab;margin-left:3px;font-size:.65rem}
+    #tbl tbody td{padding:7px 10px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+    #tbl tbody tr:hover td{background:#f5f9ff}
+    #tbl tbody tr:last-child td{border-bottom:none}
+    .his-pill{
+      display:inline-block;padding:2px 9px;border-radius:11px;
+      font-size:.7rem;font-weight:700;white-space:nowrap;
+    }
+    .no-his-badge{
+      display:inline-block;padding:2px 9px;border-radius:11px;
+      font-size:.7rem;font-weight:700;background:#fdecea;color:#c0392b;
+      border:1px solid #f5c6c2;
+    }
+    .planned-badge{
+      display:inline-block;padding:2px 9px;border-radius:11px;
+      font-size:.7rem;font-weight:700;background:#fff3e0;color:#e65100;
+      border:1px solid #ffcc80;
+    }
+    /* level tag */
+    .lvl-ddg{display:inline-block;padding:2px 7px;border-radius:4px;font-size:.68rem;font-weight:700;background:#e8f0fe;color:#1a5276;border:1px solid #adc6e8}
+    .lvl-bh {display:inline-block;padding:2px 7px;border-radius:4px;font-size:.68rem;font-weight:700;background:#fdf3e7;color:#784212;border:1px solid #f0c694}
+    .lvl-oth{display:inline-block;padding:2px 7px;border-radius:4px;font-size:.68rem;font-weight:700;background:#f2f2f2;color:#666;border:1px solid #ddd}
+
+    /* ── Pagination ── */
+    #pagination{display:flex;align-items:center;gap:6px;padding:12px 0 0;flex-wrap:wrap}
+    .pg-btn{
+      padding:5px 11px;border:1px solid #c5cdd8;border-radius:6px;
+      background:#fff;cursor:pointer;font-size:.78rem;color:#445;
+    }
+    .pg-btn:hover{background:#eef3fb;border-color:#0d3b66}
+    .pg-btn.active{background:#0d3b66;color:#fff;border-color:#0d3b66;font-weight:700}
+    .pg-btn:disabled{opacity:.4;cursor:default}
+    #pg-info{font-size:.77rem;color:#889;margin-left:6px}
+
+    /* ── No results ── */
+    #no-results{text-align:center;padding:30px;color:#999;font-size:.9rem;display:none}
+
+    /* ── Responsive ── */
+    @media(max-width:600px){
+      #page{padding:12px 10px 30px}
+      .kpi{min-width:100px}
+      #filter-bar{gap:8px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div>
+    <h1>🏥 Hospital HIS Status — Sri Lanka Ministry of Health</h1>
+    <p>Hospital Information System deployment status across all institutions</p>
+  </div>
+  <a href="index.html" id="back-btn">← Map View</a>
+</div>
+
+<div id="page">
+
+  <!-- KPI STRIP -->
+  <div id="kpi-strip">
+    <div class="kpi" id="kpi-total"><div class="kpi-val" id="kv-total">—</div><div class="kpi-lbl">Total Institutions</div></div>
+    <div class="kpi green" id="kpi-his"><div class="kpi-val" id="kv-his">—</div><div class="kpi-lbl">HIS in Place</div></div>
+    <div class="kpi red"   id="kpi-nohis"><div class="kpi-val" id="kv-nohis">—</div><div class="kpi-lbl">No HIS</div></div>
+    <div class="kpi amber" id="kpi-pct"><div class="kpi-val" id="kv-pct">—</div><div class="kpi-lbl">Coverage</div></div>
+    <div class="kpi" style="border-color:#1565C0"><div class="kpi-val" style="color:#1565C0" id="kv-hhmis">—</div><div class="kpi-lbl">HHMIS</div></div>
+    <div class="kpi" style="border-color:#6A1B9A"><div class="kpi-val" style="color:#6A1B9A" id="kv-hims">—</div><div class="kpi-lbl">HIMS</div></div>
+    <div class="kpi" style="border-color:#2E7D32"><div class="kpi-val" style="color:#2E7D32" id="kv-openmrs">—</div><div class="kpi-lbl">OpenMRS</div></div>
+    <div class="kpi" style="border-color:#EF6C00"><div class="kpi-val" style="color:#EF6C00" id="kv-planned">—</div><div class="kpi-lbl">Planned</div></div>
+  </div>
+
+  <!-- CHARTS -->
+  <div id="charts-row">
+    <!-- Stacked bar: DDG and Above -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+        HIS Status — DDG &amp; Above Hospitals
+      </div>
+      <div class="chart-wrap"><canvas id="chart-ddg"></canvas></div>
+    </div>
+    <!-- Stacked bar: BH and Below -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+        HIS Status — BH &amp; Below Hospitals
+      </div>
+      <div class="chart-wrap"><canvas id="chart-bh"></canvas></div>
+    </div>
+    <!-- Donut: HIS system breakdown -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+        HIS System Breakdown (all hospitals with HIS)
+      </div>
+      <div class="chart-wrap"><canvas id="chart-donut"></canvas></div>
+    </div>
+    <!-- Coverage % by RDHS -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/></svg>
+        HIS Coverage % by RDHS Division
+      </div>
+      <div class="chart-wrap" style="height:330px"><canvas id="chart-rdhs"></canvas></div>
+    </div>
+  </div>
+
+  <!-- HOSPITAL TABLE -->
+  <div class="card">
+    <div class="card-title">
+      <svg width="16" height="16" fill="none" stroke="#0d3b66" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>
+      Hospital Directory
+      <span id="tbl-count" style="font-size:.75rem;font-weight:400;color:#889;margin-left:4px"></span>
+    </div>
+
+    <!-- Filter bar -->
+    <div id="filter-bar">
+      <div class="filter-group" id="search-filter">
+        <label>Search</label>
+        <input type="text" id="f-search" placeholder="Hospital name…" autocomplete="off"/>
+      </div>
+      <div class="filter-group">
+        <label>Level</label>
+        <select id="f-level">
+          <option value="">All Levels</option>
+          <option value="DDG and Above">DDG &amp; Above</option>
+          <option value="BH and Below">BH &amp; Below</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Type Group</label>
+        <select id="f-typegroup">
+          <option value="">All Types</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>HIS Status</label>
+        <select id="f-his">
+          <option value="">All</option>
+          <option value="Yes">HIS in Place</option>
+          <option value="No">No HIS</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>HIS System</label>
+        <select id="f-hissys">
+          <option value="">All Systems</option>
+          <option value="HHMIS">HHMIS</option>
+          <option value="HIMS">HIMS</option>
+          <option value="OpenMRS">OpenMRS</option>
+          <option value="HHIMS (Planned)">HHIMS (Planned)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>RDHS</label>
+        <select id="f-rdhs">
+          <option value="">All RDHS</option>
+        </select>
+      </div>
+      <button id="btn-reset">↺ Reset</button>
+    </div>
+
+    <!-- Table -->
+    <div id="tbl-wrap">
+      <table id="tbl">
+        <thead>
+          <tr>
+            <th data-col="name">Institution <span class="sort-icon">⇅</span></th>
+            <th data-col="type_atomic">Type <span class="sort-icon">⇅</span></th>
+            <th data-col="level">Level <span class="sort-icon">⇅</span></th>
+            <th data-col="rdhs">RDHS <span class="sort-icon">⇅</span></th>
+            <th data-col="his_in_place">HIS Status <span class="sort-icon">⇅</span></th>
+            <th data-col="his_name">HIS System <span class="sort-icon">⇅</span></th>
+            <th data-col="moh_area">MOH Area <span class="sort-icon">⇅</span></th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+      <div id="no-results">No hospitals match the current filters.</div>
+    </div>
+
+    <div id="pagination"></div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+'use strict';
+
+// ── CONSTANTS ────────────────────────────────────────────────────────────────
+const HIS_COLORS = {
+  'HHMIS':           '#1565C0',
+  'HIMS':            '#6A1B9A',
+  'OpenMRS':         '#2E7D32',
+  'HHIMS (Planned)': '#EF6C00',
+};
+const PAGE_SIZE = 25;
+
+// DDG-level type groups (for stacked chart)
+const DDG_TYPES = ['National / Teaching Hospital','District / Base Hospital','Specialized Hospital'];
+const BH_TYPES  = ['Base Hospital','Divisional Hospital','Primary Care (PMCU)'];
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let ALL_DATA     = [];
+let filtered     = [];
+let sortCol      = 'name';
+let sortDir      = 1;   // 1 = asc, -1 = desc
+let currentPage  = 1;
+
+// ── LOAD DATA ────────────────────────────────────────────────────────────────
+fetch('institutions_final.json')
+  .then(r => r.json())
+  .then(data => {
+    ALL_DATA = data;
+    initFilters();
+    applyFilters();
+    buildCharts();
+  })
+  .catch(() => {
+    document.getElementById('page').innerHTML =
+      `<p style="padding:40px;color:#c00;font-size:1rem">
+        ⚠ Cannot load <code>institutions_final.json</code>.<br>
+        Run: <code>python -m http.server 8080</code> then open
+        <a href="http://localhost:8080/hospitals.html">localhost:8080/hospitals.html</a>
+      </p>`;
+  });
+
+// ── INIT FILTERS ────────────────────────────────────────────────────────────
+function initFilters(){
+  const typeGroups = [...new Set(ALL_DATA.map(d=>d.type_group).filter(Boolean))].sort();
+  const rdhs       = [...new Set(ALL_DATA.map(d=>d.rdhs).filter(Boolean))].sort();
+
+  const fg = document.getElementById('f-typegroup');
+  typeGroups.forEach(tg=>{
+    const o = document.createElement('option');
+    o.value = tg; o.textContent = tg;
+    fg.appendChild(o);
+  });
+
+  const fr = document.getElementById('f-rdhs');
+  rdhs.forEach(r=>{
+    const o = document.createElement('option');
+    o.value = r; o.textContent = r;
+    fr.appendChild(o);
+  });
+}
+
+// ── APPLY FILTERS ────────────────────────────────────────────────────────────
+function applyFilters(){
+  const fSearch  = document.getElementById('f-search').value.trim().toLowerCase();
+  const fLevel   = document.getElementById('f-level').value;
+  const fTypegrp = document.getElementById('f-typegroup').value;
+  const fHis     = document.getElementById('f-his').value;
+  const fHisSys  = document.getElementById('f-hissys').value;
+  const fRdhs    = document.getElementById('f-rdhs').value;
+
+  filtered = ALL_DATA.filter(d => {
+    if(fSearch  && !d.name.toLowerCase().includes(fSearch)) return false;
+    if(fLevel   && d.level      !== fLevel)    return false;
+    if(fTypegrp && d.type_group !== fTypegrp)  return false;
+    if(fHis     && d.his_in_place !== fHis)    return false;
+    if(fHisSys  && d.his_name   !== fHisSys)   return false;
+    if(fRdhs    && d.rdhs       !== fRdhs)     return false;
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a,b)=>{
+    const av = (a[sortCol]||'').toLowerCase();
+    const bv = (b[sortCol]||'').toLowerCase();
+    return av < bv ? -sortDir : av > bv ? sortDir : 0;
+  });
+
+  currentPage = 1;
+  updateKPIs();
+  renderTable();
+}
+
+// ── KPI UPDATE ───────────────────────────────────────────────────────────────
+function updateKPIs(){
+  const total  = filtered.length;
+  const his    = filtered.filter(d=>d.his_in_place==='Yes').length;
+  const nohis  = total - his;
+  const pct    = total ? Math.round(his/total*100) : 0;
+  const hhmis  = filtered.filter(d=>d.his_name==='HHMIS').length;
+  const hims   = filtered.filter(d=>d.his_name==='HIMS').length;
+  const openmrs= filtered.filter(d=>d.his_name==='OpenMRS').length;
+  const planned= filtered.filter(d=>d.his_name==='HHIMS (Planned)').length;
+
+  document.getElementById('kv-total').textContent  = total;
+  document.getElementById('kv-his').textContent    = his;
+  document.getElementById('kv-nohis').textContent  = nohis;
+  document.getElementById('kv-pct').textContent    = pct + '%';
+  document.getElementById('kv-hhmis').textContent  = hhmis;
+  document.getElementById('kv-hims').textContent   = hims;
+  document.getElementById('kv-openmrs').textContent= openmrs;
+  document.getElementById('kv-planned').textContent= planned;
+}
+
+// ── RENDER TABLE ─────────────────────────────────────────────────────────────
+function renderTable(){
+  const tbody = document.getElementById('tbl-body');
+  tbody.innerHTML = '';
+
+  const total = filtered.length;
+  document.getElementById('tbl-count').textContent =
+    total ? `(${total} result${total!==1?'s':''})` : '';
+
+  if(!total){
+    document.getElementById('no-results').style.display='block';
+    document.getElementById('pagination').innerHTML='';
+    return;
+  }
+  document.getElementById('no-results').style.display='none';
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const start = (currentPage-1) * PAGE_SIZE;
+  const slice = filtered.slice(start, start + PAGE_SIZE);
+
+  for(const d of slice){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${esc(d.name)}</strong>${d.address?`<div style="font-size:.68rem;color:#999;margin-top:1px">${esc(d.address)}</div>`:''}</td>
+      <td style="white-space:nowrap">${esc(d.type_atomic||'—')}</td>
+      <td>${levelBadge(d.level)}</td>
+      <td>${esc(d.rdhs||'—')}</td>
+      <td>${hisBadge(d)}</td>
+      <td>${hisSysBadge(d.his_name)}</td>
+      <td style="color:#667;font-size:.75rem">${esc(d.moh_area||'—')}</td>`;
+    tbody.appendChild(tr);
+  }
+
+  renderPagination(totalPages);
+  updateSortIcons();
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+function levelBadge(level){
+  if(level==='DDG and Above') return `<span class="lvl-ddg">DDG &amp; Above</span>`;
+  if(level==='BH and Below')  return `<span class="lvl-bh">BH &amp; Below</span>`;
+  return `<span class="lvl-oth">${esc(level||'—')}</span>`;
+}
+
+function hisBadge(d){
+  if(d.his_in_place==='Yes'){
+    if(d.his_name==='HHIMS (Planned)') return `<span class="planned-badge">🟡 Planned</span>`;
+    return `<span style="background:#e8f8ef;color:#1e8449;border:1px solid #a9dfbf;display:inline-block;padding:2px 9px;border-radius:11px;font-size:.7rem;font-weight:700">✅ HIS</span>`;
+  }
+  return `<span class="no-his-badge">❌ No HIS</span>`;
+}
+
+function hisSysBadge(sys){
+  if(!sys) return `<span style="color:#bbb;font-size:.75rem">—</span>`;
+  const c = HIS_COLORS[sys] || '#999';
+  return `<span class="his-pill" style="background:${c}18;color:${c};border:1px solid ${c}44">${esc(sys)}</span>`;
+}
+
+// ── PAGINATION ───────────────────────────────────────────────────────────────
+function renderPagination(totalPages){
+  const wrap = document.getElementById('pagination');
+  wrap.innerHTML = '';
+  if(totalPages <= 1) return;
+
+  const prev = document.createElement('button');
+  prev.className = 'pg-btn'; prev.textContent = '← Prev';
+  prev.disabled = currentPage === 1;
+  prev.addEventListener('click', ()=>{ currentPage--; renderTable(); window.scrollTo(0,0); });
+  wrap.appendChild(prev);
+
+  // Page number buttons (show max 7 with ellipsis)
+  const pages = pagesToShow(currentPage, totalPages);
+  let lastP = 0;
+  for(const p of pages){
+    if(p - lastP > 1){
+      const ell = document.createElement('span');
+      ell.textContent = '…'; ell.style.cssText='padding:0 4px;color:#aaa;font-size:.85rem';
+      wrap.appendChild(ell);
+    }
+    const btn = document.createElement('button');
+    btn.className = 'pg-btn' + (p===currentPage?' active':'');
+    btn.textContent = p;
+    btn.addEventListener('click', (pp=>()=>{ currentPage=pp; renderTable(); window.scrollTo(0,0); })(p));
+    wrap.appendChild(btn);
+    lastP = p;
+  }
+
+  const next = document.createElement('button');
+  next.className = 'pg-btn'; next.textContent = 'Next →';
+  next.disabled = currentPage === totalPages;
+  next.addEventListener('click', ()=>{ currentPage++; renderTable(); window.scrollTo(0,0); });
+  wrap.appendChild(next);
+
+  const info = document.createElement('span');
+  info.id = 'pg-info';
+  const start = (currentPage-1)*PAGE_SIZE+1;
+  const end   = Math.min(currentPage*PAGE_SIZE, filtered.length);
+  info.textContent = `${start}–${end} of ${filtered.length}`;
+  wrap.appendChild(info);
+}
+
+function pagesToShow(cur, total){
+  if(total <= 7) return Array.from({length:total},(_,i)=>i+1);
+  const pages = new Set([1, total, cur]);
+  for(let i=cur-1;i<=cur+1;i++) if(i>0&&i<=total) pages.add(i);
+  return [...pages].sort((a,b)=>a-b);
+}
+
+// ── SORT ─────────────────────────────────────────────────────────────────────
+document.querySelectorAll('#tbl thead th[data-col]').forEach(th=>{
+  th.addEventListener('click',()=>{
+    if(sortCol === th.dataset.col) sortDir *= -1;
+    else { sortCol = th.dataset.col; sortDir = 1; }
+    applyFilters();
+  });
+});
+
+function updateSortIcons(){
+  document.querySelectorAll('#tbl thead th[data-col]').forEach(th=>{
+    const ico = th.querySelector('.sort-icon');
+    if(th.dataset.col === sortCol) ico.textContent = sortDir===1 ? ' ↑' : ' ↓';
+    else ico.textContent = ' ⇅';
+  });
+}
+
+// ── FILTER EVENTS ─────────────────────────────────────────────────────────────
+['f-search','f-level','f-typegroup','f-his','f-hissys','f-rdhs'].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener(id==='f-search'?'input':'change', applyFilters);
+});
+document.getElementById('btn-reset').addEventListener('click',()=>{
+  document.getElementById('f-search').value = '';
+  document.getElementById('f-level').value  = '';
+  document.getElementById('f-typegroup').value = '';
+  document.getElementById('f-his').value    = '';
+  document.getElementById('f-hissys').value = '';
+  document.getElementById('f-rdhs').value   = '';
+  applyFilters();
+});
+
+// ── CHARTS ───────────────────────────────────────────────────────────────────
+function buildCharts(){
+  buildStackedChart('chart-ddg', 'DDG and Above', DDG_TYPES);
+  buildStackedChart('chart-bh',  'BH and Below',  BH_TYPES);
+  buildDonutChart();
+  buildRdhsChart();
+}
+
+function buildStackedChart(canvasId, level, typeGroups){
+  const labels = [];
+  const dataHIS    = [];
+  const dataNoHIS  = [];
+  const dataPlanned= [];
+
+  for(const tg of typeGroups){
+    const rows = ALL_DATA.filter(d => d.level===level && d.type_group===tg);
+    if(!rows.length) continue;
+    // Shorten label for chart
+    const short = tg
+      .replace('National / Teaching Hospital','Natl/Teaching')
+      .replace('District / Base Hospital','DGH')
+      .replace('Specialized Hospital','Specialized')
+      .replace('Base Hospital','Base Hosp.')
+      .replace('Divisional Hospital','Divisional')
+      .replace('Primary Care (PMCU)','PMCU');
+    labels.push(short);
+    const planned = rows.filter(d=>d.his_name==='HHIMS (Planned)').length;
+    const active  = rows.filter(d=>d.his_in_place==='Yes'&&d.his_name!=='HHIMS (Planned)').length;
+    const nohis   = rows.filter(d=>d.his_in_place!=='Yes').length;
+    dataHIS.push(active);
+    dataPlanned.push(planned);
+    dataNoHIS.push(nohis);
+  }
+
+  new Chart(document.getElementById(canvasId), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label:'HIS Active',  data:dataHIS,     backgroundColor:'#27ae60cc', borderColor:'#27ae60', borderWidth:1 },
+        { label:'Planned',     data:dataPlanned,  backgroundColor:'#EF6C00aa', borderColor:'#EF6C00', borderWidth:1 },
+        { label:'No HIS',      data:dataNoHIS,    backgroundColor:'#e74c3caa', borderColor:'#e74c3c', borderWidth:1 },
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{ position:'bottom', labels:{font:{size:11}, boxWidth:12, padding:10} },
+        tooltip:{
+          callbacks:{
+            label: ctx => {
+              const total = ctx.dataset.data.reduce((a,b)=>a+b,0)
+                + (ctx.chart.data.datasets
+                    .filter((_,i)=>i!==ctx.datasetIndex)
+                    .reduce((a,ds)=>a+(ds.data[ctx.dataIndex]||0),0));
+              const allTot = ctx.chart.data.datasets
+                .reduce((a,ds)=>a+(ds.data[ctx.dataIndex]||0),0);
+              const pct = allTot ? Math.round(ctx.parsed.y/allTot*100) : 0;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y} (${pct}%)`;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{ stacked:true, ticks:{font:{size:11}} },
+        y:{ stacked:true, ticks:{font:{size:11}}, title:{display:true,text:'No. of Hospitals',font:{size:11}} }
+      }
+    }
+  });
+}
+
+function buildDonutChart(){
+  const counts = {};
+  for(const d of ALL_DATA){
+    if(d.his_in_place!=='Yes') continue;
+    const sys = d.his_name || 'Unknown';
+    counts[sys] = (counts[sys]||0)+1;
+  }
+  const labels = Object.keys(counts);
+  const values = labels.map(l=>counts[l]);
+  const colors = labels.map(l=>HIS_COLORS[l]||'#999');
+
+  new Chart(document.getElementById('chart-donut'),{
+    type:'doughnut',
+    data:{
+      labels,
+      datasets:[{ data:values, backgroundColor:colors.map(c=>c+'cc'), borderColor:colors, borderWidth:2 }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'bottom', labels:{font:{size:11},boxWidth:12,padding:10}},
+        tooltip:{
+          callbacks:{
+            label: ctx => {
+              const total = ctx.dataset.data.reduce((a,b)=>a+b,0);
+              const pct = Math.round(ctx.parsed/total*100);
+              return ` ${ctx.label}: ${ctx.parsed} (${pct}%)`;
+            }
+          }
+        }
+      },
+      cutout:'55%'
+    }
+  });
+}
+
+function buildRdhsChart(){
+  // Coverage % per RDHS, sorted descending
+  const rdhs = [...new Set(ALL_DATA.map(d=>d.rdhs).filter(Boolean))].sort();
+  const entries = rdhs.map(r=>{
+    // Only clinical hospitals (not MOH offices)
+    const rows = ALL_DATA.filter(d=>d.rdhs===r && ['DDG and Above','BH and Below'].includes(d.level));
+    const total = rows.length;
+    const his   = rows.filter(d=>d.his_in_place==='Yes').length;
+    return { r, pct: total ? Math.round(his/total*100) : 0, total, his };
+  });
+  entries.sort((a,b)=>b.pct-a.pct);
+
+  const labels = entries.map(e=>e.r);
+  const pcts   = entries.map(e=>e.pct);
+  const bgColors = pcts.map(p=>
+    p>=70 ? '#27ae60cc' : p>=40 ? '#f39c12cc' : '#e74c3ccc'
+  );
+
+  new Chart(document.getElementById('chart-rdhs'),{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{
+        label:'HIS Coverage %',
+        data:pcts,
+        backgroundColor:bgColors,
+        borderColor:bgColors.map(c=>c.slice(0,7)),
+        borderWidth:1,
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          callbacks:{
+            label: (ctx)=>{
+              const e = entries[ctx.dataIndex];
+              return ` ${e.pct}%  (${e.his}/${e.total} hospitals)`;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{
+          min:0, max:100,
+          title:{display:true,text:'HIS Coverage (%)',font:{size:11}},
+          ticks:{callback:v=>v+'%', font:{size:10}}
+        },
+        y:{ ticks:{font:{size:11}} }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
